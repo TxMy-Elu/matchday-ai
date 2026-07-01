@@ -232,13 +232,13 @@ export default function App() {
                   <TeamPicker label={t('label_away')} teams={teams} value={away} onChange={setAway} exclude={home} />
                 </div>
 
-                <div className="flex items-center justify-center gap-3 mt-6">
+                <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 mt-6 text-center">
                   <button
                     type="button"
                     role="switch"
                     aria-checked={neutral}
                     onClick={() => setNeutral((n) => !n)}
-                    className={`relative w-11 h-6 rounded-full transition-colors ${neutral ? 'bg-emerald-500' : 'bg-void-700 border border-line'}`}
+                    className={`relative w-11 h-6 shrink-0 rounded-full transition-colors ${neutral ? 'bg-emerald-500' : 'bg-void-700 border border-line'}`}
                   >
                     <span
                       className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-mist-50 shadow transition-transform ${neutral ? 'translate-x-5' : ''}`}
