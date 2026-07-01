@@ -1,8 +1,27 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, lazy, Suspense } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import TeamPicker from './TeamPicker.jsx'
 import BracketSimulator from './BracketSimulator.jsx'
 import Results from './Results.jsx'
+import Logo from './Logo.jsx'
+import TiltCard from './TiltCard.jsx'
+import Footer from './Footer.jsx'
+import LegalPage from './LegalPage.jsx'
+import LanguageToggle from './LanguageToggle.jsx'
+import { useLang } from './i18n.jsx'
 import { flagFor } from './flags.js'
+
+function useHashRoute() {
+  const [hash, setHash] = useState(() => window.location.hash)
+  useEffect(() => {
+    const onChange = () => setHash(window.location.hash)
+    window.addEventListener('hashchange', onChange)
+    return () => window.removeEventListener('hashchange', onChange)
+  }, [])
+  return hash
+}
+
+const HeroOrb = lazy(() => import('./HeroOrb.jsx'))
 
 const API_BASE = import.meta.env.VITE_API_BASE || '/api'
 
@@ -12,9 +31,9 @@ function pct(x) {
 
 function FormBadge({ result }) {
   const styles = {
-    W: 'bg-turf-600/80 text-chalk-50 border-turf-500',
-    D: 'bg-pitch-700 text-chalk-200 border-pitchline',
-    L: 'bg-red-900/50 text-red-200 border-red-800/60',
+    W: 'bg-emerald-500/90 text-void-950 border-emerald-500',
+    D: 'bg-void-700 text-mist-300 border-line',
+    L: 'bg-void-800 text-crimson-500 border-crimson-500/40',
   }
   return (
     <span className={`w-6 h-6 flex items-center justify-center rounded text-[11px] font-mono font-bold border ${styles[result] || styles.D}`}>
@@ -27,24 +46,59 @@ function ProbBar({ label, value, accent }) {
   return (
     <div>
       <div className="flex items-baseline justify-between mb-1.5">
-        <span className="text-sm font-body font-medium text-chalk-200">{label}</span>
+        <span className="text-sm font-body font-medium text-mist-50">{label}</span>
         <span className="font-mono text-sm font-semibold" style={{ color: accent }}>{pct(value)}</span>
       </div>
-      <div className="h-2.5 rounded-full bg-pitch-900 border border-pitchline overflow-hidden">
-        <div
-          className="h-full rounded-full transition-all duration-700 ease-out"
-          style={{
-            width: pct(value),
-            background: `linear-gradient(90deg, ${accent}88, ${accent})`,
-            boxShadow: `0 0 12px ${accent}55`,
-          }}
+      <div className="h-2.5 rounded-full bg-void-800 border border-line overflow-hidden">
+        <motion.div
+          className="h-full rounded-full"
+          style={{ background: `linear-gradient(90deg, ${accent}99, ${accent})`, boxShadow: `0 0 14px ${accent}66` }}
+          initial={{ width: 0 }}
+          animate={{ width: pct(value) }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         />
       </div>
     </div>
   )
 }
 
+function IconCrosshair({ className }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+      <circle cx="12" cy="12" r="7.5" />
+      <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none" />
+      <path d="M12 2v3.5M12 18.5V22M2 12h3.5M18.5 12H22" />
+    </svg>
+  )
+}
+
+function IconTrophy({ className }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 4h10v5a5 5 0 0 1-10 0V4Z" />
+      <path d="M7 5H4.5A1.5 1.5 0 0 0 3 6.5 3.5 3.5 0 0 0 6.5 10H7M17 5h2.5A1.5 1.5 0 0 1 21 6.5 3.5 3.5 0 0 1 17.5 10H17" />
+      <path d="M12 14v3M9 21h6M9.5 21c0-2 .8-3 2.5-4 1.7 1 2.5 2 2.5 4" />
+    </svg>
+  )
+}
+
+function IconBracket({ className }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 5h4M4 12h4M4 19h4M8 5v3.5a1 1 0 0 0 1 1h3M8 12v3.5a1 1 0 0 0 1 1h3M12 8.5v7M17 8.5h3M17 15.5h3" />
+    </svg>
+  )
+}
+
+const TABS = [
+  { id: 'predictor', labelKey: 'tab_predictor', Icon: IconCrosshair },
+  { id: 'bracket', labelKey: 'tab_bracket', Icon: IconTrophy },
+  { id: 'results', labelKey: 'tab_results', Icon: IconBracket },
+]
+
 export default function App() {
+  const { t } = useLang()
+  const hash = useHashRoute()
   const [tab, setTab] = useState('predictor') // 'predictor' | 'bracket' | 'results'
   const [teams, setTeams] = useState([])
   const [fixtures, setFixtures] = useState([])
@@ -56,7 +110,7 @@ export default function App() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch(`${API_BASE}/teams`).then((r) => r.json()).then(setTeams).catch(() => setError('Could not reach the Matchday AI backend. Is it running on :8000?'))
+    fetch(`${API_BASE}/teams`).then((r) => r.json()).then(setTeams).catch(() => setError('error_backend'))
     fetch(`${API_BASE}/fixtures`).then((r) => r.json()).then(setFixtures).catch(() => {})
   }, [])
 
@@ -66,15 +120,15 @@ export default function App() {
     setError(null)
     fetch(`${API_BASE}/predict?home=${encodeURIComponent(h)}&away=${encodeURIComponent(a)}&neutral=${n}`)
       .then((r) => {
-        if (!r.ok) throw new Error('Prediction failed')
+        if (!r.ok) throw new Error('error_predict')
         return r.json()
       })
       .then((data) => {
         setResult(data)
         setLoading(false)
       })
-      .catch((e) => {
-        setError(e.message)
+      .catch(() => {
+        setError('error_predict')
         setLoading(false)
       })
   }, [])
@@ -89,250 +143,270 @@ export default function App() {
     setAway(h)
   }
 
+  if (hash.startsWith('#/legal/')) {
+    return <LegalPage page={hash.replace('#/legal/', '')} />
+  }
+
   return (
     <div className="min-h-screen font-body">
       {/* Header */}
-      <header className="border-b border-pitchline/60">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-6 flex items-center justify-between">
+      <header className="sticky top-0 z-30 glass">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-5 flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-full border-2 border-floodlight-500 flex items-center justify-center">
-              <span className="text-floodlight-500 text-base sm:text-lg">⚽</span>
-            </div>
+            <Logo className="w-8 h-8 sm:w-9 sm:h-9 shrink-0" />
             <div className="min-w-0">
-              <h1 className="font-display text-xl sm:text-2xl tracking-wide text-chalk-50 leading-none truncate">MATCHDAY AI</h1>
-              <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-chalk-400 mt-0.5 truncate">2026 World Cup Predictor</p>
+              <h1 className="font-display text-xl sm:text-2xl font-bold gradient-text leading-none truncate">Matchday AI</h1>
+              <p className="kicker text-[10px] sm:text-[11px] text-mist-500 mt-1 truncate">{t('tagline')}</p>
             </div>
           </div>
-          <div className="hidden sm:block text-right text-[11px] text-chalk-400 font-mono leading-tight">
-            <div>{teams.length || 48} teams · Elo + Dixon-Coles Poisson</div>
-            <div>trained on 49,481 matches, 1872–2026</div>
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+            <div className="hidden sm:block text-right text-[11px] text-mist-500 font-mono leading-tight">
+              <div>{t('stats_line1', { n: teams.length || 48 })}</div>
+              <div>{t('stats_line2')}</div>
+            </div>
+            <LanguageToggle />
+          </div>
+        </div>
+        <div className="border-t border-line">
+          <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center gap-1 overflow-x-auto no-scrollbar">
+            {TABS.map((tabItem) => (
+              <button
+                key={tabItem.id}
+                onClick={() => setTab(tabItem.id)}
+                className={`relative shrink-0 flex items-center gap-1.5 px-3 sm:px-4 py-3 text-xs sm:text-sm font-semibold tracking-wide transition whitespace-nowrap ${
+                  tab === tabItem.id ? 'text-mist-50' : 'text-mist-500 hover:text-mist-300'
+                }`}
+              >
+                <tabItem.Icon className="w-4 h-4 shrink-0" />
+                {t(tabItem.labelKey)}
+                {tab === tabItem.id && (
+                  <motion.span
+                    layoutId="tab-underline"
+                    className="absolute left-2 right-2 -bottom-px h-[2px] rounded-full"
+                    style={{ background: 'linear-gradient(90deg, #A78BFA, #34D399, #22D3EE)' }}
+                    transition={{ type: 'spring', stiffness: 500, damping: 40 }}
+                  />
+                )}
+              </button>
+            ))}
           </div>
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-14">
-        {/* Tabs */}
-        <div className="flex items-center gap-2 mb-6 sm:mb-8 overflow-x-auto thin-scroll -mx-4 px-4 sm:mx-0 sm:px-0">
-          <button
-            onClick={() => setTab('predictor')}
-            className={`shrink-0 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold tracking-wide transition border whitespace-nowrap ${
-              tab === 'predictor'
-                ? 'bg-floodlight-500 text-pitch-950 border-floodlight-500'
-                : 'border-pitchline text-chalk-400 hover:text-chalk-50'
-            }`}
-          >
-            Match Predictor
-          </button>
-          <button
-            onClick={() => setTab('bracket')}
-            className={`shrink-0 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold tracking-wide transition border whitespace-nowrap ${
-              tab === 'bracket'
-                ? 'bg-floodlight-500 text-pitch-950 border-floodlight-500'
-                : 'border-pitchline text-chalk-400 hover:text-chalk-50'
-            }`}
-          >
-            🏆 Tournament Simulator
-          </button>
-          <button
-            onClick={() => setTab('results')}
-            className={`shrink-0 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold tracking-wide transition border whitespace-nowrap ${
-              tab === 'results'
-                ? 'bg-floodlight-500 text-pitch-950 border-floodlight-500'
-                : 'border-pitchline text-chalk-400 hover:text-chalk-50'
-            }`}
-          >
-            📋 Results & Bracket
-          </button>
-        </div>
-
-        {tab === 'bracket' && <BracketSimulator />}
-        {tab === 'results' && <Results />}
-
-        {tab === 'predictor' && (
-        <>
-        {/* Hero / picker */}
-        <section className="scoreboard-panel rounded-2xl p-4 sm:p-6 lg:p-10 relative overflow-hidden">
-          <div
-            aria-hidden
-            className="absolute inset-0 opacity-[0.05] pointer-events-none"
-            style={{
-              backgroundImage:
-                'radial-gradient(circle at 50% 50%, transparent 0%, transparent 22%, #FFB627 22.4%, transparent 22.8%)',
-              backgroundSize: '340px 340px',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
-          />
-          <p className="text-center text-chalk-400 text-sm mb-8 relative">
-            Pick two national teams to generate a win / draw / loss forecast and predicted scoreline.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-4 sm:gap-6 items-end relative">
-            <TeamPicker label="Home" teams={teams} value={home} onChange={setHome} exclude={away} />
-
-            <button
-              onClick={swap}
-              title="Swap teams"
-              className="flex items-center justify-center w-11 h-11 rounded-full border border-pitchline text-chalk-400 hover:text-floodlight-500 hover:border-floodlight-500/60 transition mb-1 mx-auto font-display"
-            >
-              VS
-            </button>
-
-            <TeamPicker label="Away" teams={teams} value={away} onChange={setAway} exclude={home} />
-          </div>
-
-          <div className="flex items-center justify-center gap-3 mt-6 relative">
-            <button
-              type="button"
-              role="switch"
-              aria-checked={neutral}
-              onClick={() => setNeutral((n) => !n)}
-              className={`relative w-11 h-6 rounded-full transition-colors ${neutral ? 'bg-floodlight-600' : 'bg-pitch-700'}`}
-            >
-              <span
-                className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-chalk-50 transition-transform ${neutral ? 'translate-x-5' : ''}`}
-              />
-            </button>
-            <span className="text-sm text-chalk-200">
-              Neutral venue <span className="text-chalk-400">(on for almost every 2026 knockout match)</span>
-            </span>
-          </div>
-
-          {fixtures.length > 0 && (
-            <div className="mt-8 relative">
-              <div className="text-[11px] uppercase tracking-[0.2em] text-chalk-400 font-semibold mb-3">
-                Or jump to a scheduled fixture
-              </div>
-              <div className="flex gap-2 overflow-x-auto thin-scroll pb-2">
-                {fixtures.map((f) => (
-                  <button
-                    key={`${f.date}-${f.home_team}-${f.away_team}`}
-                    onClick={() => {
-                      setHome(f.home_team)
-                      setAway(f.away_team)
-                      setNeutral(f.neutral)
-                    }}
-                    className="shrink-0 rounded-lg border border-pitchline bg-pitch-900/60 px-3.5 py-2 text-xs hover:border-floodlight-500/60 transition text-left"
-                  >
-                    <div className="text-chalk-400 font-mono mb-1">{f.date}</div>
-                    <div className="text-chalk-50 font-medium whitespace-nowrap">
-                      {flagFor(f.home_team)} {f.home_team} <span className="text-chalk-400">vs</span> {flagFor(f.away_team)} {f.away_team}
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
+      <main className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-14">
+        <AnimatePresence mode="wait">
+          {tab === 'bracket' && (
+            <motion.div key="bracket" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+              <BracketSimulator />
+            </motion.div>
           )}
-        </section>
+          {tab === 'results' && (
+            <motion.div key="results" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+              <Results />
+            </motion.div>
+          )}
 
-        {error && (
-          <div className="mt-6 rounded-lg border border-red-800/60 bg-red-950/40 px-4 py-3 text-sm text-red-200">
-            {error}
-          </div>
-        )}
+          {tab === 'predictor' && (
+          <motion.div key="predictor" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+            {/* Hero / picker */}
+            <div className="relative">
+              <Suspense fallback={null}>
+                <HeroOrb className="absolute -top-24 left-1/2 -translate-x-1/2 w-[560px] h-[420px] opacity-70 -z-10" />
+              </Suspense>
+              <TiltCard max={3} className="glass rounded-2xl p-4 sm:p-6 lg:p-10">
+                <p className="text-center text-mist-500 text-sm mb-8">
+                  {t('hero_desc')}
+                </p>
 
-        {/* Results */}
-        {result && (
-          <section className="mt-8 flicker-in">
-            {/* Scoreboard */}
-            <div className="scoreboard-panel rounded-2xl p-5 sm:p-8 lg:p-10 text-center">
-              <div className="text-[11px] uppercase tracking-[0.3em] text-chalk-400 mb-4 sm:mb-6">Predicted Scoreline</div>
-              <div className="flex items-center justify-center gap-3 sm:gap-6 lg:gap-10">
-                <div className="flex-1 flex flex-col items-center gap-1.5 sm:gap-2 min-w-0">
-                  <span className="text-2xl sm:text-3xl lg:text-4xl">{flagFor(result.home_team)}</span>
-                  <span className="font-body font-semibold text-chalk-50 text-xs sm:text-sm lg:text-base truncate max-w-[5.5rem] sm:max-w-[9rem] lg:max-w-none">{result.home_team}</span>
+                <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-4 sm:gap-6 items-end">
+                  <TeamPicker label={t('label_home')} teams={teams} value={home} onChange={setHome} exclude={away} />
+
+                  <button
+                    onClick={swap}
+                    title="Swap teams"
+                    className="flex items-center justify-center w-11 h-11 rounded-full border border-line text-mist-300 hover:text-emerald-400 hover:border-emerald-400/60 hover:shadow-glow-emerald transition mb-1 mx-auto font-display font-semibold"
+                  >
+                    VS
+                  </button>
+
+                  <TeamPicker label={t('label_away')} teams={teams} value={away} onChange={setAway} exclude={home} />
                 </div>
-                <div className="led-digit font-mono text-4xl sm:text-6xl lg:text-8xl font-bold tracking-widest flex items-center gap-1.5 sm:gap-3 lg:gap-4">
-                  <span>{result.predicted_scoreline.home_goals}</span>
-                  <span className="text-chalk-600 text-2xl sm:text-4xl lg:text-6xl">–</span>
-                  <span>{result.predicted_scoreline.away_goals}</span>
+
+                <div className="flex items-center justify-center gap-3 mt-6">
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={neutral}
+                    onClick={() => setNeutral((n) => !n)}
+                    className={`relative w-11 h-6 rounded-full transition-colors ${neutral ? 'bg-emerald-500' : 'bg-void-700 border border-line'}`}
+                  >
+                    <span
+                      className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-mist-50 shadow transition-transform ${neutral ? 'translate-x-5' : ''}`}
+                    />
+                  </button>
+                  <span className="text-sm text-mist-300">
+                    {t('neutral_venue')} <span className="text-mist-500">{t('neutral_hint')}</span>
+                  </span>
                 </div>
-                <div className="flex-1 flex flex-col items-center gap-1.5 sm:gap-2 min-w-0">
-                  <span className="text-2xl sm:text-3xl lg:text-4xl">{flagFor(result.away_team)}</span>
-                  <span className="font-body font-semibold text-chalk-50 text-xs sm:text-sm lg:text-base truncate max-w-[5.5rem] sm:max-w-[9rem] lg:max-w-none">{result.away_team}</span>
-                </div>
-              </div>
-              <div className="mt-6 text-xs text-chalk-400 font-mono">
-                Most likely exact scoreline · {pct(result.predicted_scoreline.prob)} probability &nbsp;·&nbsp;
-                xG {result.expected_goals.home.toFixed(2)} – {result.expected_goals.away.toFixed(2)}
-              </div>
+
+                {fixtures.length > 0 && (
+                  <div className="mt-8">
+                    <div className="kicker text-[11px] text-mist-500 font-semibold mb-3">
+                      {t('fixtures_heading')}
+                    </div>
+                    <div className="flex gap-2 overflow-x-auto thin-scroll pb-2">
+                      {fixtures.map((f) => (
+                        <button
+                          key={`${f.date}-${f.home_team}-${f.away_team}`}
+                          onClick={() => {
+                            setHome(f.home_team)
+                            setAway(f.away_team)
+                            setNeutral(f.neutral)
+                          }}
+                          className="shrink-0 rounded-lg border border-line bg-void-800/60 px-3.5 py-2 text-xs hover:border-emerald-400/60 transition text-left"
+                        >
+                          <div className="text-mist-500 font-mono mb-1 flex items-center gap-1.5 whitespace-nowrap">
+                            <span>{f.date}</span>
+                            {f.city && (
+                              <span className="text-mist-700">
+                                · {flagFor(f.country)} {f.city}{f.country ? `, ${f.country}` : ''}
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-mist-50 font-medium whitespace-nowrap flex items-center gap-1.5">
+                            <span>{flagFor(f.home_team)} {f.home_team}</span>
+                            {!f.neutral && (
+                              <span className="kicker text-[9px] leading-none px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                                {t('host_badge')}
+                              </span>
+                            )}
+                            <span className="text-mist-500">vs</span>
+                            <span>{flagFor(f.away_team)} {f.away_team}</span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </TiltCard>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6">
-              {/* WDL probabilities */}
-              <div className="lg:col-span-3 scoreboard-panel rounded-2xl p-4 sm:p-6 lg:p-8">
-                <h2 className="font-display text-lg tracking-wide text-chalk-50 mb-6">MATCH OUTCOME</h2>
-                <div className="space-y-5">
-                  <ProbBar label={`${result.home_team} win`} value={result.win_draw_loss.home_win} accent="#FFB627" />
-                  <ProbBar label="Draw" value={result.win_draw_loss.draw} accent="#8B9A93" />
-                  <ProbBar label={`${result.away_team} win`} value={result.win_draw_loss.away_win} accent="#5AA6E8" />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 mt-8 pt-6 border-t border-pitchline">
-                  <div>
-                    <div className="text-[11px] uppercase tracking-[0.15em] text-chalk-400 mb-2">Elo rating</div>
-                    <div className="flex justify-between text-sm font-mono">
-                      <span className="text-chalk-200">{result.home_team}</span>
-                      <span className="text-chalk-50 font-semibold">{result.elo.home}</span>
-                    </div>
-                    <div className="flex justify-between text-sm font-mono">
-                      <span className="text-chalk-200">{result.away_team}</span>
-                      <span className="text-chalk-50 font-semibold">{result.elo.away}</span>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-[11px] uppercase tracking-[0.15em] text-chalk-400 mb-2">Recent form (last 10)</div>
-                    <div className="flex gap-1 mb-1.5 flex-wrap">
-                      {result.recent_form.home.map((r, i) => <FormBadge key={i} result={r} />)}
-                    </div>
-                    <div className="flex gap-1 flex-wrap">
-                      {result.recent_form.away.map((r, i) => <FormBadge key={i} result={r} />)}
-                    </div>
-                  </div>
-                </div>
+            {error && (
+              <div className="mt-6 rounded-lg border border-crimson-500/40 bg-void-800/60 px-4 py-3 text-sm text-crimson-500">
+                {t(error)}
               </div>
+            )}
 
-              {/* Top scorelines */}
-              <div className="lg:col-span-2 scoreboard-panel rounded-2xl p-4 sm:p-6 lg:p-8">
-                <h2 className="font-display text-lg tracking-wide text-chalk-50 mb-6">ODDS BOARD</h2>
-                <div className="space-y-3">
-                  {result.top_scorelines.map((s, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <span className="text-chalk-600 font-mono text-xs w-4">{i + 1}</span>
-                      <span className="font-mono text-sm text-chalk-50 w-12">
-                        {s.home_goals}–{s.away_goals}
-                      </span>
-                      <div className="flex-1 h-1.5 rounded-full bg-pitch-900 border border-pitchline overflow-hidden">
-                        <div
-                          className="h-full rounded-full bg-floodlight-500"
-                          style={{ width: pct(s.prob / result.top_scorelines[0].prob) }}
-                        />
+            {/* Results */}
+            <AnimatePresence>
+              {result && (
+                <motion.section
+                  key={`${result.home_team}-${result.away_team}`}
+                  className="mt-8"
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {/* Scoreboard */}
+                  <div className="glass rounded-2xl p-5 sm:p-8 lg:p-10 text-center">
+                    <div className="kicker text-[11px] text-mist-500 mb-4 sm:mb-6">{t('scoreline_label')}</div>
+                    <div className="flex items-center justify-center gap-3 sm:gap-6 lg:gap-10">
+                      <div className="flex-1 flex flex-col items-center gap-1.5 sm:gap-2 min-w-0">
+                        <span className="text-2xl sm:text-3xl lg:text-4xl">{flagFor(result.home_team)}</span>
+                        <span className="font-body font-semibold text-mist-50 text-xs sm:text-sm lg:text-base truncate max-w-[5.5rem] sm:max-w-[9rem] lg:max-w-none">{result.home_team}</span>
                       </div>
-                      <span className="font-mono text-xs text-chalk-400 w-10 text-right">{pct(s.prob)}</span>
+                      <div className="font-display gradient-text text-4xl sm:text-6xl lg:text-8xl font-bold tracking-tight flex items-center gap-1.5 sm:gap-3 lg:gap-4">
+                        <span>{result.predicted_scoreline.home_goals}</span>
+                        <span className="text-mist-700 text-2xl sm:text-4xl lg:text-6xl">–</span>
+                        <span>{result.predicted_scoreline.away_goals}</span>
+                      </div>
+                      <div className="flex-1 flex flex-col items-center gap-1.5 sm:gap-2 min-w-0">
+                        <span className="text-2xl sm:text-3xl lg:text-4xl">{flagFor(result.away_team)}</span>
+                        <span className="font-body font-semibold text-mist-50 text-xs sm:text-sm lg:text-base truncate max-w-[5.5rem] sm:max-w-[9rem] lg:max-w-none">{result.away_team}</span>
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
+                    <div className="mt-6 text-xs text-mist-500 font-mono">
+                      {t('scoreline_meta', {
+                        pct: pct(result.predicted_scoreline.prob),
+                        home: result.expected_goals.home.toFixed(2),
+                        away: result.expected_goals.away.toFixed(2),
+                      })}
+                    </div>
+                  </div>
 
-        {!result && !error && (
-          <div className="mt-10 text-center text-chalk-600 text-sm">
-            {loading ? 'Running the model…' : 'Select both teams above to see a prediction.'}
-          </div>
-        )}
-        </>
-        )}
+                  <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6">
+                    {/* WDL probabilities */}
+                    <div className="lg:col-span-3 glass rounded-2xl p-4 sm:p-6 lg:p-8">
+                      <h2 className="font-display text-lg font-semibold text-mist-50 mb-6">{t('match_outcome')}</h2>
+                      <div className="space-y-5">
+                        <ProbBar label={t('win_label', { team: result.home_team })} value={result.win_draw_loss.home_win} accent="#10B981" />
+                        <ProbBar label={t('draw_label')} value={result.win_draw_loss.draw} accent="#9195AA" />
+                        <ProbBar label={t('win_label', { team: result.away_team })} value={result.win_draw_loss.away_win} accent="#8B5CF6" />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4 mt-8 pt-6 border-t border-line">
+                        <div>
+                          <div className="kicker text-[11px] text-mist-500 mb-2">{t('elo_rating')}</div>
+                          <div className="flex justify-between text-sm font-mono">
+                            <span className="text-mist-300">{result.home_team}</span>
+                            <span className="text-mist-50 font-semibold">{result.elo.home}</span>
+                          </div>
+                          <div className="flex justify-between text-sm font-mono">
+                            <span className="text-mist-300">{result.away_team}</span>
+                            <span className="text-mist-50 font-semibold">{result.elo.away}</span>
+                          </div>
+                        </div>
+                        <div>
+                          <div className="kicker text-[11px] text-mist-500 mb-2">{t('recent_form')}</div>
+                          <div className="flex gap-1 mb-1.5 flex-wrap">
+                            {result.recent_form.home.map((r, i) => <FormBadge key={i} result={r} />)}
+                          </div>
+                          <div className="flex gap-1 flex-wrap">
+                            {result.recent_form.away.map((r, i) => <FormBadge key={i} result={r} />)}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Top scorelines */}
+                    <div className="lg:col-span-2 glass rounded-2xl p-4 sm:p-6 lg:p-8">
+                      <h2 className="font-display text-lg font-semibold text-mist-50 mb-6">{t('odds_board')}</h2>
+                      <div className="space-y-3">
+                        {result.top_scorelines.map((s, i) => (
+                          <div key={i} className="flex items-center gap-3">
+                            <span className="text-mist-700 font-mono text-xs w-4">{i + 1}</span>
+                            <span className="font-mono text-sm text-mist-50 w-12">
+                              {s.home_goals}–{s.away_goals}
+                            </span>
+                            <div className="flex-1 h-1.5 rounded-full bg-void-800 border border-line overflow-hidden">
+                              <motion.div
+                                className="h-full rounded-full bg-gradient-to-r from-violet-500 to-cyan-500"
+                                initial={{ width: 0 }}
+                                animate={{ width: pct(s.prob / result.top_scorelines[0].prob) }}
+                                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                              />
+                            </div>
+                            <span className="font-mono text-xs text-mist-500 w-10 text-right">{pct(s.prob)}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.section>
+              )}
+            </AnimatePresence>
+
+            {!result && !error && (
+              <div className="mt-10 text-center text-mist-500 text-sm">
+                {loading ? t('loading_model') : t('select_prompt')}
+              </div>
+            )}
+          </motion.div>
+          )}
+        </AnimatePresence>
       </main>
 
-      <footer className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10 border-t border-pitchline/60 mt-6">
-        <p className="text-xs text-chalk-600 leading-relaxed">
-          Matchday AI predicts outcomes from historical results using a time-weighted Elo rating system and a
-          Dixon-Coles-corrected Poisson goals model — see the README for full methodology. Predictions are
-          probabilistic estimates for entertainment and analysis, not a guarantee of results or betting advice.
-        </p>
-      </footer>
+      <Footer />
     </div>
   )
 }

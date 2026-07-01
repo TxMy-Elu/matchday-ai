@@ -3,60 +3,79 @@
 @tailwind utilities;
 
 html, body {
-  background-color: #0A0F0C;
-  color: #F5F4EE;
+  background-color: #050609;
+  color: #F4F5FA;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   background-image:
-    radial-gradient(circle at 50% 0%, rgba(255, 182, 39, 0.06), transparent 45%),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.012) 0px,
-      rgba(255, 255, 255, 0.012) 1px,
-      transparent 1px,
-      transparent 64px
-    );
+    radial-gradient(circle at 12% -10%, rgba(139, 92, 246, 0.16), transparent 42%),
+    radial-gradient(circle at 88% 0%, rgba(16, 185, 129, 0.14), transparent 40%),
+    radial-gradient(circle at 50% 120%, rgba(34, 211, 238, 0.10), transparent 45%);
+  background-attachment: fixed;
 }
 
 ::selection {
-  background: #FFB627;
-  color: #0A0F0C;
+  background: #8B5CF6;
+  color: #F4F5FA;
 }
 
-/* LED scoreboard digit glow for the predicted scoreline */
-.led-digit {
-  font-family: 'JetBrains Mono', monospace;
-  color: #FFC85C;
-  text-shadow:
-    0 0 8px rgba(255, 200, 92, 0.55),
-    0 0 24px rgba(255, 182, 39, 0.25);
-}
-
-.scoreboard-panel {
-  background: linear-gradient(180deg, #101A13 0%, #0B120E 100%);
-  border: 1px solid #2A3B30;
+/* Glassmorphic surface: translucent, blurred, hairline border */
+.glass {
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    0 20px 40px -20px rgba(0, 0, 0, 0.6);
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 24px 48px -24px rgba(0, 0, 0, 0.6);
 }
 
-@keyframes flicker-in {
-  0% { opacity: 0; filter: blur(2px); }
-  60% { opacity: 1; filter: blur(0.5px); }
-  100% { opacity: 1; filter: blur(0); }
+/* Small-caps mono label used above section headings ("kicker") */
+.kicker {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #A78BFA, #34D399 55%, #22D3EE);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes fade-up-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .flicker-in {
-  animation: flicker-in 0.5s ease-out;
+  animation: fade-up-in 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2.4s ease-in-out infinite;
 }
 
 /* custom scrollbar for team dropdowns */
-.thin-scroll::-webkit-scrollbar { width: 6px; }
-.thin-scroll::-webkit-scrollbar-thumb { background: #2A3B30; border-radius: 4px; }
+.thin-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+.thin-scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 4px; }
 .thin-scroll::-webkit-scrollbar-track { background: transparent; }
 
+/* fully hidden scrollbar, used for the tab bar's horizontal overflow */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
 @media (prefers-reduced-motion: reduce) {
-  .flicker-in { animation: none; }
+  .flicker-in, .pulse-glow { animation: none; }
 }
