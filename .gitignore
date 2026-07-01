@@ -6,3 +6,8 @@ __pycache__/
 venv/
 .DS_Store
 .env
+
+# IDE
+.idea/
+.vscode/
+*.iml

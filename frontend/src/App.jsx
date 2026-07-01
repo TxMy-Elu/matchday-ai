@@ -93,14 +93,14 @@ export default function App() {
     <div className="min-h-screen font-body">
       {/* Header */}
       <header className="border-b border-pitchline/60">
-        <div className="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full border-2 border-floodlight-500 flex items-center justify-center">
-              <span className="text-floodlight-500 text-lg">⚽</span>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-6 flex items-center justify-between">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-full border-2 border-floodlight-500 flex items-center justify-center">
+              <span className="text-floodlight-500 text-base sm:text-lg">⚽</span>
             </div>
-            <div>
-              <h1 className="font-display text-2xl tracking-wide text-chalk-50 leading-none">MATCHDAY AI</h1>
-              <p className="text-[11px] uppercase tracking-[0.25em] text-chalk-400 mt-0.5">2026 World Cup Predictor</p>
+            <div className="min-w-0">
+              <h1 className="font-display text-xl sm:text-2xl tracking-wide text-chalk-50 leading-none truncate">MATCHDAY AI</h1>
+              <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-chalk-400 mt-0.5 truncate">2026 World Cup Predictor</p>
             </div>
           </div>
           <div className="hidden sm:block text-right text-[11px] text-chalk-400 font-mono leading-tight">
@@ -110,12 +110,12 @@ export default function App() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-10 sm:py-14">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-14">
         {/* Tabs */}
-        <div className="flex items-center gap-2 mb-8">
+        <div className="flex items-center gap-2 mb-6 sm:mb-8 overflow-x-auto thin-scroll -mx-4 px-4 sm:mx-0 sm:px-0">
           <button
             onClick={() => setTab('predictor')}
-            className={`px-4 py-2 rounded-lg text-sm font-semibold tracking-wide transition border ${
+            className={`shrink-0 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold tracking-wide transition border whitespace-nowrap ${
               tab === 'predictor'
                 ? 'bg-floodlight-500 text-pitch-950 border-floodlight-500'
                 : 'border-pitchline text-chalk-400 hover:text-chalk-50'
@@ -125,7 +125,7 @@ export default function App() {
           </button>
           <button
             onClick={() => setTab('bracket')}
-            className={`px-4 py-2 rounded-lg text-sm font-semibold tracking-wide transition border ${
+            className={`shrink-0 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold tracking-wide transition border whitespace-nowrap ${
               tab === 'bracket'
                 ? 'bg-floodlight-500 text-pitch-950 border-floodlight-500'
                 : 'border-pitchline text-chalk-400 hover:text-chalk-50'
@@ -135,7 +135,7 @@ export default function App() {
           </button>
           <button
             onClick={() => setTab('results')}
-            className={`px-4 py-2 rounded-lg text-sm font-semibold tracking-wide transition border ${
+            className={`shrink-0 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold tracking-wide transition border whitespace-nowrap ${
               tab === 'results'
                 ? 'bg-floodlight-500 text-pitch-950 border-floodlight-500'
                 : 'border-pitchline text-chalk-400 hover:text-chalk-50'
@@ -151,7 +151,7 @@ export default function App() {
         {tab === 'predictor' && (
         <>
         {/* Hero / picker */}
-        <section className="scoreboard-panel rounded-2xl p-6 sm:p-10 relative overflow-hidden">
+        <section className="scoreboard-panel rounded-2xl p-4 sm:p-6 lg:p-10 relative overflow-hidden">
           <div
             aria-hidden
             className="absolute inset-0 opacity-[0.05] pointer-events-none"
@@ -173,7 +173,7 @@ export default function App() {
             <button
               onClick={swap}
               title="Swap teams"
-              className="hidden sm:flex items-center justify-center w-11 h-11 rounded-full border border-pitchline text-chalk-400 hover:text-floodlight-500 hover:border-floodlight-500/60 transition mb-1 mx-auto font-display"
+              className="flex items-center justify-center w-11 h-11 rounded-full border border-pitchline text-chalk-400 hover:text-floodlight-500 hover:border-floodlight-500/60 transition mb-1 mx-auto font-display"
             >
               VS
             </button>
@@ -235,21 +235,21 @@ export default function App() {
         {result && (
           <section className="mt-8 flicker-in">
             {/* Scoreboard */}
-            <div className="scoreboard-panel rounded-2xl p-8 sm:p-10 text-center">
-              <div className="text-[11px] uppercase tracking-[0.3em] text-chalk-400 mb-6">Predicted Scoreline</div>
-              <div className="flex items-center justify-center gap-6 sm:gap-10">
-                <div className="flex-1 flex flex-col items-center gap-2 min-w-0">
-                  <span className="text-4xl">{flagFor(result.home_team)}</span>
-                  <span className="font-body font-semibold text-chalk-50 text-sm sm:text-base truncate max-w-[9rem] sm:max-w-none">{result.home_team}</span>
+            <div className="scoreboard-panel rounded-2xl p-5 sm:p-8 lg:p-10 text-center">
+              <div className="text-[11px] uppercase tracking-[0.3em] text-chalk-400 mb-4 sm:mb-6">Predicted Scoreline</div>
+              <div className="flex items-center justify-center gap-3 sm:gap-6 lg:gap-10">
+                <div className="flex-1 flex flex-col items-center gap-1.5 sm:gap-2 min-w-0">
+                  <span className="text-2xl sm:text-3xl lg:text-4xl">{flagFor(result.home_team)}</span>
+                  <span className="font-body font-semibold text-chalk-50 text-xs sm:text-sm lg:text-base truncate max-w-[5.5rem] sm:max-w-[9rem] lg:max-w-none">{result.home_team}</span>
                 </div>
-                <div className="led-digit font-mono text-6xl sm:text-8xl font-bold tracking-widest flex items-center gap-3 sm:gap-4">
+                <div className="led-digit font-mono text-4xl sm:text-6xl lg:text-8xl font-bold tracking-widest flex items-center gap-1.5 sm:gap-3 lg:gap-4">
                   <span>{result.predicted_scoreline.home_goals}</span>
-                  <span className="text-chalk-600 text-4xl sm:text-6xl">–</span>
+                  <span className="text-chalk-600 text-2xl sm:text-4xl lg:text-6xl">–</span>
                   <span>{result.predicted_scoreline.away_goals}</span>
                 </div>
-                <div className="flex-1 flex flex-col items-center gap-2 min-w-0">
-                  <span className="text-4xl">{flagFor(result.away_team)}</span>
-                  <span className="font-body font-semibold text-chalk-50 text-sm sm:text-base truncate max-w-[9rem] sm:max-w-none">{result.away_team}</span>
+                <div className="flex-1 flex flex-col items-center gap-1.5 sm:gap-2 min-w-0">
+                  <span className="text-2xl sm:text-3xl lg:text-4xl">{flagFor(result.away_team)}</span>
+                  <span className="font-body font-semibold text-chalk-50 text-xs sm:text-sm lg:text-base truncate max-w-[5.5rem] sm:max-w-[9rem] lg:max-w-none">{result.away_team}</span>
                 </div>
               </div>
               <div className="mt-6 text-xs text-chalk-400 font-mono">
@@ -260,7 +260,7 @@ export default function App() {
 
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6">
               {/* WDL probabilities */}
-              <div className="lg:col-span-3 scoreboard-panel rounded-2xl p-6 sm:p-8">
+              <div className="lg:col-span-3 scoreboard-panel rounded-2xl p-4 sm:p-6 lg:p-8">
                 <h2 className="font-display text-lg tracking-wide text-chalk-50 mb-6">MATCH OUTCOME</h2>
                 <div className="space-y-5">
                   <ProbBar label={`${result.home_team} win`} value={result.win_draw_loss.home_win} accent="#FFB627" />
@@ -293,7 +293,7 @@ export default function App() {
               </div>
 
               {/* Top scorelines */}
-              <div className="lg:col-span-2 scoreboard-panel rounded-2xl p-6 sm:p-8">
+              <div className="lg:col-span-2 scoreboard-panel rounded-2xl p-4 sm:p-6 lg:p-8">
                 <h2 className="font-display text-lg tracking-wide text-chalk-50 mb-6">ODDS BOARD</h2>
                 <div className="space-y-3">
                   {result.top_scorelines.map((s, i) => (
@@ -326,7 +326,7 @@ export default function App() {
         )}
       </main>
 
-      <footer className="max-w-5xl mx-auto px-6 py-10 border-t border-pitchline/60 mt-6">
+      <footer className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10 border-t border-pitchline/60 mt-6">
         <p className="text-xs text-chalk-600 leading-relaxed">
           Matchday AI predicts outcomes from historical results using a time-weighted Elo rating system and a
           Dixon-Coles-corrected Poisson goals model — see the README for full methodology. Predictions are

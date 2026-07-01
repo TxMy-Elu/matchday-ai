@@ -115,8 +115,8 @@ function slotHeight(depth) {
 function BracketColumn({ roundKey, indexedMatches, depth, registerBox }) {
   const h = slotHeight(depth)
   return (
-    <div className="w-56 shrink-0">
-      <div className="text-[11px] uppercase tracking-[0.2em] text-chalk-400 font-semibold mb-3 text-center">
+    <div className="w-40 sm:w-56 shrink-0">
+      <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-chalk-400 font-semibold mb-3 text-center">
         {ROUND_LABELS[roundKey]}
       </div>
       <div className="flex flex-col">
@@ -214,12 +214,12 @@ function BracketTree({ tree }) {
             the DOM order — so without this wrapper being explicitly
             positioned too, the lines would render on top of the cards
             instead of behind them. */}
-        <div className="relative z-10 flex gap-14">
+        <div className="relative z-10 flex gap-6 sm:gap-14">
           {leftHalves.map(({ roundKey, depth, indexedMatches }, ci) => (
             <BracketColumn key={`l-${ci}`} roundKey={roundKey} depth={depth} indexedMatches={indexedMatches} registerBox={registerBox} />
           ))}
-          <div className="w-56 shrink-0">
-            <div className="text-[11px] uppercase tracking-[0.2em] text-floodlight-500 font-semibold mb-3 text-center">
+          <div className="w-40 sm:w-56 shrink-0">
+            <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-floodlight-500 font-semibold mb-3 text-center">
               {ROUND_LABELS.F}
             </div>
             <div style={{ height: finalSlotHeight }} className="flex flex-col justify-center">
@@ -237,20 +237,20 @@ function BracketTree({ tree }) {
 
 function ResultRow({ match }) {
   return (
-    <div className="flex items-center gap-3 py-2 border-b border-pitchline/50 last:border-0">
-      <span className="font-mono text-[11px] text-chalk-600 w-20 shrink-0">{match.date}</span>
-      <span className="flex-1 flex items-center justify-end gap-2 min-w-0">
-        <span className={`truncate text-sm ${match.played && match.winner === match.home_team ? 'text-chalk-50 font-semibold' : 'text-chalk-200'}`}>
+    <div className="flex items-center gap-1.5 sm:gap-3 py-2 border-b border-pitchline/50 last:border-0">
+      <span className="hidden sm:block font-mono text-[11px] text-chalk-600 w-20 shrink-0">{match.date}</span>
+      <span className="flex-1 flex items-center justify-end gap-1.5 sm:gap-2 min-w-0">
+        <span className={`truncate text-xs sm:text-sm ${match.played && match.winner === match.home_team ? 'text-chalk-50 font-semibold' : 'text-chalk-200'}`}>
           {match.home_team}
         </span>
-        <span>{flagFor(match.home_team)}</span>
+        <span className="shrink-0">{flagFor(match.home_team)}</span>
       </span>
-      <span className="font-mono text-sm w-14 text-center shrink-0">
-        {match.played ? `${match.home_score}–${match.away_score}` : <span className="text-chalk-600 text-xs">à venir</span>}
+      <span className="font-mono text-xs sm:text-sm w-11 sm:w-14 text-center shrink-0">
+        {match.played ? `${match.home_score}–${match.away_score}` : <span className="text-chalk-600 text-[10px] sm:text-xs">à venir</span>}
       </span>
-      <span className="flex-1 flex items-center gap-2 min-w-0">
-        <span>{flagFor(match.away_team)}</span>
-        <span className={`truncate text-sm ${match.played && match.winner === match.away_team ? 'text-chalk-50 font-semibold' : 'text-chalk-200'}`}>
+      <span className="flex-1 flex items-center gap-1.5 sm:gap-2 min-w-0">
+        <span className="shrink-0">{flagFor(match.away_team)}</span>
+        <span className={`truncate text-xs sm:text-sm ${match.played && match.winner === match.away_team ? 'text-chalk-50 font-semibold' : 'text-chalk-200'}`}>
           {match.away_team}
         </span>
       </span>
@@ -293,19 +293,19 @@ function GroupTable({ letter, standings }) {
 
 function UpsetRow({ u }) {
   return (
-    <div className="flex items-center gap-3 py-2 border-b border-pitchline/50 last:border-0">
-      <span className="font-mono text-[11px] text-chalk-600 w-20 shrink-0">{u.date}</span>
-      <span className="flex items-center gap-2 flex-1 min-w-0">
+    <div className="flex items-center gap-1.5 sm:gap-3 py-2 border-b border-pitchline/50 last:border-0">
+      <span className="hidden sm:block font-mono text-[11px] text-chalk-600 w-20 shrink-0">{u.date}</span>
+      <span className="flex items-center gap-1.5 sm:gap-2 flex-1 min-w-0">
         <span className="shrink-0">{flagFor(u.winner)}</span>
-        <span className="text-chalk-50 font-semibold truncate">{u.winner}</span>
+        <span className="text-chalk-50 font-semibold truncate text-xs sm:text-sm">{u.winner}</span>
       </span>
-      <span className="font-mono text-sm text-chalk-400 w-16 text-center shrink-0">
+      <span className="font-mono text-xs sm:text-sm text-chalk-400 w-12 sm:w-16 text-center shrink-0">
         {u.home_score}–{u.away_score}
       </span>
       <span className="flex-1 min-w-0 text-right">
-        <span className="text-chalk-400 text-sm truncate">beat {u.favorite}</span>
+        <span className="text-chalk-400 text-xs sm:text-sm truncate">beat {u.favorite}</span>
       </span>
-      <span className="font-mono text-xs text-floodlight-500 w-16 text-right shrink-0">Δ{u.elo_gap}</span>
+      <span className="font-mono text-[10px] sm:text-xs text-floodlight-500 w-12 sm:w-16 text-right shrink-0">Δ{u.elo_gap}</span>
     </div>
   )
 }
@@ -357,7 +357,7 @@ export default function Results() {
   return (
     <div className="flicker-in space-y-6">
       {/* Bracket tree */}
-      <div className="scoreboard-panel rounded-2xl p-6 sm:p-8">
+      <div className="scoreboard-panel rounded-2xl p-4 sm:p-6 lg:p-8">
         <h2 className="font-display text-xl tracking-wide text-chalk-50 mb-1">KNOCKOUT BRACKET</h2>
         <p className="text-xs text-chalk-400 mb-6">
           The full tree toward the final. "À déterminer" slots follow the official bracket order — the pairing
@@ -368,7 +368,7 @@ export default function Results() {
 
       {/* Biggest upsets */}
       {upsets.length > 0 && (
-        <div className="scoreboard-panel rounded-2xl p-6 sm:p-8">
+        <div className="scoreboard-panel rounded-2xl p-4 sm:p-6 lg:p-8">
           <h2 className="font-display text-xl tracking-wide text-chalk-50 mb-1">BIGGEST UPSETS</h2>
           <p className="text-xs text-chalk-400 mb-6">
             Matches where the lower-Elo team won outright, ranked by how big the pre-match Elo gap was.
@@ -382,7 +382,7 @@ export default function Results() {
       )}
 
       {/* Group standings */}
-      <div className="scoreboard-panel rounded-2xl p-6 sm:p-8">
+      <div className="scoreboard-panel rounded-2xl p-4 sm:p-6 lg:p-8">
         <h2 className="font-display text-xl tracking-wide text-chalk-50 mb-1">GROUP STANDINGS</h2>
         <p className="text-xs text-chalk-400 mb-6">
           Points, then goal difference, then goals scored. Doesn't apply FIFA's full tiebreaker rules
@@ -397,7 +397,7 @@ export default function Results() {
       </div>
 
       {/* Full results list */}
-      <div className="scoreboard-panel rounded-2xl p-6 sm:p-8">
+      <div className="scoreboard-panel rounded-2xl p-4 sm:p-6 lg:p-8">
         <h2 className="font-display text-xl tracking-wide text-chalk-50 mb-1">ALL RESULTS</h2>
         <p className="text-xs text-chalk-400 mb-6">Every 2026 World Cup match, group stage through the final.</p>
 
