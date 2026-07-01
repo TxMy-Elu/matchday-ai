@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  background-color: #0A0F0C;
+  color: #F5F4EE;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(255, 182, 39, 0.06), transparent 45%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.012) 0px,
+      rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px,
+      transparent 64px
+    );
+}
+
+::selection {
+  background: #FFB627;
+  color: #0A0F0C;
+}
+
+/* LED scoreboard digit glow for the predicted scoreline */
+.led-digit {
+  font-family: 'JetBrains Mono', monospace;
+  color: #FFC85C;
+  text-shadow:
+    0 0 8px rgba(255, 200, 92, 0.55),
+    0 0 24px rgba(255, 182, 39, 0.25);
+}
+
+.scoreboard-panel {
+  background: linear-gradient(180deg, #101A13 0%, #0B120E 100%);
+  border: 1px solid #2A3B30;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 20px 40px -20px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes flicker-in {
+  0% { opacity: 0; filter: blur(2px); }
+  60% { opacity: 1; filter: blur(0.5px); }
+  100% { opacity: 1; filter: blur(0); }
+}
+
+.flicker-in {
+  animation: flicker-in 0.5s ease-out;
+}
+
+/* custom scrollbar for team dropdowns */
+.thin-scroll::-webkit-scrollbar { width: 6px; }
+.thin-scroll::-webkit-scrollbar-thumb { background: #2A3B30; border-radius: 4px; }
+.thin-scroll::-webkit-scrollbar-track { background: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  .flicker-in { animation: none; }
+}
