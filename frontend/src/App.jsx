@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, lazy, Suspense } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import TeamPicker from './TeamPicker.jsx'
 import BracketSimulator from './BracketSimulator.jsx'
@@ -20,8 +20,6 @@ function useHashRoute() {
   }, [])
   return hash
 }
-
-const HeroOrb = lazy(() => import('./HeroOrb.jsx'))
 
 const API_BASE = import.meta.env.VITE_API_BASE || '/api'
 
@@ -82,6 +80,15 @@ function IconTrophy({ className }) {
   )
 }
 
+function IconPenalty({ className }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  )
+}
+
 function IconBracket({ className }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -97,7 +104,7 @@ const TABS = [
 ]
 
 export default function App() {
-  const { t } = useLang()
+  const { t, tTeam } = useLang()
   const hash = useHashRoute()
   const [tab, setTab] = useState('predictor') // 'predictor' | 'bracket' | 'results'
   const [teams, setTeams] = useState([])
@@ -210,9 +217,6 @@ export default function App() {
           <motion.div key="predictor" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
             {/* Hero / picker */}
             <div className="relative">
-              <Suspense fallback={null}>
-                <HeroOrb className="absolute -top-24 left-1/2 -translate-x-1/2 w-[560px] h-[420px] opacity-70 -z-10" />
-              </Suspense>
               <TiltCard max={3} className="glass rounded-2xl p-4 sm:p-6 lg:p-10">
                 <p className="text-center text-mist-500 text-sm mb-8">
                   {t('hero_desc')}
@@ -257,7 +261,7 @@ export default function App() {
                     <div className="flex gap-2 overflow-x-auto thin-scroll pb-2">
                       {fixtures.map((f) => (
                         <button
-                          key={`${f.date}-${f.home_team}-${f.away_team}`}
+                          key={f.projected ? `${f.round}-${f.home_team}-${f.away_team}` : `${f.date}-${f.home_team}-${f.away_team}`}
                           onClick={() => {
                             setHome(f.home_team)
                             setAway(f.away_team)
@@ -266,22 +270,30 @@ export default function App() {
                           className="shrink-0 rounded-lg border border-line bg-void-800/60 px-3.5 py-2 text-xs hover:border-emerald-400/60 transition text-left"
                         >
                           <div className="text-mist-500 font-mono mb-1 flex items-center gap-1.5 whitespace-nowrap">
-                            <span>{f.date}</span>
-                            {f.city && (
-                              <span className="text-mist-700">
-                                · {flagFor(f.country)} {f.city}{f.country ? `, ${f.country}` : ''}
+                            {f.date ? (
+                              <>
+                                <span>{f.date}</span>
+                                {f.city && (
+                                  <span className="text-mist-700">
+                                    · {flagFor(f.country)} {f.city}{f.country ? `, ${tTeam(f.country)}` : ''}
+                                  </span>
+                                )}
+                              </>
+                            ) : (
+                              <span className="text-cyan-500">
+                                {t(`round_${f.round.toLowerCase()}`)} · {t('projected_hint')}
                               </span>
                             )}
                           </div>
                           <div className="text-mist-50 font-medium whitespace-nowrap flex items-center gap-1.5">
-                            <span>{flagFor(f.home_team)} {f.home_team}</span>
+                            <span>{flagFor(f.home_team)} {tTeam(f.home_team)}</span>
                             {!f.neutral && (
                               <span className="kicker text-[9px] leading-none px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
                                 {t('host_badge')}
                               </span>
                             )}
                             <span className="text-mist-500">vs</span>
-                            <span>{flagFor(f.away_team)} {f.away_team}</span>
+                            <span>{flagFor(f.away_team)} {tTeam(f.away_team)}</span>
                           </div>
                         </button>
                       ))}
@@ -313,7 +325,7 @@ export default function App() {
                     <div className="flex items-center justify-center gap-3 sm:gap-6 lg:gap-10">
                       <div className="flex-1 flex flex-col items-center gap-1.5 sm:gap-2 min-w-0">
                         <span className="text-2xl sm:text-3xl lg:text-4xl">{flagFor(result.home_team)}</span>
-                        <span className="font-body font-semibold text-mist-50 text-xs sm:text-sm lg:text-base truncate max-w-[5.5rem] sm:max-w-[9rem] lg:max-w-none">{result.home_team}</span>
+                        <span className="font-body font-semibold text-mist-50 text-xs sm:text-sm lg:text-base truncate max-w-[5.5rem] sm:max-w-[9rem] lg:max-w-none">{tTeam(result.home_team)}</span>
                       </div>
                       <div className="font-display gradient-text text-4xl sm:text-6xl lg:text-8xl font-bold tracking-tight flex items-center gap-1.5 sm:gap-3 lg:gap-4">
                         <span>{result.predicted_scoreline.home_goals}</span>
@@ -322,7 +334,7 @@ export default function App() {
                       </div>
                       <div className="flex-1 flex flex-col items-center gap-1.5 sm:gap-2 min-w-0">
                         <span className="text-2xl sm:text-3xl lg:text-4xl">{flagFor(result.away_team)}</span>
-                        <span className="font-body font-semibold text-mist-50 text-xs sm:text-sm lg:text-base truncate max-w-[5.5rem] sm:max-w-[9rem] lg:max-w-none">{result.away_team}</span>
+                        <span className="font-body font-semibold text-mist-50 text-xs sm:text-sm lg:text-base truncate max-w-[5.5rem] sm:max-w-[9rem] lg:max-w-none">{tTeam(result.away_team)}</span>
                       </div>
                     </div>
                     <div className="mt-6 text-xs text-mist-500 font-mono">
@@ -334,25 +346,47 @@ export default function App() {
                     </div>
                   </div>
 
+                  {result.penalty_shootout && (
+                    <div className="glass rounded-2xl p-4 sm:p-6 lg:p-8 mt-6">
+                      <h2 className="font-display text-lg font-semibold text-mist-50 mb-1 flex items-center gap-2">
+                        <IconPenalty className="w-5 h-5 text-amber-500" />
+                        {t('penalty_card_title')}
+                      </h2>
+                      <p className="text-xs text-mist-500 mb-6">{t('penalty_card_desc')}</p>
+                      <div className="space-y-5">
+                        <ProbBar
+                          label={t('penalty_win_label', { team: tTeam(result.home_team) })}
+                          value={result.penalty_shootout.home_win_prob}
+                          accent="#F5B942"
+                        />
+                        <ProbBar
+                          label={t('penalty_win_label', { team: tTeam(result.away_team) })}
+                          value={result.penalty_shootout.away_win_prob}
+                          accent="#F5B942"
+                        />
+                      </div>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6">
                     {/* WDL probabilities */}
                     <div className="lg:col-span-3 glass rounded-2xl p-4 sm:p-6 lg:p-8">
                       <h2 className="font-display text-lg font-semibold text-mist-50 mb-6">{t('match_outcome')}</h2>
                       <div className="space-y-5">
-                        <ProbBar label={t('win_label', { team: result.home_team })} value={result.win_draw_loss.home_win} accent="#10B981" />
+                        <ProbBar label={t('win_label', { team: tTeam(result.home_team) })} value={result.win_draw_loss.home_win} accent="#10B981" />
                         <ProbBar label={t('draw_label')} value={result.win_draw_loss.draw} accent="#9195AA" />
-                        <ProbBar label={t('win_label', { team: result.away_team })} value={result.win_draw_loss.away_win} accent="#8B5CF6" />
+                        <ProbBar label={t('win_label', { team: tTeam(result.away_team) })} value={result.win_draw_loss.away_win} accent="#8B5CF6" />
                       </div>
 
                       <div className="grid grid-cols-2 gap-4 mt-8 pt-6 border-t border-line">
                         <div>
                           <div className="kicker text-[11px] text-mist-500 mb-2">{t('elo_rating')}</div>
                           <div className="flex justify-between text-sm font-mono">
-                            <span className="text-mist-300">{result.home_team}</span>
+                            <span className="text-mist-300">{tTeam(result.home_team)}</span>
                             <span className="text-mist-50 font-semibold">{result.elo.home}</span>
                           </div>
                           <div className="flex justify-between text-sm font-mono">
-                            <span className="text-mist-300">{result.away_team}</span>
+                            <span className="text-mist-300">{tTeam(result.away_team)}</span>
                             <span className="text-mist-50 font-semibold">{result.elo.away}</span>
                           </div>
                         </div>

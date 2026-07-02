@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { teamName } from './teamNames.js'
 
 const STRINGS = {
   en: {
@@ -16,6 +17,10 @@ const STRINGS = {
     neutral_hint: '(on for almost every 2026 knockout match)',
     fixtures_heading: 'Or jump to a scheduled fixture',
     host_badge: 'host',
+    projected_hint: 'matchup set, date TBD',
+    penalty_card_title: 'Penalty Shootout',
+    penalty_card_desc: "If the match is level after extra time, here's who the model favours on penalties.",
+    penalty_win_label: '{team} win on penalties',
     error_backend: 'Could not reach the Matchday AI backend. Is it running on :8000?',
     error_predict: 'Prediction failed. Please try again.',
 
@@ -102,6 +107,10 @@ const STRINGS = {
     neutral_hint: '(activé pour quasiment tous les matchs à élimination de 2026)',
     fixtures_heading: 'Ou choisis un match programmé',
     host_badge: 'hôte',
+    projected_hint: 'affiche fixée, date à venir',
+    penalty_card_title: 'Tirs au but',
+    penalty_card_desc: 'Si le match est à égalité après prolongation, voici qui le modèle favorise aux tirs au but.',
+    penalty_win_label: '{team} gagne aux tirs au but',
     error_backend: 'Impossible de joindre le serveur Matchday AI. Tourne-t-il bien sur le port :8000 ?',
     error_predict: 'Le pronostic a échoué. Merci de réessayer.',
 
@@ -198,7 +207,9 @@ export function LanguageProvider({ children }) {
     return Object.entries(vars).reduce((s, [k, v]) => s.replaceAll(`{${k}}`, v), raw)
   }
 
-  return <LanguageContext.Provider value={{ lang, setLang, t }}>{children}</LanguageContext.Provider>
+  const tTeam = (name) => teamName(name, lang)
+
+  return <LanguageContext.Provider value={{ lang, setLang, t, tTeam }}>{children}</LanguageContext.Provider>
 }
 
 export function useLang() {

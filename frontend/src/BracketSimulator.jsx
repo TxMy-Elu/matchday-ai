@@ -10,7 +10,7 @@ function pct(x) {
 }
 
 export default function BracketSimulator() {
-  const { t } = useLang()
+  const { t, tTeam } = useLang()
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
@@ -76,7 +76,7 @@ export default function BracketSimulator() {
             <div key={team.team} className="flex items-center gap-1.5 sm:gap-3">
               <span className="text-mist-700 font-mono text-xs w-3 sm:w-4 shrink-0">{i + 1}</span>
               <span className="text-lg sm:text-xl leading-none w-6 sm:w-7 shrink-0">{flagFor(team.team)}</span>
-              <span className="text-xs sm:text-sm font-body font-medium text-mist-50 w-16 sm:w-36 lg:w-40 truncate shrink-0">{team.team}</span>
+              <span className="text-xs sm:text-sm font-body font-medium text-mist-50 w-16 sm:w-36 lg:w-40 truncate shrink-0">{tTeam(team.team)}</span>
               <div className="flex-1 h-2.5 sm:h-3 rounded-full bg-void-800 border border-line overflow-hidden">
                 <motion.div
                   className="h-full rounded-full"
@@ -104,7 +104,7 @@ export default function BracketSimulator() {
             <div key={`${f.home_team}-${f.away_team}`} className="rounded-lg border border-line bg-void-800/50 px-3 sm:px-4 py-3">
               <div className="flex items-center justify-between gap-2 text-sm mb-2">
                 <span className="flex items-center gap-2 text-mist-50 font-medium min-w-0 truncate">
-                  <span className="shrink-0">{flagFor(f.home_team)}</span> <span className="truncate">{f.home_team}</span>
+                  <span className="shrink-0">{flagFor(f.home_team)}</span> <span className="truncate">{tTeam(f.home_team)}</span>
                 </span>
                 <span className="font-mono text-emerald-400 text-xs shrink-0">{pct(f.home_advance_prob)}</span>
               </div>
@@ -113,7 +113,7 @@ export default function BracketSimulator() {
               </div>
               <div className="flex items-center justify-between gap-2 text-sm">
                 <span className="flex items-center gap-2 text-mist-50 font-medium min-w-0 truncate">
-                  <span className="shrink-0">{flagFor(f.away_team)}</span> <span className="truncate">{f.away_team}</span>
+                  <span className="shrink-0">{flagFor(f.away_team)}</span> <span className="truncate">{tTeam(f.away_team)}</span>
                 </span>
                 <span className="font-mono text-mist-500 text-xs shrink-0">{pct(f.away_advance_prob)}</span>
               </div>
@@ -126,8 +126,8 @@ export default function BracketSimulator() {
             <h3 className="kicker text-[11px] text-mist-500 font-semibold mb-3">{t('r16_scheduled')}</h3>
             {data.fixed_round16.map((f) => (
               <div key={`${f.home_team}-${f.away_team}`} className="text-sm text-mist-300 flex items-center flex-wrap gap-x-2 gap-y-1">
-                <span>{flagFor(f.home_team)}</span> {f.home_team} <span className="text-mist-500">vs</span>{' '}
-                <span>{flagFor(f.away_team)}</span> {f.away_team}
+                <span>{flagFor(f.home_team)}</span> {tTeam(f.home_team)} <span className="text-mist-500">vs</span>{' '}
+                <span>{flagFor(f.away_team)}</span> {tTeam(f.away_team)}
               </div>
             ))}
           </div>

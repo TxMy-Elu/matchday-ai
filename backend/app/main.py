@@ -54,8 +54,13 @@ def get_teams():
 
 @app.get("/api/fixtures")
 def get_fixtures():
-    """Known 2026 World Cup fixtures still to be played in the source data."""
-    return model.future_fixtures
+    """
+    Known 2026 World Cup fixtures still to be played, plus matchups already
+    fixed by the bracket (both teams won their previous round) even though
+    the source data hasn't recorded an official date for them yet — those
+    are flagged `projected: true`.
+    """
+    return model.future_fixtures + model.projected_fixtures
 
 
 @app.get("/api/results")

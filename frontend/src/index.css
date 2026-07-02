@@ -5,6 +5,12 @@
 html, body {
   background-color: #050609;
   color: #F4F5FA;
+  /* Belt-and-suspenders: any element that ends up wider than the viewport
+     (a mis-sized decorative element, a long unbroken URL, etc.) should never
+     make the whole page pannable sideways on mobile. Elements that need
+     their own horizontal scroll (fixtures carousel, bracket tree) declare
+     overflow-x-auto locally, which still works independently of this. */
+  overflow-x: hidden;
 }
 
 body {

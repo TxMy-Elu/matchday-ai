@@ -16,7 +16,7 @@ const ROUND_LABEL_KEYS = {
 }
 
 function TeamRow({ team, score, isWinner, showScore, borderTop }) {
-  const { t } = useLang()
+  const { t, tTeam } = useLang()
   return (
     <div
       className={`flex items-center justify-between gap-2 px-3 py-2 border-l-2 ${borderTop ? 'border-t border-t-line' : ''} ${
@@ -30,7 +30,7 @@ function TeamRow({ team, score, isWinner, showScore, borderTop }) {
             !team ? 'text-mist-700 italic normal-case font-normal' : isWinner ? 'text-mist-50' : 'text-mist-500'
           }`}
         >
-          {team || t('tbd')}
+          {team ? tTeam(team) : t('tbd')}
         </span>
       </span>
       {showScore ? (
@@ -247,16 +247,38 @@ function BracketTree({ tree }) {
   )
 }
 
-function ResultRow({ match }) {
+// Small-screen fallback for the bracket tree: the funnel-shaped, horizontally
+// scrolling tree reads poorly on a phone (tiny cards, sideways scrolling).
+// This renders the same 31 matches as a plain vertical list grouped by
+// round instead — no wiring lines, just the matches in bracket order.
+function MobileBracketList({ tree }) {
   const { t } = useLang()
+  return (
+    <div className="space-y-6">
+      {tree.map((rnd) => (
+        <div key={rnd.round}>
+          <div className="kicker text-[11px] text-mist-500 font-semibold mb-3">{t(ROUND_LABEL_KEYS[rnd.round])}</div>
+          <div className="space-y-3">
+            {rnd.matches.map((m, i) => (
+              <BracketMatch key={i} match={m} boxRef={() => {}} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function ResultRow({ match }) {
+  const { t, tTeam } = useLang()
   const isHost = Boolean(match.country) && match.country === match.home_team
-  const venue = match.city ? `${match.city}${match.country ? `, ${match.country}` : ''}` : undefined
+  const venue = match.city ? `${match.city}${match.country ? `, ${tTeam(match.country)}` : ''}` : undefined
   return (
     <div className="flex items-center gap-1.5 sm:gap-3 py-2 border-b border-line last:border-0" title={venue}>
       <span className="hidden sm:block font-mono text-[11px] text-mist-700 w-20 shrink-0">{match.date}</span>
       <span className="flex-1 flex items-center justify-end gap-1.5 sm:gap-2 min-w-0">
         <span className={`truncate text-xs sm:text-sm ${match.played && match.winner === match.home_team ? 'text-mist-50 font-semibold' : 'text-mist-300'}`}>
-          {match.home_team}
+          {tTeam(match.home_team)}
         </span>
         {isHost && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" aria-label="Host nation" />}
         <span className="shrink-0">{flagFor(match.home_team)}</span>
@@ -267,7 +289,7 @@ function ResultRow({ match }) {
       <span className="flex-1 flex items-center gap-1.5 sm:gap-2 min-w-0">
         <span className="shrink-0">{flagFor(match.away_team)}</span>
         <span className={`truncate text-xs sm:text-sm ${match.played && match.winner === match.away_team ? 'text-mist-50 font-semibold' : 'text-mist-300'}`}>
-          {match.away_team}
+          {tTeam(match.away_team)}
         </span>
       </span>
     </div>
@@ -275,7 +297,7 @@ function ResultRow({ match }) {
 }
 
 function GroupTable({ letter, standings }) {
-  const { t } = useLang()
+  const { t, tTeam } = useLang()
   return (
     <div className="rounded-lg border border-line overflow-hidden">
       <div className="px-3 py-2 bg-white/[0.03] border-b border-line font-display text-sm font-semibold text-mist-50">
@@ -296,7 +318,7 @@ function GroupTable({ letter, standings }) {
               <td className="px-3 py-1.5">
                 <span className="flex items-center gap-2 min-w-0">
                   <span className="shrink-0">{flagFor(s.team)}</span>
-                  <span className={`truncate ${i < 2 ? 'font-semibold' : ''}`}>{s.team}</span>
+                  <span className={`truncate ${i < 2 ? 'font-semibold' : ''}`}>{tTeam(s.team)}</span>
                 </span>
               </td>
               <td className="text-center px-2 py-1.5 font-mono">{s.played}</td>
@@ -311,19 +333,19 @@ function GroupTable({ letter, standings }) {
 }
 
 function UpsetRow({ u }) {
-  const { t } = useLang()
+  const { t, tTeam } = useLang()
   return (
     <div className="flex items-center gap-1.5 sm:gap-3 py-2 border-b border-line last:border-0">
       <span className="hidden sm:block font-mono text-[11px] text-mist-700 w-20 shrink-0">{u.date}</span>
       <span className="flex items-center gap-1.5 sm:gap-2 flex-1 min-w-0">
         <span className="shrink-0">{flagFor(u.winner)}</span>
-        <span className="text-mist-50 font-semibold truncate text-xs sm:text-sm">{u.winner}</span>
+        <span className="text-mist-50 font-semibold truncate text-xs sm:text-sm">{tTeam(u.winner)}</span>
       </span>
       <span className="font-mono text-xs sm:text-sm text-mist-500 w-12 sm:w-16 text-center shrink-0">
         {u.home_score}–{u.away_score}
       </span>
       <span className="flex-1 min-w-0 text-right">
-        <span className="text-mist-500 text-xs sm:text-sm truncate">{t('beat')} {u.favorite}</span>
+        <span className="text-mist-500 text-xs sm:text-sm truncate">{t('beat')} {tTeam(u.favorite)}</span>
       </span>
       <span className="font-mono text-[10px] sm:text-xs text-crimson-500 w-12 sm:w-16 text-right shrink-0">Δ{u.elo_gap}</span>
     </div>
@@ -381,7 +403,12 @@ export default function Results() {
       <div className="glass rounded-2xl p-4 sm:p-6 lg:p-8">
         <h2 className="font-display text-xl font-semibold text-mist-50 mb-1">{t('knockout_bracket')}</h2>
         <p className="text-xs text-mist-500 mb-6">{t('knockout_desc')}</p>
-        <BracketTree tree={tree} />
+        <div className="hidden sm:block">
+          <BracketTree tree={tree} />
+        </div>
+        <div className="sm:hidden">
+          <MobileBracketList tree={tree} />
+        </div>
       </div>
 
       {/* Biggest upsets */}

@@ -37,6 +37,7 @@ class MatchdayModel:
         self.bracket_tree = self.data.get("bracket_tree", [])
         self.group_standings = self.data.get("group_standings", {})
         self.upsets = self.data.get("upsets", [])
+        self.projected_fixtures = self._build_projected_fixtures()
 
         om = self.data["outcome_model"]
         self.outcome_classes = om["classes"]
@@ -56,6 +57,35 @@ class MatchdayModel:
 
     def elo_of(self, team: str) -> float:
         return self.elo.get(team, 1500.0)
+
+    def _build_projected_fixtures(self) -> list:
+        """Matchups already fixed by the bracket topology (both teams known
+        because they won their previous round) but not yet an official,
+        dated fixture in results.csv — e.g. an R16 pairing the moment both
+        R32 winners are known, before FIFA/the data source has scheduled it.
+        """
+        out = []
+        for rnd in self.bracket_tree:
+            for m in rnd["matches"]:
+                if m.get("home_team") and m.get("away_team") and not m.get("played") and "date" not in m:
+                    out.append({
+                        "round": rnd["round"],
+                        "home_team": m["home_team"],
+                        "away_team": m["away_team"],
+                        "neutral": True,
+                        "date": None,
+                        "city": None,
+                        "country": None,
+                        "projected": True,
+                    })
+        return out
+
+    def penalty_shootout_prob(self, home: str, away: str) -> float:
+        """P(home wins) if a knockout match is level after extra time.
+        Penalties are close to a coin flip; Elo gives only a small nudge.
+        """
+        diff = self.elo_of(home) - self.elo_of(away)
+        return 1.0 / (1.0 + 10 ** (-diff / 600.0))
 
     def _tau(self, x: int, y: int, lam: float, mu: float) -> float:
         rho = self.rho
@@ -123,6 +153,8 @@ class MatchdayModel:
         top_scorelines = flat[:5]
         predicted_scoreline = flat[0]
 
+        pens_home = self.penalty_shootout_prob(home, away)
+
         return {
             "home_team": home,
             "away_team": away,
@@ -142,6 +174,10 @@ class MatchdayModel:
             "top_scorelines": [
                 {**s, "prob": round(s["prob"], 4)} for s in top_scorelines
             ],
+            "penalty_shootout": {
+                "home_win_prob": round(pens_home, 4),
+                "away_win_prob": round(1 - pens_home, 4),
+            },
             "recent_form": {
                 "home": self.team_form.get(home, []),
                 "away": self.team_form.get(away, []),

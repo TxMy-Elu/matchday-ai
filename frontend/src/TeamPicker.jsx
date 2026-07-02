@@ -3,7 +3,7 @@ import { flagFor } from './flags.js'
 import { useLang } from './i18n.jsx'
 
 export default function TeamPicker({ label, teams, value, onChange, exclude }) {
-  const { t } = useLang()
+  const { t, tTeam } = useLang()
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
   const wrapRef = useRef(null)
@@ -20,8 +20,8 @@ export default function TeamPicker({ label, teams, value, onChange, exclude }) {
     const q = query.trim().toLowerCase()
     return teams
       .filter((team) => team.name !== exclude)
-      .filter((team) => !q || team.name.toLowerCase().includes(q))
-  }, [teams, query, exclude])
+      .filter((team) => !q || team.name.toLowerCase().includes(q) || tTeam(team.name).toLowerCase().includes(q))
+  }, [teams, query, exclude, tTeam])
 
   const selected = teams.find((team) => team.name === value)
 
@@ -33,13 +33,13 @@ export default function TeamPicker({ label, teams, value, onChange, exclude }) {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="w-full flex items-center justify-between gap-3 rounded-lg border border-line bg-void-800/70 px-4 py-3.5 text-left transition hover:border-emerald-400/60 focus:outline-none focus:ring-2 focus:ring-emerald-400/40"
+        className="w-full flex items-center justify-between gap-3 rounded-lg border border-line bg-void-800 px-4 py-3.5 text-left transition hover:border-emerald-400/60 focus:outline-none focus:ring-2 focus:ring-emerald-400/40"
       >
         {selected ? (
           <span className="flex items-center gap-3 min-w-0">
             <span className="text-2xl leading-none">{flagFor(selected.name)}</span>
             <span className="flex flex-col min-w-0">
-              <span className="font-body font-semibold text-mist-50 truncate">{selected.name}</span>
+              <span className="font-body font-semibold text-mist-50 truncate">{tTeam(selected.name)}</span>
               <span className="text-[11px] text-mist-500 font-mono">Elo {Math.round(selected.elo)}</span>
             </span>
           </span>
@@ -52,13 +52,13 @@ export default function TeamPicker({ label, teams, value, onChange, exclude }) {
       </button>
 
       {open && (
-        <div className="absolute z-20 mt-2 w-full rounded-lg border border-line glass shadow-2xl overflow-hidden">
+        <div className="absolute z-20 mt-2 w-full rounded-lg border border-line bg-void-900 shadow-2xl overflow-hidden">
           <input
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t('search_teams')}
-            className="w-full px-4 py-3 bg-void-900/60 text-mist-50 placeholder-mist-700 border-b border-line focus:outline-none font-body text-sm"
+            className="w-full px-4 py-3 bg-void-900 text-mist-50 placeholder-mist-700 border-b border-line focus:outline-none font-body text-sm"
           />
           <div className="max-h-64 overflow-y-auto thin-scroll">
             {filtered.length === 0 && (
@@ -76,7 +76,7 @@ export default function TeamPicker({ label, teams, value, onChange, exclude }) {
                 className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-white/5 transition text-left"
               >
                 <span className="text-xl leading-none">{flagFor(team.name)}</span>
-                <span className="flex-1 text-sm font-body text-mist-50">{team.name}</span>
+                <span className="flex-1 text-sm font-body text-mist-50">{tTeam(team.name)}</span>
                 <span className="text-[11px] font-mono text-mist-500">{Math.round(team.elo)}</span>
               </button>
             ))}

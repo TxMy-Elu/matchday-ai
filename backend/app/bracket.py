@@ -40,9 +40,7 @@ class BracketSimulator:
         if key in self._prob_cache:
             return self._prob_cache[key]
         wdl = self.model.outcome_only(a, b, neutral=True)
-        diff = self.model.elo_of(a) - self.model.elo_of(b)
-        # Penalties are close to a coin flip; Elo gives only a small nudge.
-        pens_a = 1.0 / (1.0 + 10 ** (-diff / 600.0))
+        pens_a = self.model.penalty_shootout_prob(a, b)
         p = wdl["home_win"] + wdl["draw"] * pens_a
         self._prob_cache[key] = p
         self._prob_cache[(b, a)] = 1 - p
