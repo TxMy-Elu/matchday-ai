@@ -192,8 +192,12 @@ def main():
     args = parser.parse_args()
 
     existing = pd.read_csv(RESULTS_PATH, parse_dates=["date"])
+    # Only matches that already have a real score count as "already have it" —
+    # a placeholder fixture row (score still NA) must not block a real result
+    # from being written in.
+    played_existing = existing.dropna(subset=["home_score", "away_score"])
     existing_keys = set(
-        zip(existing["date"].dt.strftime("%Y-%m-%d"), existing["home_team"], existing["away_team"])
+        zip(played_existing["date"].dt.strftime("%Y-%m-%d"), played_existing["home_team"], played_existing["away_team"])
     )
 
     all_new_results, all_new_shootouts = [], []
@@ -223,9 +227,31 @@ def main():
         print("\n--dry-run set: not writing any files.")
         return
 
-    results_df = pd.concat([existing, pd.DataFrame(new_results)], ignore_index=True)
+    # Most "new" results actually match an existing placeholder fixture row
+    # (score still NA) — update that row in place rather than appending a
+    # duplicate. Only truly unseen fixtures (not yet in results.csv at all)
+    # get appended.
+    date_str = existing["date"].dt.strftime("%Y-%m-%d")
+    unplayed_index = {
+        (d, h, a): idx
+        for idx, d, h, a, played in zip(existing.index, date_str, existing["home_team"], existing["away_team"], existing["home_score"].isna())
+        if played
+    }
+
+    appended, updated_count = [], 0
+    for row in new_results:
+        key = (row["date"], row["home_team"], row["away_team"])
+        if key in unplayed_index:
+            idx = unplayed_index[key]
+            existing.at[idx, "home_score"] = row["home_score"]
+            existing.at[idx, "away_score"] = row["away_score"]
+            updated_count += 1
+        else:
+            appended.append(row)
+
+    results_df = pd.concat([existing, pd.DataFrame(appended)], ignore_index=True) if appended else existing
     results_df.to_csv(RESULTS_PATH, index=False)
-    print(f"Appended to {RESULTS_PATH}")
+    print(f"Updated {updated_count} placeholder row(s), appended {len(appended)} new row(s) to {RESULTS_PATH}")
 
     if new_shootouts:
         shootouts_df = pd.concat(
