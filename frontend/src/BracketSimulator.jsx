@@ -59,7 +59,10 @@ export default function BracketSimulator() {
           <div className="min-w-0">
             <h2 className="font-display text-lg sm:text-xl font-semibold text-mist-50">{t('championship_odds')}</h2>
             <p className="text-xs text-mist-500 mt-1">
-              {t('sims_desc', { n: data.n_simulations.toLocaleString() })}
+              {t('sims_desc', {
+                n: data.n_simulations.toLocaleString(),
+                round: data.current_round ? t(`round_${data.current_round.toLowerCase()}`) : t('round_f'),
+              })}
             </p>
           </div>
           <button
@@ -95,42 +98,38 @@ export default function BracketSimulator() {
         <p className="text-[11px] text-mist-500 leading-relaxed mt-6 pt-5 border-t border-line">{data.note}</p>
       </div>
 
-      {/* Remaining Round of 32 */}
+      {/* Remaining fixtures for whichever round is currently up next */}
       <div className="glass rounded-2xl p-4 sm:p-6 lg:p-8 mt-6">
-        <h2 className="font-display text-base sm:text-lg font-semibold text-mist-50 mb-1">{t('r32_remaining')}</h2>
-        <p className="text-xs text-mist-500 mb-6">{t('r32_desc')}</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {data.round32_fixtures.map((f) => (
-            <div key={`${f.home_team}-${f.away_team}`} className="rounded-lg border border-line bg-void-800/50 px-3 sm:px-4 py-3">
-              <div className="flex items-center justify-between gap-2 text-sm mb-2">
-                <span className="flex items-center gap-2 text-mist-50 font-medium min-w-0 truncate">
-                  <span className="shrink-0">{flagFor(f.home_team)}</span> <span className="truncate">{tTeam(f.home_team)}</span>
-                </span>
-                <span className="font-mono text-emerald-400 text-xs shrink-0">{pct(f.home_advance_prob)}</span>
-              </div>
-              <div className="h-1.5 rounded-full bg-void-900 border border-line overflow-hidden mb-2">
-                <div className="h-full bg-emerald-500" style={{ width: pct(f.home_advance_prob) }} />
-              </div>
-              <div className="flex items-center justify-between gap-2 text-sm">
-                <span className="flex items-center gap-2 text-mist-50 font-medium min-w-0 truncate">
-                  <span className="shrink-0">{flagFor(f.away_team)}</span> <span className="truncate">{tTeam(f.away_team)}</span>
-                </span>
-                <span className="font-mono text-mist-500 text-xs shrink-0">{pct(f.away_advance_prob)}</span>
-              </div>
+        <h2 className="font-display text-base sm:text-lg font-semibold text-mist-50 mb-1">
+          {data.current_round ? t('round_remaining', { round: t(`round_${data.current_round.toLowerCase()}`) }) : t('round_f')}
+        </h2>
+        {data.current_round ? (
+          <>
+            <p className="text-xs text-mist-500 mb-6">{t('round_fixtures_desc')}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {data.current_round_fixtures.map((f) => (
+                <div key={`${f.home_team}-${f.away_team}`} className="rounded-lg border border-line bg-void-800/50 px-3 sm:px-4 py-3">
+                  <div className="flex items-center justify-between gap-2 text-sm mb-2">
+                    <span className="flex items-center gap-2 text-mist-50 font-medium min-w-0 truncate">
+                      <span className="shrink-0">{flagFor(f.home_team)}</span> <span className="truncate">{tTeam(f.home_team)}</span>
+                    </span>
+                    <span className="font-mono text-emerald-400 text-xs shrink-0">{pct(f.home_advance_prob)}</span>
+                  </div>
+                  <div className="h-1.5 rounded-full bg-void-900 border border-line overflow-hidden mb-2">
+                    <div className="h-full bg-emerald-500" style={{ width: pct(f.home_advance_prob) }} />
+                  </div>
+                  <div className="flex items-center justify-between gap-2 text-sm">
+                    <span className="flex items-center gap-2 text-mist-50 font-medium min-w-0 truncate">
+                      <span className="shrink-0">{flagFor(f.away_team)}</span> <span className="truncate">{tTeam(f.away_team)}</span>
+                    </span>
+                    <span className="font-mono text-mist-500 text-xs shrink-0">{pct(f.away_advance_prob)}</span>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-
-        {data.fixed_round16.length > 0 && (
-          <div className="mt-6 pt-5 border-t border-line">
-            <h3 className="kicker text-[11px] text-mist-500 font-semibold mb-3">{t('r16_scheduled')}</h3>
-            {data.fixed_round16.map((f) => (
-              <div key={`${f.home_team}-${f.away_team}`} className="text-sm text-mist-300 flex items-center flex-wrap gap-x-2 gap-y-1">
-                <span>{flagFor(f.home_team)}</span> {tTeam(f.home_team)} <span className="text-mist-500">vs</span>{' '}
-                <span>{flagFor(f.away_team)}</span> {tTeam(f.away_team)}
-              </div>
-            ))}
-          </div>
+          </>
+        ) : (
+          <p className="text-xs text-mist-500 mb-2">{t('round_done')}</p>
         )}
       </div>
     </div>

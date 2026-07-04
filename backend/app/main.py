@@ -16,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from .model import MatchdayModel
-from .bracket import BracketSimulator
+from .bracket import BracketSimulator, ROUND_LABELS
 
 app = FastAPI(
     title="Matchday AI",
@@ -132,25 +132,28 @@ def bracket_simulation(refresh: bool = Query(False, description="Force a fresh M
     """
     Simulates the rest of the 2026 World Cup knockout stage.
 
-    Already-scheduled fixtures (Round of 32, and any later round whose
-    pairing is already fixed) are simulated as real matchups. Rounds that
-    don't exist yet in the data are resolved with randomized pairings across
-    many trials (see bracket.py for the full rationale) — so this gives
-    directionally reliable championship odds, not an exact bracket.
+    `current_round`/`current_round_label` always reflect whichever round is
+    actually next to be played (R32 until it's fully played, then R16, then
+    QF, etc.) — this used to be hardcoded to Round of 32, which went stale
+    and mislabeled the UI once that round finished. Rounds beyond that are
+    resolved with randomized pairings across many trials (see bracket.py for
+    the full rationale) — so championship_odds is directionally reliable,
+    not an exact bracket.
     """
     if _bracket_cache["result"] is None or refresh:
         sim = BracketSimulator(model, n_simulations=20000, seed=None if refresh else 42)
+        current = sim.current_round()
         _bracket_cache["result"] = {
-            "round32_fixtures": sim.round32_probabilities(),
-            "fixed_round16": [{"home_team": a, "away_team": b} for a, b in sim.fixed_pairs("R16")],
-            "already_through_round32": sim.already_through(),
+            "current_round": current,
+            "current_round_label": ROUND_LABELS.get(current),
+            "current_round_fixtures": sim.round_probabilities(current) if current else [],
             "championship_odds": sim.simulate(),
             "n_simulations": sim.n_simulations,
             "note": (
-                "Round of 32 odds are direct model predictions. Rounds beyond the next "
-                "already-scheduled fixture use randomized bracket pairings averaged over "
-                "20,000 simulated tournaments, since the real bracket tree doesn't exist "
-                "in the data until earlier rounds are actually played."
+                f"{ROUND_LABELS.get(current, 'Next round')} odds are direct model predictions. "
+                "Rounds beyond that use randomized bracket pairings averaged over 20,000 "
+                "simulated tournaments, since the real bracket tree doesn't exist in the "
+                "data until earlier rounds are actually played."
             ),
         }
     return _bracket_cache["result"]

@@ -41,13 +41,13 @@ const STRINGS = {
 
     running_sims: 'Running 20,000 simulated tournaments…',
     championship_odds: 'Championship Odds',
-    sims_desc: '{n} simulated knockout tournaments, from the current Round of 32 onward.',
+    sims_desc: '{n} simulated knockout tournaments, from the current {round} onward.',
     rerun: 'Re-run ↻',
     simulating: 'Simulating…',
     finale_pct: 'finale {pct}',
-    r32_remaining: 'Round of 32 — Remaining',
-    r32_desc: 'Direct model predictions for each scheduled fixture still to be played.',
-    r16_scheduled: 'Already-scheduled Round of 16',
+    round_remaining: '{round} — Remaining',
+    round_fixtures_desc: 'Direct model predictions for each scheduled fixture still to be played.',
+    round_done: 'Every knockout fixture played so far has been decided — check back once the next round is scheduled.',
 
     loading_results: 'Loading results…',
     error_results: 'Could not load results. Is the backend running on :8000?',
@@ -131,13 +131,13 @@ const STRINGS = {
 
     running_sims: 'Simulation de 20 000 tournois en cours…',
     championship_odds: 'Cotes du titre',
-    sims_desc: '{n} tournois à élimination simulés, à partir des 32es de finale actuels.',
+    sims_desc: '{n} tournois à élimination simulés, à partir des {round} actuels.',
     rerun: 'Relancer ↻',
     simulating: 'Simulation…',
     finale_pct: 'finale {pct}',
-    r32_remaining: '32es de finale — restants',
-    r32_desc: 'Prédictions directes du modèle pour chaque match programmé restant à jouer.',
-    r16_scheduled: '16es de finale déjà programmés',
+    round_remaining: '{round} — Restants',
+    round_fixtures_desc: 'Prédictions directes du modèle pour chaque match programmé restant à jouer.',
+    round_done: 'Tous les matchs à élimination joués jusqu\'ici ont été décidés — reviens une fois le prochain tour programmé.',
 
     loading_results: 'Chargement des résultats…',
     error_results: 'Impossible de charger les résultats. Le serveur tourne-t-il sur le port :8000 ?',
@@ -162,8 +162,11 @@ const STRINGS = {
     tbd: 'À déterminer',
     upcoming: 'à venir',
     round_group: 'Phase de groupes',
-    round_r32: '32es de finale',
-    round_r16: '16es de finale',
+    // French football terminology counts by number of matches, not teams
+    // remaining, so it's the reverse of the English "Round of N" naming:
+    // 32 teams (16 matches) = "16es de finale", 16 teams (8 matches) = "8es de finale".
+    round_r32: 'Seizièmes de finale',
+    round_r16: 'Huitièmes de finale',
     round_qf: 'Quarts de finale',
     round_sf: 'Demi-finales',
     round_f: 'Finale',

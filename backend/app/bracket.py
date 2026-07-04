@@ -22,6 +22,7 @@ from functools import lru_cache
 from .model import MatchdayModel
 
 ROUND_ORDER = ["R32", "R16", "QF", "SF", "F"]
+ROUND_LABELS = {"R32": "Round of 32", "R16": "Round of 16", "QF": "Quarterfinals", "SF": "Semifinals", "F": "Final"}
 
 
 class BracketSimulator:
@@ -60,10 +61,23 @@ class BracketSimulator:
             for m in self.bracket.get(round_name, {}).get("remaining", [])
         ]
 
-    def round32_probabilities(self):
-        """Qualification probability for each remaining Round-of-32 fixture."""
+    def current_round(self) -> str | None:
+        """The earliest round (in ROUND_ORDER) that still has unplayed fixtures
+        with both participants known. None once every knowable fixture is
+        played (i.e. we're waiting on an earlier round to finish before the
+        next round's pairings even exist)."""
+        for r in ROUND_ORDER:
+            if self.bracket.get(r, {}).get("remaining"):
+                return r
+        return None
+
+    def round_probabilities(self, round_name: str):
+        """Advance probability for each remaining fixture in the given round —
+        generalizes round32_probabilities() to whichever round is current, so
+        the UI doesn't keep pointing at Round of 32 once it's fully played."""
         out = []
-        for a, b in self.remaining_round32():
+        for m in self.bracket.get(round_name, {}).get("remaining", []):
+            a, b = m["home_team"], m["away_team"]
             p = self._knockout_win_prob(a, b)
             out.append({"home_team": a, "away_team": b, "home_advance_prob": round(p, 4), "away_advance_prob": round(1 - p, 4)})
         return out
