@@ -44,6 +44,12 @@ USER_AGENT = "MatchdayAI-personal-project/1.0 (contact: to.doguet@gmail.com)"
 
 DEFAULT_PAGES = [
     "2026_FIFA_World_Cup_round_of_32",
+    # Later rounds (R16 onward) don't get their own dedicated article right
+    # away — until they do, their match sections live on the umbrella
+    # "knockout stage" page instead. Harmless to include even once a
+    # dedicated page exists later: results already in results.csv are
+    # deduped by (date, home, away).
+    "2026_FIFA_World_Cup_knockout_stage",
 ]
 
 # FIFA 3-letter codes (as used in Wikipedia's {{#invoke:flag|...}} templates)
@@ -71,7 +77,7 @@ FIFA_CODE_TO_TEAM = {
 # reliable right-hand boundary since it immediately follows in every case
 # observed).
 MATCH_BLOCK_RE = re.compile(
-    r"\{\{#invoke:Football box\|main(.*?)\}\}<section end=", re.DOTALL
+    r"\{\{#invoke:[Ff]ootball box\|main(.*?)\}\}<section end=", re.DOTALL
 )
 FIELD_RE = re.compile(r"^\|\s*([a-zA-Z0-9]+)\s*=\s*(.*)$")
 
