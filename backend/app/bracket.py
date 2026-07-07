@@ -82,48 +82,61 @@ class BracketSimulator:
             out.append({"home_team": a, "away_team": b, "home_advance_prob": round(p, 4), "away_advance_prob": round(1 - p, 4)})
         return out
 
+    def _round_winners(self, round_name: str, incoming_survivors: list[str]) -> list[str]:
+        """Who advances out of `round_name`, for one simulated trial.
+
+        Three groups, so eliminated teams never re-enter the pool:
+          1. Matches already decided (real result) — the actual winner
+             advances, full stop, no randomness. The loser is excluded.
+          2. Matches already paired but not yet played — simulate via Elo,
+             both participants are consumed either way.
+          3. Everyone else still alive from the incoming round who isn't in
+             group 1 or 2 (i.e. the round's fixture for them doesn't exist
+             in the data yet) — paired at random and simulated, since the
+             true bracket tree isn't known that far ahead.
+        """
+        decided = self.bracket.get(round_name, {}).get("decided", [])
+        fixed = self.bracket.get(round_name, {}).get("remaining", [])
+        accounted = {t for m in decided for t in (m["home_team"], m["away_team"])} | \
+                    {t for m in fixed for t in (m["home_team"], m["away_team"])}
+
+        winners = [m["winner"] for m in decided]
+        for m in fixed:
+            a, b = m["home_team"], m["away_team"]
+            p = self._knockout_win_prob(a, b)
+            winners.append(a if self._rng.random() < p else b)
+
+        pool = [t for t in incoming_survivors if t not in accounted]
+        self._rng.shuffle(pool)
+        random_pairs = [(pool[i], pool[i + 1]) for i in range(0, len(pool) - 1, 2)]
+        winners += self._play_round(random_pairs)
+        return winners
+
     def simulate(self):
         champion_count = defaultdict(int)
         finalist_count = defaultdict(int)
         semifinalist_count = defaultdict(int)
         quarterfinalist_count = defaultdict(int)
+        counters = {"R16": quarterfinalist_count, "QF": semifinalist_count, "SF": finalist_count}
 
         remaining_r32 = self.remaining_round32()
         already = self.already_through()
-        fixed_r16 = self.fixed_pairs("R16")
-        fixed_r16_teams = {t for pair in fixed_r16 for t in pair}
 
         for _ in range(self.n_simulations):
-            # Resolve remaining Round of 32
+            # Round of 32 is the bootstrap: real winners plus any remaining
+            # fixture simulated directly (no "leftover pool" case here,
+            # since every R32 slot's teams are always known).
             survivors = list(already)
             for a, b in remaining_r32:
                 p = self._knockout_win_prob(a, b)
                 survivors.append(a if self._rng.random() < p else b)
 
-            # Round of 16: honor any already-fixed pairings, randomize the rest
-            pool = [t for t in survivors if t not in fixed_r16_teams]
-            self._rng.shuffle(pool)
-            r16_pairs = list(fixed_r16) + [(pool[i], pool[i + 1]) for i in range(0, len(pool) - 1, 2)]
+            for round_name in ("R16", "QF", "SF"):
+                survivors = self._round_winners(round_name, survivors)
+                for t in survivors:
+                    counters[round_name][t] += 1
 
-            quarterfinalists = self._play_round(r16_pairs)
-            for t in quarterfinalists:
-                quarterfinalist_count[t] += 1
-
-            pool = list(quarterfinalists)
-            self._rng.shuffle(pool)
-            qf_pairs = [(pool[i], pool[i + 1]) for i in range(0, len(pool) - 1, 2)]
-            semifinalists = self._play_round(qf_pairs)
-            for t in semifinalists:
-                semifinalist_count[t] += 1
-
-            pool = list(semifinalists)
-            self._rng.shuffle(pool)
-            sf_pairs = [(pool[i], pool[i + 1]) for i in range(0, len(pool) - 1, 2)]
-            finalists = self._play_round(sf_pairs)
-            for t in finalists:
-                finalist_count[t] += 1
-
-            champ = self._play_round([tuple(finalists)])[0]
+            champ = self._round_winners("F", survivors)[0]
             champion_count[champ] += 1
 
         n = self.n_simulations
