@@ -290,3 +290,52 @@ print(f"\nSaved ratings to {OUT_DIR / 'team_ratings.json'}")
 print(f"\nTop 10 Elo:")
 for team, r in list(output["elo_ratings"].items())[:10]:
     print(f"  {team:20s} {r}")
+
+# ---------------------------------------------------------------------------
+# 10. Live calibration check against 2026 World Cup results so far.
+#
+# Diagnostic only — doesn't feed back into the saved artifact. Uses each
+# match's *pre-match* elo_diff (already computed chronologically in step 3,
+# so this isn't hindsight-biased by that match's own outcome) run through
+# the already-fitted outcome model, then compares to what actually
+# happened. Answers "when the model says a team has a 70% chance to win,
+# do they actually win about 70% of the time?" — the real signal for
+# whether the model needs adjusting, rather than guessing at parameters.
+# ---------------------------------------------------------------------------
+wc26_keys = set(zip(wc26["date"], wc26["home_team"], wc26["away_team"]))
+wc26_reg_rows = [r for r in rows_for_regression if (r["date"], r["home_team"], r["away_team"]) in wc26_keys]
+
+if len(wc26_reg_rows) >= 10:
+    wc26_elo_diff = np.array([r["elo_diff"] for r in wc26_reg_rows]).reshape(-1, 1)
+    wc26_actual = [r["outcome"] for r in wc26_reg_rows]
+    probs = clf.predict_proba(wc26_elo_diff)  # columns ordered per `classes`
+    class_idx = {c: i for i, c in enumerate(classes)}
+
+    brier_total, logloss_total = 0.0, 0.0
+    for p_row, actual in zip(probs, wc26_actual):
+        for c in classes:
+            indicator = 1.0 if c == actual else 0.0
+            brier_total += (p_row[class_idx[c]] - indicator) ** 2
+        logloss_total += -math.log(max(p_row[class_idx[actual]], 1e-9))
+    n = len(wc26_reg_rows)
+    brier_score = brier_total / n
+    log_loss = logloss_total / n
+
+    # Reliability check: bucket matches by predicted home-win probability,
+    # compare to the actual home-win rate in each bucket. A well-calibrated
+    # model has "actual" tracking "predicted" closely in every row.
+    p_home_all = probs[:, class_idx["H"]]
+    bins = [(0.0, 0.2, "0-20%"), (0.2, 0.4, "20-40%"), (0.4, 0.6, "40-60%"), (0.6, 0.8, "60-80%"), (0.8, 1.001, "80-100%")]
+    print(f"\n2026 World Cup calibration check ({n} matches played so far):")
+    print(f"  Brier score: {brier_score:.4f} (0 = perfect, 0.667 = uninformative 3-class baseline)")
+    print(f"  Log loss:    {log_loss:.4f} (lower is better; ln(3)={math.log(3):.4f} is the uninformative baseline)")
+    print(f"  {'Predicted P(home win)':<24} {'# matches':<10} {'Actual home-win rate'}")
+    for lo, hi, label in bins:
+        mask = (p_home_all >= lo) & (p_home_all < hi)
+        count = int(mask.sum())
+        if count == 0:
+            continue
+        actual_rate = sum(1 for a, m in zip(wc26_actual, mask) if m and a == "H") / count
+        print(f"  {label:<24} {count:<10} {actual_rate:.0%}")
+else:
+    print(f"\nSkipping 2026 calibration check: only {len(wc26_reg_rows)} played match(es) so far (need >= 10).")
