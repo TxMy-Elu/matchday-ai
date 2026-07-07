@@ -54,11 +54,25 @@ function matchKey(round, index) {
   return `${round}:${index}`
 }
 
+// The first round (in tree order) that isn't 100% played yet — earlier
+// rounds are fully decided and just clutter the funnel view (their results
+// are still in the "All Results" list below), so the tree starts here
+// instead of always at Round of 32. Falls back to the last round (Final)
+// if literally everything has been played.
+function firstVisibleRoundIndex(tree) {
+  for (let i = 0; i < tree.length - 1; i++) {
+    if (!tree[i].matches.every((m) => m.played)) return i
+  }
+  return tree.length - 1
+}
+
 // Pure index math: round R+1's slot k is always fed by round R's slots
 // 2k and 2k+1 (the standard bracket-sheet convention — see tournament.py's
 // R32_BRACKET_ORDER for where the Round of 32's own order comes from).
 // This wiring is fixed regardless of whether either side is known yet, so
-// every edge is always drawn, even between two "TBD" slots.
+// every edge is always drawn, even between two "TBD" slots. Operates on the
+// full tree (not just the visible slice) — edges into a hidden round's box
+// simply find no ref and are skipped, which is what we want.
 function computeEdges(tree) {
   const edges = []
   for (let r = 1; r < tree.length; r++) {
@@ -185,26 +199,26 @@ function BracketTree({ tree }) {
 
   // Split the tree into the two halves of the draw and fan them in from
   // opposite sides toward the Final in the center — the classic "Final
-  // Four" layout. Left half keeps R32 indices 0-7 -> R16 0-3 -> QF 0-1 ->
-  // SF 0; right half is the mirror image (indices 8-15 -> 4-7 -> 2-3 -> 1).
-  // Edge/line computation is untouched (still pure global-index math), so
-  // this is purely a rendering-order change.
+  // Four" layout. Fully-played leading rounds are dropped first (see
+  // firstVisibleRoundIndex) so the funnel always starts at whichever round
+  // is actually still in progress, rather than always at Round of 32.
+  // Global indices (used by matchKey/computeEdges) are preserved exactly —
+  // only which rounds get rendered changes, not their numbering.
   const withIndex = (matches, offset) => matches.map((m, i) => ({ m, i: i + offset }))
-  const [r32, r16, qf, sf, final] = tree.map((r) => r.matches)
+  const startIdx = firstVisibleRoundIndex(tree)
+  const visible = tree.slice(startIdx) // always ends with the Final
+  const rounds = visible.slice(0, -1) // every visible round except the Final
+  const final = visible[visible.length - 1].matches[0]
 
-  const leftHalves = [
-    { roundKey: 'R32', depth: 0, indexedMatches: withIndex(r32.slice(0, 8), 0) },
-    { roundKey: 'R16', depth: 1, indexedMatches: withIndex(r16.slice(0, 4), 0) },
-    { roundKey: 'QF', depth: 2, indexedMatches: withIndex(qf.slice(0, 2), 0) },
-    { roundKey: 'SF', depth: 3, indexedMatches: withIndex(sf.slice(0, 1), 0) },
-  ]
-  const rightHalves = [
-    { roundKey: 'SF', depth: 3, indexedMatches: withIndex(sf.slice(1, 2), 1) },
-    { roundKey: 'QF', depth: 2, indexedMatches: withIndex(qf.slice(2, 4), 2) },
-    { roundKey: 'R16', depth: 1, indexedMatches: withIndex(r16.slice(4, 8), 4) },
-    { roundKey: 'R32', depth: 0, indexedMatches: withIndex(r32.slice(8, 16), 8) },
-  ]
-  const finalSlotHeight = slotHeight(3)
+  const leftHalves = []
+  const rightHalves = []
+  rounds.forEach(({ round: roundKey, matches }, depth) => {
+    const half = matches.length / 2
+    leftHalves.push({ roundKey, depth, indexedMatches: withIndex(matches.slice(0, half), 0) })
+    rightHalves.unshift({ roundKey, depth, indexedMatches: withIndex(matches.slice(half), half) })
+  })
+  const finalDepth = Math.max(rounds.length - 1, 0)
+  const finalSlotHeight = slotHeight(finalDepth)
 
   return (
     <div className="overflow-x-auto thin-scroll pb-2">
@@ -253,9 +267,10 @@ function BracketTree({ tree }) {
 // round instead — no wiring lines, just the matches in bracket order.
 function MobileBracketList({ tree }) {
   const { t } = useLang()
+  const visible = tree.slice(firstVisibleRoundIndex(tree))
   return (
     <div className="space-y-6">
-      {tree.map((rnd) => (
+      {visible.map((rnd) => (
         <div key={rnd.round}>
           <div className="kicker text-[11px] text-mist-500 font-semibold mb-3">{t(ROUND_LABEL_KEYS[rnd.round])}</div>
           <div className="space-y-3">
