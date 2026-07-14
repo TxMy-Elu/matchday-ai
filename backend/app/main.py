@@ -6,6 +6,7 @@ Endpoints:
   GET  /api/fixtures           -> remaining/known 2026 World Cup fixtures
   GET  /api/results            -> every 2026 World Cup match (group + knockout), played or not
   GET  /api/bracket-tree       -> the full 31-slot knockout tree (R32 through the Final)
+  GET  /api/third-place-match  -> the Semifinal losers' third-place match (null until both SFs are played)
   GET  /api/group-standings    -> the 12 group tables (points, GD, goals)
   GET  /api/upsets             -> WC2026 results where the lower-Elo team won, ranked by Elo gap
   GET  /api/predict?home=&away=&neutral=  -> full prediction for a matchup
@@ -84,6 +85,17 @@ def get_bracket_tree():
     itself is sourced).
     """
     return model.bracket_tree
+
+
+@app.get("/api/third-place-match")
+def get_third_place_match():
+    """
+    The Semifinal losers' third-place match, once both Semifinals are
+    played (it's not part of the single-elimination bracket tree, since it
+    pairs the two losers rather than winners advancing). Returns `null`
+    until both Semifinals are decided.
+    """
+    return model.third_place_match
 
 
 @app.get("/api/group-standings")

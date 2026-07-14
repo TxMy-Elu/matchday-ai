@@ -75,6 +75,7 @@ const STRINGS = {
     round_r16: 'Round of 16',
     round_qf: 'Quarterfinals',
     round_sf: 'Semifinals',
+    round_tp: 'Third-Place Match',
     round_f: 'Final',
     score_col: 'Score',
 
@@ -169,6 +170,7 @@ const STRINGS = {
     round_r16: 'Huitièmes de finale',
     round_qf: 'Quarts de finale',
     round_sf: 'Demi-finales',
+    round_tp: 'Match pour la 3e place',
     round_f: 'Finale',
     score_col: 'Score',
 

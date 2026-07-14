@@ -14,6 +14,13 @@ group stage — the dataset already encodes who advanced, so group standings/
 tiebreaks don't need to be re-derived). A round is only "known" once the
 fixture already exists in results.csv, which is only true once both
 participants are determined.
+
+A team's 8th fixture isn't always the Final, though: the two Semifinal
+*losers* play each other in the third-place match instead, on the same
+"8th fixture" index. Since both participants of a given idx-8 match always
+share the same fate (both won their SF, or both lost it), we can tell the
+two apart once their SF match has been played by checking whether the team
+is a recorded SF loser.
 """
 import pandas as pd
 
@@ -46,13 +53,16 @@ def build_tournament_state(wc26: pd.DataFrame, shootouts: pd.DataFrame) -> tuple
     wc26_sorted = wc26.sort_values("date").reset_index(drop=True)
     order = _match_order(wc26_sorted)
 
-    knockout_bracket = {r: {"decided": [], "remaining": []} for r in ROUND_NAMES.values()}
+    knockout_bracket = {r: {"decided": [], "remaining": []} for r in list(ROUND_NAMES.values()) + ["TP"]}
     all_matches = []
+    sf_losers = set()
 
     for i, row in enumerate(wc26_sorted.itertuples(index=False)):
         idx_home = order[row.home_team].index(i) + 1
         idx_away = order[row.away_team].index(i) + 1
         round_name = "Group Stage" if idx_home < 4 else ROUND_NAMES.get(idx_home, f"Match {idx_home}")
+        if idx_home == 8 and idx_home == idx_away and (row.home_team in sf_losers or row.away_team in sf_losers):
+            round_name = "TP"
         played = bool(pd.notna(row.home_score))
 
         base = {
@@ -61,13 +71,16 @@ def build_tournament_state(wc26: pd.DataFrame, shootouts: pd.DataFrame) -> tuple
         }
 
         winner = None
-        if played and round_name != "Group Stage":
+        if played and round_name not in ("Group Stage",):
             if row.home_score > row.away_score:
                 winner = row.home_team
             elif row.home_score < row.away_score:
                 winner = row.away_team
             else:
                 winner = _shootout_winner(shootouts, row.date, row.home_team, row.away_team) or row.home_team
+
+        if round_name == "SF" and played and winner:
+            sf_losers.add(row.away_team if winner == row.home_team else row.home_team)
 
         if idx_home == idx_away and idx_home >= 4 and round_name in knockout_bracket:
             if played:
@@ -157,6 +170,32 @@ def build_full_bracket_tree(knockout_bracket: dict) -> list:
         current = next_round
 
     return tree
+
+
+def build_third_place_match(bracket_tree: list, knockout_bracket: dict):
+    """
+    The two Semifinal *losers* play each other for third place — a separate
+    match, not part of the single-elimination tree (which only tracks
+    winners advancing). Returns None until both Semifinals are actually
+    played (the third-place pairing doesn't exist before then), matching how
+    every other not-yet-determined slot in the tree is represented.
+    """
+    sf_round = next((r for r in bracket_tree if r["round"] == "SF"), None)
+    if not sf_round or len(sf_round["matches"]) != 2:
+        return None
+
+    losers = []
+    for m in sf_round["matches"]:
+        if not m.get("played") or not m.get("winner"):
+            return None
+        losers.append(m["away_team"] if m["winner"] == m["home_team"] else m["home_team"])
+
+    home_team, away_team = losers
+    match = {"home_team": home_team, "away_team": away_team, "played": False}
+    found = _find_match(knockout_bracket.get("TP", {}), home_team, away_team)
+    if found:
+        match = {**found, "played": "home_score" in found}
+    return match
 
 
 # ---------------------------------------------------------------------------

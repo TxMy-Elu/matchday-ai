@@ -5,13 +5,14 @@ import { useLang } from './i18n.jsx'
 
 const API_BASE = import.meta.env.VITE_API_BASE || '/api'
 
-const ROUND_ORDER = ['Group Stage', 'R32', 'R16', 'QF', 'SF', 'F']
+const ROUND_ORDER = ['Group Stage', 'R32', 'R16', 'QF', 'SF', 'TP', 'F']
 const ROUND_LABEL_KEYS = {
   'Group Stage': 'round_group',
   R32: 'round_r32',
   R16: 'round_r16',
   QF: 'round_qf',
   SF: 'round_sf',
+  TP: 'round_tp',
   F: 'round_f',
 }
 
@@ -86,11 +87,16 @@ function computeEdges(tree) {
   return edges
 }
 
-function BracketMatch({ match, boxRef }) {
+function BracketMatch({ match, boxRef, emphasis, dim }) {
   const { t } = useLang()
   const played = match.played
   return (
-    <div ref={boxRef} className="rounded-lg overflow-hidden border border-line bg-void-900 shadow-lg shadow-black/40">
+    <div
+      ref={boxRef}
+      className={`rounded-lg overflow-hidden border bg-void-900 shadow-lg shadow-black/40 ${
+        emphasis ? 'border-emerald-500/50 ring-1 ring-emerald-500/30' : 'border-line'
+      } ${dim ? 'opacity-70' : ''}`}
+    >
       <div className="flex items-center justify-between px-3 py-1.5 bg-white/[0.04] border-b border-line">
         <span className="text-[10px] font-mono text-mist-500 uppercase tracking-wide">{match.date || '—'}</span>
         <span className="text-[10px] font-mono text-mist-700 uppercase tracking-wide">{t('score_col')}</span>
@@ -149,7 +155,27 @@ function BracketColumn({ roundKey, indexedMatches, depth, registerBox }) {
   )
 }
 
-function BracketTree({ tree }) {
+// The third-place match isn't part of the single-elimination tree (it pairs
+// the two Semifinal *losers*, not winners advancing) but it's fed by the
+// exact same two Semifinal boxes as the Final. Its edges leave from the
+// *bottom* of each Semifinal box (not the vertical center the Final's edges
+// use) and land on the left/right side of the third-place box, so the two
+// pairs of lines never share a start point or cross each other.
+function thirdPlaceEdges() {
+  return [
+    { fromKey: matchKey('SF', 0), side: 'left' },
+    { fromKey: matchKey('SF', 1), side: 'right' },
+  ]
+}
+
+// Same sharp right-angle elbow as computeEdges' lines (drop straight down,
+// then a single horizontal run into the box) — no curve, so it reads as
+// the same drafting style as the rest of the tree.
+function elbowPath(x1, y1, x2, y2) {
+  return `M ${x1} ${y1} V ${y2} H ${x2}`
+}
+
+function BracketTree({ tree, thirdPlaceMatch }) {
   const { t } = useLang()
   const contentRef = useRef(null)
   const boxes = useRef({})
@@ -167,20 +193,38 @@ function BracketTree({ tree }) {
       if (!content) return
       const contentRect = content.getBoundingClientRect()
       const newLines = []
+
       for (const { fromKey, toKey } of computeEdges(tree)) {
         const fromEl = boxes.current[fromKey]
         const toEl = boxes.current[toKey]
         if (!fromEl || !toEl) continue
         const fromRect = fromEl.getBoundingClientRect()
         const toRect = toEl.getBoundingClientRect()
-        newLines.push({
-          x1: fromRect.right - contentRect.left,
-          y1: fromRect.top + fromRect.height / 2 - contentRect.top,
-          x2: toRect.left - contentRect.left,
-          y2: toRect.top + toRect.height / 2 - contentRect.top,
-          key: `${fromKey}->${toKey}`,
-        })
+        const x1 = fromRect.right - contentRect.left
+        const y1 = fromRect.top + fromRect.height / 2 - contentRect.top
+        const x2 = toRect.left - contentRect.left
+        const y2 = toRect.top + toRect.height / 2 - contentRect.top
+        const midX = (x1 + x2) / 2
+        newLines.push({ key: `${fromKey}->${toKey}`, d: `M ${x1} ${y1} H ${midX} V ${y2} H ${x2}`, muted: false })
       }
+
+      if (thirdPlaceMatch) {
+        const toEl = boxes.current[matchKey('TP', 0)]
+        if (toEl) {
+          const toRect = toEl.getBoundingClientRect()
+          for (const { fromKey, side } of thirdPlaceEdges()) {
+            const fromEl = boxes.current[fromKey]
+            if (!fromEl) continue
+            const fromRect = fromEl.getBoundingClientRect()
+            const x1 = fromRect.left + fromRect.width / 2 - contentRect.left
+            const y1 = fromRect.bottom - contentRect.top
+            const x2 = (side === 'left' ? toRect.left : toRect.right) - contentRect.left
+            const y2 = toRect.top + toRect.height / 2 - contentRect.top
+            newLines.push({ key: `${fromKey}->TP`, d: elbowPath(x1, y1, x2, y2), muted: true })
+          }
+        }
+      }
+
       setLines(newLines)
       setSize({ w: content.scrollWidth, h: content.scrollHeight })
     }
@@ -195,7 +239,7 @@ function BracketTree({ tree }) {
     observer.observe(contentRef.current)
     document.fonts?.ready?.then(recompute)
     return () => observer.disconnect()
-  }, [tree])
+  }, [tree, thirdPlaceMatch])
 
   // Split the tree into the two halves of the draw and fan them in from
   // opposite sides toward the Final in the center — the classic "Final
@@ -229,11 +273,14 @@ function BracketTree({ tree }) {
               <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.5" />
               <stop offset="100%" stopColor="#34D399" stopOpacity="0.5" />
             </linearGradient>
+            <linearGradient id="bracket-line-muted" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#71717A" stopOpacity="0.25" />
+            </linearGradient>
           </defs>
-          {lines.map(({ x1, y1, x2, y2, key }) => {
-            const midX = (x1 + x2) / 2
-            return <path key={key} d={`M ${x1} ${y1} H ${midX} V ${y2} H ${x2}`} fill="none" stroke="url(#bracket-line)" strokeWidth="2" />
-          })}
+          {lines.map(({ d, key, muted }) => (
+            <path key={key} d={d} fill="none" stroke={muted ? 'url(#bracket-line-muted)' : 'url(#bracket-line)'} strokeWidth="2" />
+          ))}
         </svg>
         {/* A position:absolute sibling (the SVG above) always paints after
             plain static-position siblings in CSS stacking order, no matter
@@ -248,9 +295,23 @@ function BracketTree({ tree }) {
             <div className="kicker text-[10px] sm:text-[11px] text-emerald-400 font-semibold mb-3 text-center">
               {t(ROUND_LABEL_KEYS.F)}
             </div>
+            {/* Sized to exactly finalSlotHeight (not inflated for the
+                third-place box below) so the Final stays vertically centered
+                at the same height as the Semifinal boxes — its connector
+                lines are a single clean bend only when both ends line up;
+                any extra height here would offset it and turn that bend
+                into a visible little zigzag. */}
             <div style={{ height: finalSlotHeight }} className="flex flex-col justify-center">
-              <BracketMatch match={final} boxRef={(el) => registerBox(matchKey('F', 0), el)} />
+              <BracketMatch match={final} boxRef={(el) => registerBox(matchKey('F', 0), el)} emphasis />
             </div>
+            {thirdPlaceMatch && (
+              <div className="mt-4">
+                <div className="kicker text-[10px] sm:text-[11px] text-mist-500 font-semibold mb-2 text-center">
+                  {t(ROUND_LABEL_KEYS.TP)}
+                </div>
+                <BracketMatch match={thirdPlaceMatch} boxRef={(el) => registerBox(matchKey('TP', 0), el)} dim />
+              </div>
+            )}
           </div>
           {rightHalves.map(({ roundKey, depth, indexedMatches }, ci) => (
             <BracketColumn key={`r-${ci}`} roundKey={roundKey} depth={depth} indexedMatches={indexedMatches} registerBox={registerBox} />
@@ -265,12 +326,17 @@ function BracketTree({ tree }) {
 // scrolling tree reads poorly on a phone (tiny cards, sideways scrolling).
 // This renders the same 31 matches as a plain vertical list grouped by
 // round instead — no wiring lines, just the matches in bracket order.
-function MobileBracketList({ tree }) {
+function MobileBracketList({ tree, thirdPlaceMatch }) {
   const { t } = useLang()
   const visible = tree.slice(firstVisibleRoundIndex(tree))
+  // Insert the third-place match right before the Final, matching where it
+  // sits in the desktop funnel (fed by the same two Semifinal boxes).
+  const withThirdPlace = thirdPlaceMatch
+    ? [...visible.slice(0, -1), { round: 'TP', matches: [thirdPlaceMatch] }, visible[visible.length - 1]]
+    : visible
   return (
     <div className="space-y-6">
-      {visible.map((rnd) => (
+      {withThirdPlace.map((rnd) => (
         <div key={rnd.round}>
           <div className="kicker text-[11px] text-mist-500 font-semibold mb-3">{t(ROUND_LABEL_KEYS[rnd.round])}</div>
           <div className="space-y-3">
@@ -373,8 +439,9 @@ export default function Results() {
   const [matches, setMatches] = useState(null)
   const [groupStandings, setGroupStandings] = useState(null)
   const [upsets, setUpsets] = useState(null)
+  const [thirdPlaceMatch, setThirdPlaceMatch] = useState(null)
   const [error, setError] = useState(null)
-  const [openRounds, setOpenRounds] = useState(() => new Set(['R32', 'R16', 'QF', 'SF', 'F']))
+  const [openRounds, setOpenRounds] = useState(() => new Set(['R32', 'R16', 'QF', 'SF', 'TP', 'F']))
 
   useEffect(() => {
     Promise.all([
@@ -382,12 +449,14 @@ export default function Results() {
       fetch(`${API_BASE}/results`).then((r) => r.json()),
       fetch(`${API_BASE}/group-standings`).then((r) => r.json()),
       fetch(`${API_BASE}/upsets`).then((r) => r.json()),
+      fetch(`${API_BASE}/third-place-match`).then((r) => r.json()),
     ])
-      .then(([bt, m, g, u]) => {
+      .then(([bt, m, g, u, tp]) => {
         setTree(bt)
         setMatches(m)
         setGroupStandings(g)
         setUpsets(u)
+        setThirdPlaceMatch(tp)
       })
       .catch(() => setError('error_results'))
   }, [])
@@ -419,10 +488,10 @@ export default function Results() {
         <h2 className="font-display text-xl font-semibold text-mist-50 mb-1">{t('knockout_bracket')}</h2>
         <p className="text-xs text-mist-500 mb-6">{t('knockout_desc')}</p>
         <div className="hidden sm:block">
-          <BracketTree tree={tree} />
+          <BracketTree tree={tree} thirdPlaceMatch={thirdPlaceMatch} />
         </div>
         <div className="sm:hidden">
-          <MobileBracketList tree={tree} />
+          <MobileBracketList tree={tree} thirdPlaceMatch={thirdPlaceMatch} />
         </div>
       </div>
 

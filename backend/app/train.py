@@ -24,7 +24,10 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 import statsmodels.api as sm
 
-from .tournament import build_tournament_state, build_full_bracket_tree, build_group_standings, build_upsets
+from .tournament import (
+    build_tournament_state, build_full_bracket_tree, build_group_standings, build_upsets,
+    build_third_place_match,
+)
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 OUT_DIR = Path(__file__).resolve().parent.parent / "ratings"
@@ -235,6 +238,7 @@ shootouts["away_team"] = shootouts["away_team"].replace(rename_map)
 
 knockout_matches, all_wc26_matches = build_tournament_state(wc26, shootouts)
 bracket_tree = build_full_bracket_tree(knockout_matches)
+third_place_match = build_third_place_match(bracket_tree, knockout_matches)
 group_standings = build_group_standings(wc26)
 
 elo_diff_lookup = {
@@ -279,6 +283,7 @@ output = {
     "wc2026_matches": all_wc26_matches,
     "knockout_bracket": knockout_matches,
     "bracket_tree": bracket_tree,
+    "third_place_match": third_place_match,
     "group_standings": group_standings,
     "upsets": upsets,
 }

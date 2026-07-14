@@ -35,6 +35,7 @@ class MatchdayModel:
         self.future_fixtures = self.data["future_fixtures"]
         self.wc2026_matches = self.data.get("wc2026_matches", [])
         self.bracket_tree = self.data.get("bracket_tree", [])
+        self.third_place_match = self.data.get("third_place_match")
         self.group_standings = self.data.get("group_standings", {})
         self.upsets = self.data.get("upsets", [])
         self.projected_fixtures = self._build_projected_fixtures()
