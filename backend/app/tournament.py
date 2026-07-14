@@ -176,9 +176,11 @@ def build_third_place_match(bracket_tree: list, knockout_bracket: dict):
     """
     The two Semifinal *losers* play each other for third place — a separate
     match, not part of the single-elimination tree (which only tracks
-    winners advancing). Returns None until both Semifinals are actually
-    played (the third-place pairing doesn't exist before then), matching how
-    every other not-yet-determined slot in the tree is represented.
+    winners advancing). Appears as soon as at least one Semifinal is played
+    (the other side shown as TBD until its own Semifinal is decided too) —
+    the same "fill in as it's known" behavior as every other not-yet-decided
+    slot in the tree (e.g. the Final itself). Returns None only while
+    neither Semifinal has been played yet, since there's nothing to show.
     """
     sf_round = next((r for r in bracket_tree if r["round"] == "SF"), None)
     if not sf_round or len(sf_round["matches"]) != 2:
@@ -186,15 +188,20 @@ def build_third_place_match(bracket_tree: list, knockout_bracket: dict):
 
     losers = []
     for m in sf_round["matches"]:
-        if not m.get("played") or not m.get("winner"):
-            return None
-        losers.append(m["away_team"] if m["winner"] == m["home_team"] else m["home_team"])
+        if m.get("played") and m.get("winner"):
+            losers.append(m["away_team"] if m["winner"] == m["home_team"] else m["home_team"])
+        else:
+            losers.append(None)
 
     home_team, away_team = losers
+    if home_team is None and away_team is None:
+        return None
+
     match = {"home_team": home_team, "away_team": away_team, "played": False}
-    found = _find_match(knockout_bracket.get("TP", {}), home_team, away_team)
-    if found:
-        match = {**found, "played": "home_score" in found}
+    if home_team and away_team:
+        found = _find_match(knockout_bracket.get("TP", {}), home_team, away_team)
+        if found:
+            match = {**found, "played": "home_score" in found}
     return match
 
 
