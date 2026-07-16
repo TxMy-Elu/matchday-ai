@@ -58,13 +58,17 @@ function matchKey(round, index) {
 // The first round (in tree order) that isn't 100% played yet — earlier
 // rounds are fully decided and just clutter the funnel view (their results
 // are still in the "All Results" list below), so the tree starts here
-// instead of always at Round of 32. Falls back to the last round (Final)
-// if literally everything has been played.
+// instead of always at Round of 32. Caps at the round just before the
+// Final (rather than collapsing all the way down to the Final alone) —
+// once both Semifinals are played, the funnel still needs those two boxes
+// on screen for the Final/third-place lines to fan in from, otherwise the
+// bracket reads as just two floating cards with no context.
 function firstVisibleRoundIndex(tree) {
-  for (let i = 0; i < tree.length - 1; i++) {
+  const maxCollapse = Math.max(tree.length - 2, 0)
+  for (let i = 0; i < maxCollapse; i++) {
     if (!tree[i].matches.every((m) => m.played)) return i
   }
-  return tree.length - 1
+  return maxCollapse
 }
 
 // Pure index math: round R+1's slot k is always fed by round R's slots
