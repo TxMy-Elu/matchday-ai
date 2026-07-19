@@ -24,115 +24,29 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 import statsmodels.api as sm
 
+from .elo import DATA_DIR, HOME_ADV, load_results, run_elo
 from .tournament import (
     build_tournament_state, build_full_bracket_tree, build_group_standings, build_upsets,
     build_third_place_match,
 )
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 OUT_DIR = Path(__file__).resolve().parent.parent / "ratings"
 OUT_DIR.mkdir(exist_ok=True)
 
 TODAY = pd.Timestamp("2026-07-01")
 
 # ---------------------------------------------------------------------------
-# 1. Load & clean
+# 1. Load & clean, then run Elo chronologically, recording the *pre-match*
+#    elo_diff for every game so we can regress outcomes against it.
+#    Both steps live in elo.py, shared with the evaluate.py backtest.
 # ---------------------------------------------------------------------------
-results = pd.read_csv(DATA_DIR / "results.csv", parse_dates=["date"])
-former = pd.read_csv(DATA_DIR / "former_names.csv")
-
-# Normalize historical team names to their current name so a team's Elo
-# history carries through name changes (e.g. "Gold Coast" -> "Ghana").
-rename_map = dict(zip(former["former"], former["current"]))
-results["home_team"] = results["home_team"].replace(rename_map)
-results["away_team"] = results["away_team"].replace(rename_map)
-
-# Split into played matches (used to train everything) and future fixtures
-# (score is blank — these are prediction targets, e.g. the R16-onward 2026
-# World Cup matches that haven't kicked off yet).
-played = results.dropna(subset=["home_score", "away_score"]).copy()
-played["home_score"] = played["home_score"].astype(int)
-played["away_score"] = played["away_score"].astype(int)
-played = played.sort_values("date").reset_index(drop=True)
-
-future = results[results["home_score"].isna()].copy()
+results, played, future, rename_map = load_results()
 
 print(f"Played matches used for training: {len(played)}")
 print(f"Future fixtures (prediction targets): {len(future)}")
 
-# ---------------------------------------------------------------------------
-# 2. Tournament importance weights (K-factor), following the well-established
-#    World Football Elo methodology (eloratings.net), tuned to this dataset's
-#    tournament labels.
-# ---------------------------------------------------------------------------
-def k_factor(tournament: str) -> int:
-    t = tournament.lower()
-    if t == "fifa world cup":
-        return 60
-    if any(s in t for s in ["euro", "copa américa", "copa america", "african cup of nations",
-                             "afc asian cup", "gold cup", "concacaf championship",
-                             "confederations cup", "nations league"]) and "qualif" not in t:
-        return 50
-    if "qualif" in t:
-        return 40
-    if t == "friendly":
-        return 20
-    return 30  # regional cups, minor tournaments, games, etc.
-
-
-HOME_ADV = 100.0  # Elo points added to the home team's rating pre-match
-
-
-def expected_score(r_a: float, r_b: float) -> float:
-    return 1.0 / (1.0 + 10 ** (-(r_a - r_b) / 400.0))
-
-
-def goal_diff_multiplier(gd: int) -> float:
-    gd = abs(gd)
-    if gd <= 1:
-        return 1.0
-    if gd == 2:
-        return 1.5
-    return (11 + gd) / 8.0
-
-
-# ---------------------------------------------------------------------------
-# 3. Run Elo chronologically, recording the *pre-match* elo_diff for every
-#    game so we can later regress outcomes against it.
-# ---------------------------------------------------------------------------
-elo: dict[str, float] = {}
-DEFAULT_ELO = 1500.0
-
-rows_for_regression = []
-
-for row in played.itertuples(index=False):
-    home, away = row.home_team, row.away_team
-    r_home = elo.get(home, DEFAULT_ELO)
-    r_away = elo.get(away, DEFAULT_ELO)
-
-    adv = 0.0 if row.neutral else HOME_ADV
-    elo_diff_effective = (r_home + adv) - r_away
-
-    rows_for_regression.append({
-        "date": row.date,
-        "home_team": home,
-        "away_team": away,
-        "elo_diff": elo_diff_effective,
-        "home_score": row.home_score,
-        "away_score": row.away_score,
-        "outcome": "H" if row.home_score > row.away_score else ("A" if row.home_score < row.away_score else "D"),
-    })
-
-    we_home = expected_score(r_home + adv, r_away)
-    w_home = 1.0 if row.home_score > row.away_score else (0.5 if row.home_score == row.away_score else 0.0)
-    gd = row.home_score - row.away_score
-    k = k_factor(row.tournament) * goal_diff_multiplier(gd)
-
-    delta = k * (w_home - we_home)
-    elo[home] = r_home + delta
-    elo[away] = r_away - delta
-
-reg_df = pd.DataFrame(rows_for_regression)
+elo, reg_df = run_elo(played)
+rows_for_regression = reg_df.to_dict("records")
 print(f"Teams rated: {len(elo)}")
 
 # ---------------------------------------------------------------------------
