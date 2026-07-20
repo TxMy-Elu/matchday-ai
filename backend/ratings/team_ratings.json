@@ -2,8 +2,8 @@
   "generated_at": "2026-07-01",
   "home_advantage_elo": 100.0,
   "elo_ratings": {
-    "Spain": 2303.5,
-    "Argentina": 2277.9,
+    "Spain": 2331.3,
+    "Argentina": 2250.1,
     "England": 2202.5,
     "France": 2144.8,
     "Colombia": 2087.3,
@@ -11,7 +11,7 @@
     "Portugal": 2069.8,
     "Netherlands": 2045.0,
     "Morocco": 2030.8,
-    "Norway": 2028.6,
+    "Norway": 2028.5,
     "Belgium": 2020.1,
     "Mexico": 2017.6,
     "Switzerland": 2001.1,
@@ -36,7 +36,7 @@
     "Ivory Coast": 1843.5,
     "South Korea": 1842.1,
     "United States": 1839.2,
-    "Ukraine": 1837.1,
+    "Ukraine": 1837.0,
     "Russia": 1836.9,
     "Scotland": 1828.2,
     "Venezuela": 1824.7,
@@ -76,7 +76,7 @@
     "Northern Cyprus": 1697.7,
     "South Africa": 1695.2,
     "Occitania": 1686.8,
-    "Ghana": 1682.8,
+    "Ghana": 1682.7,
     "Bosnia and Herzegovina": 1676.5,
     "Padania": 1676.4,
     "New Zealand": 1675.4,
@@ -93,7 +93,7 @@
     "North Macedonia": 1651.1,
     "Burkina Faso": 1650.9,
     "Iraqi Kurdistan": 1644.3,
-    "Ynys M\u00f4n": 1639.7,
+    "Ynys M\u00f4n": 1639.8,
     "Abkhazia": 1632.5,
     "Iceland": 1621.9,
     "County of Nice": 1616.9,
@@ -104,7 +104,7 @@
     "Suriname": 1597.3,
     "Kernow": 1594.6,
     "Andalusia": 1592.4,
-    "Rhodes": 1591.5,
+    "Rhodes": 1591.3,
     "Angola": 1588.4,
     "Palestine": 1587.3,
     "Panjab": 1586.6,
@@ -117,7 +117,7 @@
     "Oman": 1573.1,
     "Kurdistan": 1567.2,
     "Artsakh": 1566.6,
-    "Menorca": 1566.2,
+    "Menorca": 1566.1,
     "Corsica": 1555.7,
     "Yorkshire": 1552.5,
     "China": 1552.3,
@@ -191,7 +191,7 @@
     "West Papua": 1474.3,
     "Kuwait": 1474.1,
     "Somaliland": 1474.1,
-    "\u00c5land Islands": 1473.6,
+    "\u00c5land Islands": 1473.4,
     "Kenya": 1470.7,
     "Sierra Leone": 1469.3,
     "Gozo": 1469.3,
@@ -199,11 +199,11 @@
     "South Yemen": 1468.8,
     "Vietnam": 1467.8,
     "Romani people": 1466.8,
-    "Greenland": 1465.4,
+    "Greenland": 1465.2,
     "S\u00e1pmi": 1463.9,
     "Aymara": 1463.2,
     "Hmong": 1460.9,
-    "Provence": 1460.2,
+    "Provence": 1460.1,
     "Kabylia": 1455.4,
     "East Turkestan": 1454.9,
     "Mayotte": 1454.3,
@@ -215,17 +215,17 @@
     "Faroe Islands": 1447.7,
     "Rwanda": 1447.3,
     "Saarland": 1446.7,
+    "Gotland": 1444.1,
     "Mauritania": 1443.9,
     "Equatorial Guinea": 1443.6,
-    "Gotland": 1443.2,
     "Lebanon": 1441.2,
     "Vanuatu": 1440.7,
     "Malawi": 1437.0,
     "Tajikistan": 1436.6,
     "Liberia": 1436.4,
-    "Western Isles": 1436.0,
+    "Western Isles": 1436.1,
     "Manchukuo": 1430.4,
-    "G\u0103g\u0103uzia": 1429.6,
+    "G\u0103g\u0103uzia": 1429.5,
     "Niue": 1427.2,
     "Estonia": 1424.0,
     "Fiji": 1422.9,
@@ -263,14 +263,14 @@
     "Saint Helena": 1348.6,
     "Vietnam Republic": 1347.1,
     "Malta": 1345.0,
-    "Hitra": 1343.3,
-    "Saare County": 1340.8,
+    "Hitra": 1343.4,
+    "Saare County": 1340.9,
     "Philippines": 1339.4,
     "Bermuda": 1333.5,
     "Micronesia": 1328.9,
     "Congo": 1328.6,
     "Saint Martin": 1328.1,
-    "Sark": 1327.9,
+    "Sark": 1327.8,
     "Moldova": 1327.7,
     "Latvia": 1319.7,
     "Lithuania": 1318.5,
@@ -285,7 +285,7 @@
     "Saint Pierre and Miquelon": 1286.9,
     "Darfur": 1274.8,
     "South Sudan": 1269.5,
-    "Tibet": 1267.1,
+    "Tibet": 1267.0,
     "Saint Kitts and Nevis": 1262.8,
     "Samoa": 1249.1,
     "Chad": 1245.5,
@@ -293,7 +293,7 @@
     "Kiribati": 1234.4,
     "Tuvalu": 1218.3,
     "Montserrat": 1217.5,
-    "Falkland Islands": 1214.3,
+    "Falkland Islands": 1214.4,
     "Mauritius": 1207.3,
     "Saint Lucia": 1203.4,
     "Aruba": 1196.3,
@@ -316,7 +316,7 @@
     "Cambodia": 1076.7,
     "Djibouti": 1074.4,
     "Tonga": 1072.5,
-    "Somalia": 1059.9,
+    "Somalia": 1059.8,
     "Taiwan": 1058.2,
     "Cayman Islands": 1015.9,
     "British Virgin Islands": 1011.4,
@@ -390,50 +390,264 @@
     "Uzbekistan"
   ],
   "team_form": {
-    "Asturias": [
+    "Syria": [
+      "D",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "D",
+      "D",
+      "L",
+      "L"
+    ],
+    "S\u00e3o Tom\u00e9 and Pr\u00edncipe": [
+      "D",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
       "W"
     ],
-    "Basque Country": [
-      "W",
+    "Yugoslavia": [
       "D",
       "W",
-      "D",
+      "L",
       "W",
-      "W",
-      "D",
-      "W",
-      "D",
-      "W"
-    ],
-    "Brazil": [
       "D",
       "L",
       "W",
-      "W",
-      "W",
-      "D",
-      "W",
-      "W",
+      "L",
       "W",
       "L"
     ],
-    "Chad": [
+    "South Yemen": [
       "L",
+      "L",
+      "L"
+    ],
+    "Dominica": [
       "L",
       "D",
-      "L",
       "D",
+      "D",
+      "W",
       "L",
       "L",
       "L",
       "L",
       "D"
     ],
-    "Rhodes": [
+    "Laos": [
+      "L",
+      "D",
+      "D",
+      "L",
+      "L",
+      "L",
       "W",
+      "L",
+      "L",
+      "L"
+    ],
+    "Namibia": [
+      "W",
+      "D",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "D"
+    ],
+    "Saint Kitts and Nevis": [
+      "L",
+      "W",
+      "L",
+      "L",
+      "W",
+      "W",
+      "D",
+      "L",
+      "L",
+      "W"
+    ],
+    "G\u0103g\u0103uzia": [
+      "L",
+      "L",
+      "D"
+    ],
+    "Turkmenistan": [
+      "L",
+      "L",
+      "W",
+      "L",
+      "D",
       "W",
       "W",
       "L",
+      "W",
+      "W"
+    ],
+    "Gozo": [
+      "L",
+      "W",
+      "W",
+      "L",
+      "W",
+      "W",
+      "L",
+      "D",
+      "L",
+      "D"
+    ],
+    "Panama": [
+      "D",
+      "L",
+      "D",
+      "W",
+      "L",
+      "W",
+      "D",
+      "L",
+      "L",
+      "L"
+    ],
+    "Saugeais": [
+      "D"
+    ],
+    "Maldives": [
+      "L",
+      "L",
+      "L",
+      "W",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Mauritania": [
+      "W",
+      "D",
+      "D",
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "D",
+      "W"
+    ],
+    "Argentina": [
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "L"
+    ],
+    "Burundi": [
+      "L",
+      "L",
+      "W",
+      "W",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Myanmar": [
+      "D",
+      "W",
+      "L",
+      "W",
+      "W",
+      "D",
+      "L",
+      "L",
+      "W",
+      "L"
+    ],
+    "Mexico": [
+      "D",
+      "D",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "L"
+    ],
+    "\u00c5land Islands": [
+      "L",
+      "D",
+      "D",
+      "D",
+      "W",
+      "W",
+      "L",
+      "L",
+      "L",
+      "D"
+    ],
+    "Nigeria": [
+      "W",
+      "W",
+      "D",
+      "D",
+      "W",
+      "D",
+      "W",
+      "W",
+      "D",
+      "L"
+    ],
+    "Czech Republic": [
+      "L",
+      "W",
+      "W",
+      "D",
+      "D",
+      "W",
+      "W",
+      "L",
+      "D",
+      "L"
+    ],
+    "Malawi": [
+      "L",
+      "W",
+      "D",
+      "W",
+      "L",
+      "D",
+      "W",
+      "L",
+      "L",
+      "D"
+    ],
+    "Isle of Wight": [
+      "W",
+      "W",
+      "D",
+      "W",
       "W",
       "L",
       "W",
@@ -441,19 +655,303 @@
       "W",
       "L"
     ],
-    "Central Spain": [
+    "Equatorial Guinea": [
+      "L",
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "D",
+      "L"
+    ],
+    "Kosovo": [
+      "L",
+      "W",
+      "D",
+      "W",
+      "W",
+      "D",
+      "W",
+      "L",
       "L",
       "W"
     ],
-    "Jordan": [
+    "Yoruba Nation": [
+      "D",
+      "L"
+    ],
+    "Greece": [
+      "W",
+      "L",
+      "L",
+      "L",
+      "W",
+      "D",
+      "L",
+      "D",
+      "D",
+      "L"
+    ],
+    "Jamaica": [
+      "L",
+      "W",
+      "D",
+      "D",
       "W",
       "W",
+      "L",
+      "W",
+      "L",
+      "L"
+    ],
+    "Bermuda": [
+      "W",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "D",
+      "L",
+      "W"
+    ],
+    "Saint Vincent and the Grenadines": [
+      "W",
+      "D",
+      "W",
+      "L",
+      "W",
+      "W",
+      "L",
+      "W",
+      "L",
+      "W"
+    ],
+    "Pakistan": [
+      "L",
+      "L",
+      "L",
       "L",
       "D",
       "D",
       "L",
+      "W",
+      "W",
+      "W"
+    ],
+    "S\u00e1pmi": [
       "L",
       "L",
+      "W",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L"
+    ],
+    "Zimbabwe": [
+      "D",
+      "L",
+      "L",
+      "W",
+      "L",
+      "D",
+      "L",
+      "W",
+      "L",
+      "W"
+    ],
+    "Andalusia": [
+      "W",
+      "W",
+      "W",
+      "D",
+      "W",
+      "W",
+      "D",
+      "W",
+      "W",
+      "W"
+    ],
+    "Lesotho": [
+      "L",
+      "W",
+      "D",
+      "L",
+      "L",
+      "L",
+      "W",
+      "D",
+      "L",
+      "D"
+    ],
+    "Kenya": [
+      "D",
+      "W",
+      "L",
+      "W",
+      "W",
+      "L",
+      "L",
+      "D",
+      "W",
+      "D"
+    ],
+    "Palestine": [
+      "D",
+      "L",
+      "L",
+      "D",
+      "W",
+      "D",
+      "D",
+      "L",
+      "D",
+      "D"
+    ],
+    "Tunisia": [
+      "L",
+      "D",
+      "D",
+      "W",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Qatar": [
+      "W",
+      "L",
+      "L",
+      "D",
+      "L",
+      "L",
+      "D",
+      "D",
+      "L",
+      "L"
+    ],
+    "England": [
+      "W",
+      "W",
+      "W",
+      "D",
+      "W",
+      "W",
+      "W",
+      "W",
+      "L",
+      "W"
+    ],
+    "Malaysia": [
+      "D",
+      "W",
+      "D",
+      "L",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W"
+    ],
+    "United States Virgin Islands": [
+      "D",
+      "D",
+      "D",
+      "L",
+      "L",
+      "L",
+      "D",
+      "W",
+      "W",
+      "L"
+    ],
+    "Ethiopia": [
+      "L",
+      "W",
+      "L",
+      "W",
+      "L",
+      "L",
+      "W",
+      "L",
+      "W",
+      "D"
+    ],
+    "Ambazonia": [
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Ivory Coast": [
+      "W",
+      "W",
+      "L",
+      "W",
+      "W",
+      "W",
+      "W",
+      "L",
+      "W",
+      "L"
+    ],
+    "Western Australia": [
+      "L",
+      "W",
+      "L",
+      "L",
+      "W",
+      "L",
+      "D",
+      "L",
+      "W",
+      "D"
+    ],
+    "Cook Islands": [
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L"
+    ],
+    "Cambodia": [
+      "D",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "D",
+      "W",
+      "W"
+    ],
+    "Guam": [
+      "L",
+      "L",
+      "D",
+      "L",
+      "W",
+      "L",
+      "L",
+      "W",
       "L",
       "L"
     ],
@@ -469,93 +967,68 @@
       "W",
       "L"
     ],
-    "Saare County": [
+    "Jordan": [
       "W",
-      "L",
-      "L",
-      "L",
-      "L",
       "W",
       "L",
       "D",
       "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Republic of St. Pauli": [
+      "D",
+      "W",
+      "L",
+      "L"
+    ],
+    "County of Nice": [
+      "L",
+      "W",
+      "W",
+      "W",
+      "D",
+      "W",
+      "W",
+      "W",
+      "L"
+    ],
+    "Congo": [
+      "L",
+      "W",
+      "L",
+      "L",
+      "D",
+      "L",
+      "L",
+      "D",
+      "L",
+      "L"
+    ],
+    "Russia": [
+      "W",
+      "W",
+      "W",
+      "D",
+      "L",
+      "W",
+      "D",
+      "L",
+      "W",
       "W"
     ],
-    "Ivory Coast": [
+    "DR Congo": [
       "W",
-      "W",
-      "L",
-      "W",
-      "W",
-      "W",
-      "W",
-      "L",
-      "W",
-      "L"
-    ],
-    "Micronesia": [
-      "L",
-      "L",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Georgia": [
-      "L",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "W",
-      "D",
-      "W"
-    ],
-    "Kazakhstan": [
-      "L",
-      "L",
-      "W",
-      "D",
-      "D",
       "L",
       "W",
       "W",
       "D",
-      "L"
-    ],
-    "Ticino": [
       "L",
-      "L"
-    ],
-    "Wales": [
-      "W",
-      "L",
-      "L",
-      "L",
-      "W",
-      "W",
-      "D",
-      "D",
-      "D",
-      "L"
-    ],
-    "Belize": [
-      "W",
       "D",
       "L",
-      "L",
-      "L",
-      "L",
-      "W",
-      "W",
-      "L",
-      "L"
-    ],
-    "Quebec": [
-      "W",
       "W",
       "L"
     ],
@@ -571,65 +1044,83 @@
       "L",
       "L"
     ],
-    "Turks and Caicos Islands": [
-      "D",
-      "L",
+    "Cape Verde": [
       "D",
       "D",
-      "L",
-      "L",
-      "W",
-      "L",
-      "D",
-      "W"
-    ],
-    "North Vietnam": [
-      "D",
-      "W",
-      "D",
-      "L",
-      "W",
-      "W",
-      "D",
-      "L",
-      "L",
-      "W"
-    ],
-    "Sierra Leone": [
-      "L",
-      "W",
       "L",
       "D",
       "W",
       "L",
-      "W",
       "D",
-      "W",
+      "D",
+      "D",
       "L"
     ],
-    "Zanzibar": [
-      "W",
-      "W",
-      "D",
+    "Saint Martin": [
       "L",
       "W",
-      "D",
+      "L",
+      "W",
+      "L",
+      "L",
       "W",
       "L",
       "W",
       "W"
     ],
-    "Liberia": [
+    "Austria": [
+      "L",
+      "W",
+      "D",
+      "W",
+      "W",
+      "W",
       "W",
       "L",
       "D",
+      "L"
+    ],
+    "Guinea": [
+      "L",
       "W",
       "D",
-      "L",
-      "L",
+      "W",
       "D",
+      "W",
+      "D",
+      "D",
+      "L",
+      "L"
+    ],
+    "Canary Islands": [
+      "W",
+      "W",
       "L",
       "W"
+    ],
+    "Suriname": [
+      "L",
+      "L",
+      "D",
+      "D",
+      "W",
+      "D",
+      "D",
+      "W",
+      "L",
+      "L"
+    ],
+    "Greenland": [
+      "W",
+      "W",
+      "D",
+      "W",
+      "D",
+      "L",
+      "D",
+      "W",
+      "L",
+      "L"
     ],
     "Bhutan": [
       "L",
@@ -643,198 +1134,299 @@
       "L",
       "L"
     ],
-    "French Guiana": [
-      "W",
-      "W",
-      "L",
-      "W",
+    "Kiribati": [
       "L",
       "D",
       "L",
       "L",
       "L",
-      "D"
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
     ],
-    "Orkney": [
+    "Finland": [
       "L",
+      "L",
+      "W",
+      "L",
+      "L",
+      "W",
+      "W",
+      "D",
+      "L",
+      "L"
+    ],
+    "Ecuador": [
+      "D",
+      "W",
+      "D",
+      "D",
+      "W",
       "W",
       "L",
       "D",
       "W",
+      "L"
+    ],
+    "Bahrain": [
+      "L",
+      "D",
+      "L",
+      "L",
       "L",
       "W",
+      "L",
+      "L",
       "W",
+      "L"
+    ],
+    "Bahamas": [
+      "D",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Bonaire": [
+      "L",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L"
+    ],
+    "Tanzania": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "D",
+      "D",
+      "L",
       "L",
       "W"
     ],
-    "Yemen": [
-      "W",
+    "Central Spain": [
       "L",
-      "L",
-      "W",
-      "D",
-      "D",
-      "W",
-      "W",
-      "W",
-      "D"
+      "W"
     ],
-    "Belgium": [
+    "Northern Ireland": [
       "W",
+      "L",
+      "W",
+      "L",
+      "L",
+      "W",
+      "L",
       "D",
       "W",
+      "L"
+    ],
+    "Rhodes": [
       "W",
-      "D",
-      "D",
+      "W",
+      "W",
+      "L",
+      "W",
+      "L",
       "W",
       "W",
       "W",
       "L"
     ],
-    "Marshall Islands": [
-      "L",
-      "L"
-    ],
-    "China": [
-      "L",
-      "L",
-      "L",
+    "Philippines": [
+      "W",
+      "W",
       "L",
       "W",
       "D",
       "W",
-      "L",
       "W",
-      "D"
+      "W",
+      "W",
+      "W"
     ],
-    "Myanmar": [
-      "D",
-      "W",
-      "L",
-      "W",
-      "W",
+    "Togo": [
       "D",
       "L",
       "L",
       "W",
-      "L"
-    ],
-    "Madagascar": [
       "L",
-      "L",
-      "W",
-      "W",
-      "W",
-      "L",
-      "W",
-      "W",
       "D",
-      "L"
-    ],
-    "Cascadia": [
-      "L",
-      "W",
-      "W",
-      "L",
+      "D",
       "W",
       "D",
       "W"
     ],
-    "Benin": [
-      "L",
-      "L",
-      "L",
+    "Uzbekistan": [
       "W",
+      "D",
+      "D",
+      "W",
+      "D",
       "L",
       "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Catalonia": [
+      "W",
       "W",
       "W",
       "D",
-      "L"
-    ],
-    "Cook Islands": [
-      "L",
-      "L",
-      "L",
+      "D",
       "W",
+      "D",
       "L",
-      "L",
-      "L",
-      "L",
-      "W",
-      "L"
-    ],
-    "Saugeais": [
-      "D"
-    ],
-    "German DR": [
-      "W",
-      "W",
-      "L",
-      "L",
-      "W",
-      "W",
-      "W",
-      "W",
       "D",
       "W"
     ],
-    "Latvia": [
-      "D",
-      "D",
-      "L",
-      "L",
-      "D",
-      "L",
-      "D",
-      "L",
-      "D",
-      "L"
-    ],
-    "Croatia": [
-      "W",
-      "W",
-      "W",
-      "L",
-      "L",
-      "W",
+    "France": [
       "L",
       "W",
       "W",
-      "L"
-    ],
-    "DR Congo": [
-      "W",
-      "L",
       "W",
       "W",
-      "D",
-      "L",
-      "D",
-      "L",
       "W",
-      "L"
-    ],
-    "Gotland": [
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
       "W",
       "W",
       "L",
       "L"
     ],
-    "Barbados": [
+    "Saudi Arabia": [
+      "W",
       "L",
       "L",
-      "D",
-      "D",
-      "D",
+      "L",
       "L",
       "W",
+      "D",
+      "D",
+      "L",
+      "D"
+    ],
+    "Micronesia": [
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Thailand": [
+      "W",
+      "L",
+      "W",
+      "L",
+      "W",
+      "W",
+      "W",
+      "W",
+      "D",
+      "D"
+    ],
+    "Uruguay": [
+      "D",
+      "W",
+      "W",
+      "D",
+      "L",
+      "D",
+      "D",
+      "D",
+      "D",
+      "L"
+    ],
+    "Guatemala": [
+      "L",
+      "L",
+      "D",
+      "D",
+      "W",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L"
+    ],
+    "Martinique": [
+      "L",
+      "D",
+      "W",
+      "D",
+      "L",
+      "L",
+      "L",
+      "D",
+      "D",
+      "L"
+    ],
+    "Timor-Leste": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L"
+    ],
+    "Vietnam": [
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "L",
+      "W",
+      "W",
+      "W",
+      "W"
+    ],
+    "India": [
+      "D",
+      "L",
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "D"
+    ],
+    "Costa Rica": [
+      "D",
+      "D",
+      "D",
+      "W",
+      "L",
+      "D",
+      "D",
+      "L",
+      "L",
+      "L"
+    ],
+    "Two Sicilies": [
+      "L",
+      "W",
+      "L",
       "L",
       "L",
       "L"
@@ -851,81 +1443,319 @@
       "W",
       "D"
     ],
-    "Darfur": [
+    "New Zealand": [
+      "D",
       "L",
       "L",
       "L",
+      "W",
       "L",
       "L",
+      "D",
       "L",
       "L"
     ],
-    "Republic of Ireland": [
+    "Chameria": [
       "L",
-      "L",
-      "W",
       "W",
       "W",
       "D",
       "D",
+      "L",
+      "W"
+    ],
+    "Somalia": [
+      "L",
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "D"
+    ],
+    "Quebec": [
+      "W",
+      "W",
+      "L"
+    ],
+    "Papua New Guinea": [
+      "W",
+      "L",
+      "D",
+      "L",
+      "D",
+      "W",
+      "W",
       "W",
       "W",
       "D"
     ],
-    "Niue": [
+    "Albania": [
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "L",
+      "L",
+      "L",
       "L",
       "L"
     ],
-    "Gibraltar": [
+    "Tajikistan": [
+      "W",
+      "L",
+      "W",
+      "W",
+      "D",
+      "W",
+      "W",
+      "W",
+      "W",
+      "D"
+    ],
+    "Mayotte": [
+      "W",
+      "W",
+      "L",
+      "W",
+      "L",
+      "W",
+      "L",
+      "W",
+      "D",
+      "D"
+    ],
+    "Arameans Suryoye": [
+      "W",
+      "W",
+      "D",
+      "L",
+      "L",
+      "W",
+      "W",
+      "D",
+      "L",
+      "W"
+    ],
+    "Ukraine": [
+      "L",
+      "D",
+      "W",
+      "W",
+      "L",
+      "W",
+      "L",
+      "W",
+      "W",
+      "L"
+    ],
+    "South Ossetia": [
       "L",
       "L",
       "L",
+      "W",
+      "W",
+      "D",
+      "D",
+      "W",
+      "W",
+      "L"
+    ],
+    "Tamil Eelam": [
       "L",
+      "W",
       "L",
-      "L",
-      "L",
+      "W",
+      "W",
+      "W",
+      "W",
       "W",
       "W",
       "W"
     ],
-    "Kenya": [
+    "Basque Country": [
+      "W",
       "D",
       "W",
-      "L",
-      "W",
-      "W",
-      "L",
-      "L",
       "D",
       "W",
-      "D"
+      "W",
+      "D",
+      "W",
+      "D",
+      "W"
     ],
-    "Aymara": [
+    "Zambia": [
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L",
+      "D",
+      "D",
       "L",
       "L"
     ],
-    "Saint Barth\u00e9lemy": [
+    "Ry\u016bky\u016b": [
+      "L"
+    ],
+    "Biafra": [
+      "L",
+      "W",
+      "W"
+    ],
+    "Montserrat": [
+      "L",
+      "L",
       "L",
       "L",
       "W",
-      "W",
       "L",
+      "L",
+      "L",
+      "W",
+      "L"
+    ],
+    "Honduras": [
+      "D",
       "L",
       "D",
+      "W",
+      "D",
+      "W",
+      "L",
+      "D",
+      "D",
+      "L"
+    ],
+    "Chechnya": [
+      "L",
+      "D",
+      "L"
+    ],
+    "Provence": [
+      "L",
+      "L",
+      "W",
+      "W",
+      "L",
+      "L",
+      "W",
+      "W",
+      "L",
+      "L"
+    ],
+    "Guyana": [
+      "W",
+      "W",
+      "W",
+      "L",
+      "L",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W"
+    ],
+    "Lebanon": [
+      "W",
+      "W",
+      "L",
+      "D",
+      "D",
+      "D",
+      "W",
       "W",
       "W",
       "L"
     ],
-    "France": [
+    "Sri Lanka": [
+      "L",
+      "W",
       "L",
       "W",
       "W",
-      "W",
-      "W",
-      "W",
-      "W",
+      "L",
+      "D",
       "W",
       "L",
+      "L"
+    ],
+    "Seborga": [
+      "L"
+    ],
+    "Elba Island": [
+      "W",
+      "W"
+    ],
+    "Marshall Islands": [
+      "L",
+      "L"
+    ],
+    "Surrey": [
+      "W"
+    ],
+    "Angola": [
+      "W",
+      "D",
+      "D",
+      "L",
+      "W",
+      "L",
+      "D",
+      "D",
+      "D",
+      "W"
+    ],
+    "Kazakhstan": [
+      "L",
+      "L",
+      "W",
+      "D",
+      "D",
+      "L",
+      "W",
+      "W",
+      "D",
+      "L"
+    ],
+    "Saare County": [
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "D",
+      "D",
+      "W"
+    ],
+    "Wallis Islands and Futuna": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Matabeleland": [
+      "L",
+      "L",
+      "W",
+      "D",
+      "W",
+      "D",
+      "W",
       "L"
     ],
     "Ynys M\u00f4n": [
@@ -940,41 +1770,36 @@
       "W",
       "W"
     ],
-    "Brittany": [
-      "L",
-      "D",
+    "North Vietnam": [
       "D",
       "W",
       "D",
-      "W",
       "L",
       "W",
+      "W",
+      "D",
+      "L",
       "L",
       "W"
     ],
-    "Isle of Man": [
-      "W",
-      "W",
+    "Comoros": [
+      "D",
       "L",
       "L",
-      "W",
-      "W",
-      "W",
-      "W",
+      "L",
+      "L",
+      "D",
+      "D",
+      "D",
       "L",
       "W"
     ],
-    "Austria": [
-      "L",
+    "Kurdistan": [
       "W",
       "D",
       "W",
       "W",
-      "W",
-      "W",
-      "L",
-      "D",
-      "L"
+      "W"
     ],
     "Samoa": [
       "W",
@@ -988,53 +1813,41 @@
       "L",
       "L"
     ],
-    "Andalusia": [
+    "Wales": [
       "W",
+      "L",
+      "L",
+      "L",
       "W",
       "W",
       "D",
-      "W",
-      "W",
       "D",
-      "W",
-      "W",
-      "W"
+      "D",
+      "L"
     ],
-    "Kyrgyzstan": [
-      "L",
-      "L",
-      "L",
+    "Iran": [
       "W",
       "D",
       "D",
       "L",
-      "L",
+      "W",
+      "W",
+      "W",
+      "D",
       "D",
       "D"
     ],
-    "Indonesia": [
-      "W",
-      "L",
-      "W",
+    "Monaco": [
       "D",
       "L",
       "L",
       "W",
       "L",
-      "W",
-      "W"
-    ],
-    "Sudan": [
-      "L",
-      "L",
-      "W",
-      "D",
-      "L",
-      "L",
       "L",
       "W",
       "L",
-      "L"
+      "W",
+      "D"
     ],
     "Cuba": [
       "L",
@@ -1048,51 +1861,9 @@
       "D",
       "D"
     ],
-    "Somaliland": [
-      "D",
-      "L",
-      "L",
-      "W",
-      "W",
-      "L"
-    ],
-    "Zambia": [
-      "L",
-      "L",
-      "W",
-      "L",
-      "L",
-      "L",
+    "Latvia": [
       "D",
       "D",
-      "L",
-      "L"
-    ],
-    "R\u00e9union": [
-      "W",
-      "W",
-      "W",
-      "L",
-      "W",
-      "D",
-      "D",
-      "D",
-      "W",
-      "L"
-    ],
-    "Mapuche": [
-      "L",
-      "W"
-    ],
-    "Sark": [
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "South Sudan": [
-      "L",
-      "W",
       "L",
       "L",
       "D",
@@ -1102,89 +1873,49 @@
       "D",
       "L"
     ],
-    "Guatemala": [
-      "L",
-      "L",
+    "Oman": [
       "D",
       "D",
-      "W",
       "L",
       "W",
       "L",
+      "D",
       "L",
+      "D",
+      "W",
       "L"
     ],
-    "Central African Republic": [
+    "Tibet": [
       "L",
       "L",
-      "D",
-      "W",
-      "L",
-      "L",
-      "L",
-      "W",
-      "D",
-      "L"
-    ],
-    "Philippines": [
-      "W",
-      "W",
-      "L",
-      "W",
-      "D",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W"
-    ],
-    "Franconia": [
-      "W",
-      "L",
-      "W"
-    ],
-    "Uganda": [
-      "D",
-      "W",
-      "W",
-      "W",
-      "L",
-      "W",
       "L",
       "L",
       "D",
-      "L"
-    ],
-    "Burundi": [
-      "L",
-      "L",
-      "W",
-      "W",
       "D",
-      "L",
       "L",
       "L",
       "L",
       "L"
     ],
-    "Menorca": [
-      "W",
-      "W",
+    "K\u00e1rp\u00e1talja": [
+      "L",
       "D",
       "W",
       "D",
-      "L",
+      "D",
       "W",
-      "L",
-      "L",
-      "L"
+      "W",
+      "W",
+      "W",
+      "D"
     ],
-    "Saarland": [
-      "W",
-      "L",
+    "North Korea": [
+      "D",
       "D",
       "L",
       "L",
+      "L",
+      "D",
       "L",
       "L",
       "D",
@@ -1202,212 +1933,253 @@
       "D",
       "D"
     ],
-    "Guadeloupe": [
+    "Lithuania": [
+      "D",
+      "L",
+      "L",
+      "L",
+      "D",
+      "L",
       "W",
       "L",
       "D",
-      "W",
-      "W",
-      "W",
-      "W",
-      "L",
-      "L",
       "L"
     ],
-    "\u00c5land Islands": [
+    "Raetia": [
+      "L",
+      "D",
+      "L",
+      "D",
+      "L",
       "L",
       "D",
       "D",
+      "W",
+      "W"
+    ],
+    "Hitra": [
+      "L",
+      "W",
       "D",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "W"
+    ],
+    "Franconia": [
+      "W",
+      "L",
+      "W"
+    ],
+    "Slovakia": [
+      "W",
+      "W",
+      "L",
       "W",
       "W",
       "L",
       "L",
-      "L",
+      "W",
+      "W",
       "D"
     ],
-    "Cayman Islands": [
+    "Gibraltar": [
       "L",
       "L",
       "L",
       "L",
       "L",
-      "W",
-      "D",
-      "W",
       "L",
-      "L"
-    ],
-    "Guinea": [
-      "L",
-      "W",
-      "D",
-      "W",
-      "D",
-      "W",
-      "D",
-      "D",
-      "L",
-      "L"
-    ],
-    "Estonia": [
-      "L",
-      "D",
-      "L",
-      "D",
-      "L",
-      "W",
-      "D",
-      "L",
-      "W",
-      "W"
-    ],
-    "Romania": [
-      "L",
-      "D",
-      "W",
-      "W",
-      "L",
-      "W",
-      "L",
-      "L",
-      "D",
-      "W"
-    ],
-    "Abkhazia": [
-      "L",
-      "D",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "D",
-      "D",
-      "D"
-    ],
-    "Pakistan": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "D",
       "L",
       "W",
       "W",
       "W"
     ],
-    "Maldives": [
-      "L",
-      "L",
-      "L",
+    "Isle of Man": [
       "W",
-      "D",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Eswatini": [
-      "D",
-      "L",
-      "D",
-      "L",
-      "D",
-      "D",
-      "L",
-      "L",
-      "D",
-      "L"
-    ],
-    "Grenada": [
-      "L",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Madrid": [
-      "L"
-    ],
-    "Oman": [
-      "D",
-      "D",
-      "L",
-      "W",
-      "L",
-      "D",
-      "L",
-      "D",
-      "W",
-      "L"
-    ],
-    "Greenland": [
-      "W",
-      "W",
-      "D",
-      "W",
-      "D",
-      "L",
-      "D",
-      "W",
-      "L",
-      "L"
-    ],
-    "Australia": [
-      "L",
-      "L",
-      "W",
-      "W",
-      "L",
-      "D",
-      "W",
-      "L",
-      "D",
-      "D"
-    ],
-    "Seborga": [
-      "L"
-    ],
-    "Saint Kitts and Nevis": [
-      "L",
       "W",
       "L",
       "L",
       "W",
       "W",
-      "D",
-      "L",
-      "L",
-      "W"
-    ],
-    "Faroe Islands": [
-      "W",
-      "L",
-      "W",
-      "W",
-      "W",
-      "L",
       "W",
       "W",
       "L",
       "W"
     ],
-    "Matabeleland": [
-      "L",
-      "L",
+    "Menorca": [
+      "W",
       "W",
       "D",
       "W",
       "D",
+      "L",
       "W",
+      "L",
+      "L",
+      "L"
+    ],
+    "Scotland": [
+      "W",
+      "L",
+      "W",
+      "L",
+      "L",
+      "W",
+      "W",
+      "W",
+      "L",
+      "L"
+    ],
+    "Croatia": [
+      "W",
+      "W",
+      "W",
+      "L",
+      "L",
+      "W",
+      "L",
+      "W",
+      "W",
+      "L"
+    ],
+    "Sealand": [
+      "D",
+      "W",
+      "L",
+      "L",
+      "D",
+      "W",
+      "D",
+      "D",
+      "W",
+      "W"
+    ],
+    "Kernow": [
+      "D",
+      "W",
+      "L",
+      "W",
+      "W",
+      "W",
+      "W",
+      "D",
+      "W",
+      "W"
+    ],
+    "Northern Mariana Islands": [
+      "L",
+      "L",
+      "L",
+      "D",
+      "L",
+      "L",
+      "W",
+      "L",
+      "D",
+      "W"
+    ],
+    "Fiji": [
+      "D",
+      "D",
+      "D",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Saarland": [
+      "W",
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "D",
+      "L"
+    ],
+    "Luxembourg": [
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W"
+    ],
+    "Hmong": [
+      "L",
+      "W",
+      "L"
+    ],
+    "Djibouti": [
+      "D",
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Rwanda": [
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
+      "W",
+      "W"
+    ],
+    "Belize": [
+      "W",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "W",
+      "L",
+      "L"
+    ],
+    "Azerbaijan": [
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "D",
+      "L",
+      "W"
+    ],
+    "North Macedonia": [
+      "L",
+      "W",
+      "D",
+      "D",
+      "D",
+      "L",
+      "L",
+      "D",
+      "D",
       "L"
     ],
     "Shetland": [
@@ -1422,345 +2194,24 @@
       "D",
       "L"
     ],
-    "Suriname": [
+    "Manchukuo": [
       "L",
-      "L",
-      "D",
-      "D",
-      "W",
-      "D",
-      "D",
-      "W",
       "L",
       "L"
     ],
-    "Tahiti": [
+    "Zanzibar": [
       "W",
       "W",
       "D",
       "L",
-      "L",
+      "W",
+      "D",
       "W",
       "L",
       "W",
-      "W",
-      "L"
-    ],
-    "Comoros": [
-      "D",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "D",
-      "D",
-      "L",
       "W"
     ],
-    "Egypt": [
-      "D",
-      "W",
-      "D",
-      "W",
-      "L",
-      "D",
-      "W",
-      "D",
-      "D",
-      "L"
-    ],
-    "Cura\u00e7ao": [
-      "D",
-      "W",
-      "D",
-      "L",
-      "L",
-      "L",
-      "W",
-      "L",
-      "D",
-      "L"
-    ],
-    "Yoruba Nation": [
-      "D",
-      "L"
-    ],
-    "Slovenia": [
-      "D",
-      "L",
-      "D",
-      "D",
-      "L",
-      "D",
-      "L",
-      "W",
-      "D",
-      "L"
-    ],
-    "North Macedonia": [
-      "L",
-      "W",
-      "D",
-      "D",
-      "D",
-      "L",
-      "L",
-      "D",
-      "D",
-      "L"
-    ],
-    "Yemen DPR": [
-      "D",
-      "L",
-      "D",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
-      "W"
-    ],
-    "Mayotte": [
-      "W",
-      "W",
-      "L",
-      "W",
-      "L",
-      "W",
-      "L",
-      "W",
-      "D",
-      "D"
-    ],
-    "United Arab Emirates": [
-      "W",
-      "W",
-      "L",
-      "D",
-      "L",
-      "L",
-      "D",
-      "W",
-      "D",
-      "L"
-    ],
-    "Ghana": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "W",
-      "D",
-      "L",
-      "L"
-    ],
-    "Greece": [
-      "W",
-      "L",
-      "L",
-      "L",
-      "W",
-      "D",
-      "L",
-      "D",
-      "D",
-      "L"
-    ],
-    "Bosnia and Herzegovina": [
-      "W",
-      "D",
-      "D",
-      "D",
-      "D",
-      "D",
-      "D",
-      "L",
-      "W",
-      "L"
-    ],
-    "Solomon Islands": [
-      "L",
-      "L",
-      "W",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Uzbekistan": [
-      "W",
-      "D",
-      "D",
-      "W",
-      "D",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Vanuatu": [
-      "W",
-      "L",
-      "L",
-      "L",
-      "D",
-      "L",
-      "W",
-      "W",
-      "D",
-      "W"
-    ],
-    "Equatorial Guinea": [
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
-      "L",
-      "W",
-      "D",
-      "L"
-    ],
-    "Saint Vincent and the Grenadines": [
-      "W",
-      "D",
-      "W",
-      "L",
-      "W",
-      "W",
-      "L",
-      "W",
-      "L",
-      "W"
-    ],
-    "Padania": [
-      "W",
-      "W",
-      "W",
-      "L",
-      "D",
-      "W",
-      "L",
-      "D",
-      "W",
-      "L"
-    ],
-    "D\u00e9lvid\u00e9k": [
-      "W",
-      "L"
-    ],
-    "Angola": [
-      "W",
-      "D",
-      "D",
-      "L",
-      "W",
-      "L",
-      "D",
-      "D",
-      "D",
-      "W"
-    ],
-    "Macau": [
-      "L",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Northern Ireland": [
-      "W",
-      "L",
-      "W",
-      "L",
-      "L",
-      "W",
-      "L",
-      "D",
-      "W",
-      "L"
-    ],
-    "Guinea-Bissau": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "W",
-      "L",
-      "L",
-      "L",
-      "D"
-    ],
-    "East Turkestan": [
-      "W",
-      "L",
-      "L",
-      "W",
-      "L"
-    ],
-    "Mozambique": [
-      "W",
-      "L",
-      "W",
-      "L",
-      "D",
-      "L",
-      "W",
-      "L",
-      "L",
-      "L"
-    ],
-    "Cilento": [
-      "L"
-    ],
-    "Malawi": [
-      "L",
-      "W",
-      "D",
-      "W",
-      "L",
-      "D",
-      "W",
-      "L",
-      "L",
-      "D"
-    ],
-    "Uruguay": [
-      "D",
-      "W",
-      "W",
-      "D",
-      "L",
-      "D",
-      "D",
-      "D",
-      "D",
-      "L"
-    ],
-    "Afghanistan": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "D",
-      "W",
+    "Ticino": [
       "L",
       "L"
     ],
@@ -1776,68 +2227,35 @@
       "L",
       "L"
     ],
-    "Bermuda": [
-      "W",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "L",
-      "W"
-    ],
-    "Malaysia": [
-      "D",
-      "W",
-      "D",
-      "L",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W"
-    ],
-    "Costa Rica": [
-      "D",
-      "D",
-      "D",
-      "W",
-      "L",
-      "D",
-      "D",
-      "L",
-      "L",
-      "L"
-    ],
-    "Barawa": [
-      "W",
+    "Solomon Islands": [
       "L",
       "L",
       "W",
-      "L",
       "W",
+      "L",
+      "L",
       "L",
       "L",
       "L",
       "L"
     ],
-    "Chameria": [
+    "South Sudan": [
       "L",
       "W",
-      "W",
-      "D",
+      "L",
+      "L",
       "D",
       "L",
-      "W"
+      "D",
+      "L",
+      "D",
+      "L"
     ],
-    "North Korea": [
-      "D",
-      "D",
+    "Nepal": [
+      "W",
+      "W",
       "L",
-      "L",
+      "D",
       "L",
       "D",
       "L",
@@ -1845,130 +2263,113 @@
       "D",
       "L"
     ],
-    "Papua New Guinea": [
-      "W",
-      "L",
-      "D",
-      "L",
-      "D",
-      "W",
-      "W",
-      "W",
-      "W",
-      "D"
-    ],
-    "Sint Maarten": [
-      "W",
-      "L",
-      "W",
-      "L",
+    "Gambia": [
       "L",
       "W",
       "D",
       "W",
       "W",
-      "D"
-    ],
-    "Senegal": [
-      "W",
       "L",
       "W",
-      "W",
-      "L",
-      "D",
-      "L",
-      "L",
-      "W",
-      "L"
-    ],
-    "Venezuela": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "W",
-      "L",
-      "W",
-      "D",
-      "L",
-      "W"
-    ],
-    "Congo": [
-      "L",
-      "W",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
       "D",
       "L",
       "L"
     ],
-    "Manchukuo": [
-      "L",
-      "L",
-      "L"
-    ],
-    "Bolivia": [
-      "L",
-      "L",
-      "L",
-      "D",
-      "L",
+    "French Guiana": [
       "W",
-      "W",
-      "L",
-      "L",
-      "L"
-    ],
-    "Panjab": [
       "W",
       "L",
       "W",
       "L",
       "D",
       "L",
-      "W",
-      "D",
       "L",
-      "W"
-    ],
-    "Martinique": [
-      "L",
-      "D",
-      "W",
-      "D",
-      "L",
-      "L",
-      "L",
-      "D",
-      "D",
-      "L"
-    ],
-    "Burkina Faso": [
-      "W",
-      "W",
-      "W",
-      "L",
-      "W",
-      "L",
-      "W",
-      "D",
       "L",
       "D"
     ],
-    "Iceland": [
+    "Sweden": [
       "L",
+      "D",
+      "W",
+      "W",
       "L",
       "D",
       "W",
       "L",
+      "D",
+      "L"
+    ],
+    "D\u00e9lvid\u00e9k": [
+      "W",
+      "L"
+    ],
+    "Somaliland": [
+      "D",
       "L",
-      "D",
-      "D",
+      "L",
+      "W",
+      "W",
+      "L"
+    ],
+    "Aymara": [
       "L",
       "L"
+    ],
+    "Georgia": [
+      "L",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "D",
+      "W",
+      "D",
+      "W"
+    ],
+    "Kabylia": [
+      "L",
+      "D",
+      "L",
+      "D",
+      "W",
+      "L"
+    ],
+    "Macau": [
+      "L",
+      "L",
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Italy": [
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "L",
+      "W",
+      "D",
+      "W",
+      "W"
+    ],
+    "Brittany": [
+      "L",
+      "D",
+      "D",
+      "W",
+      "D",
+      "W",
+      "L",
+      "W",
+      "L",
+      "W"
     ],
     "Israel": [
       "W",
@@ -1982,599 +2383,200 @@
       "D",
       "W"
     ],
-    "Thailand": [
+    "Felvid\u00e9k": [
       "W",
       "L",
+      "L",
+      "D",
+      "D",
+      "W",
       "W",
       "L",
+      "L",
+      "W"
+    ],
+    "Jersey": [
+      "W",
+      "W",
+      "W",
+      "W",
       "W",
       "W",
       "W",
       "W",
       "D",
+      "L"
+    ],
+    "Artsakh": [
+      "W",
+      "L",
+      "L",
+      "W",
+      "W",
+      "W",
+      "L",
+      "D",
+      "W",
+      "W"
+    ],
+    "Cilento": [
+      "L"
+    ],
+    "El Salvador": [
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "D",
+      "W",
+      "L",
       "D"
     ],
-    "Morocco": [
-      "W",
-      "W",
-      "W",
-      "D",
-      "D",
-      "W",
-      "W",
-      "D",
-      "W",
-      "L"
-    ],
-    "Galicia": [
-      "L",
+    "Trinidad and Tobago": [
       "L",
       "W",
       "D",
       "D",
-      "W",
-      "W",
-      "L",
-      "D",
-      "L"
-    ],
-    "Nicaragua": [
-      "L",
       "D",
       "L",
       "L",
-      "L",
-      "W",
-      "L",
-      "L",
       "D",
-      "L"
-    ],
-    "Elba Island": [
-      "W",
-      "W"
-    ],
-    "Bahrain": [
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
-      "W",
-      "L",
-      "L",
-      "W",
-      "L"
-    ],
-    "Bonaire": [
-      "L",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "W",
       "L",
       "L"
     ],
-    "Occitania": [
-      "W",
-      "W",
-      "W",
-      "W",
-      "D",
-      "W",
-      "D",
-      "D",
-      "W",
-      "W"
-    ],
-    "Serbia": [
-      "W",
-      "L",
-      "L",
-      "W",
-      "L",
-      "W",
-      "L",
-      "W",
-      "L",
-      "L"
-    ],
-    "Zimbabwe": [
-      "D",
-      "L",
-      "L",
+    "Liberia": [
       "W",
       "L",
       "D",
-      "L",
-      "W",
-      "L",
-      "W"
-    ],
-    "Arameans Suryoye": [
-      "W",
       "W",
       "D",
       "L",
       "L",
-      "W",
-      "W",
       "D",
       "L",
       "W"
     ],
-    "South Yemen": [
+    "Burkina Faso": [
+      "W",
+      "W",
+      "W",
       "L",
-      "L",
-      "L"
-    ],
-    "Antigua and Barbuda": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
-      "D",
-      "L"
-    ],
-    "Panama": [
-      "D",
-      "L",
-      "D",
       "W",
       "L",
       "W",
       "D",
       "L",
-      "L",
-      "L"
-    ],
-    "Ecuador": [
-      "D",
-      "W",
-      "D",
-      "D",
-      "W",
-      "W",
-      "L",
-      "D",
-      "W",
-      "L"
-    ],
-    "Sri Lanka": [
-      "L",
-      "W",
-      "L",
-      "W",
-      "W",
-      "L",
-      "D",
-      "W",
-      "L",
-      "L"
-    ],
-    "Turkmenistan": [
-      "L",
-      "L",
-      "W",
-      "L",
-      "D",
-      "W",
-      "W",
-      "L",
-      "W",
-      "W"
-    ],
-    "Mongolia": [
-      "L",
-      "L",
-      "L",
-      "W",
-      "L",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Northern Mariana Islands": [
-      "L",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
-      "W",
-      "L",
-      "D",
-      "W"
-    ],
-    "Guernsey": [
-      "W",
-      "W",
-      "L",
-      "W",
-      "L",
-      "L",
-      "W",
-      "W",
-      "L",
-      "W"
-    ],
-    "Moldova": [
-      "L",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
       "D"
     ],
-    "Tunisia": [
-      "L",
-      "D",
-      "D",
+    "Yemen": [
       "W",
-      "D",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Parishes of Jersey": [
-      "W",
-      "L",
-      "W"
-    ],
-    "Bangladesh": [
-      "D",
-      "W",
-      "L",
-      "D",
-      "L",
-      "D",
-      "D",
-      "W",
-      "L",
-      "W"
-    ],
-    "S\u00e1pmi": [
-      "L",
-      "L",
-      "W",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "W",
-      "L"
-    ],
-    "Maule Sur": [
-      "W",
-      "W"
-    ],
-    "Azerbaijan": [
-      "L",
-      "D",
-      "L",
-      "L",
       "L",
       "L",
       "W",
       "D",
-      "L",
-      "W"
-    ],
-    "Tajikistan": [
-      "W",
-      "L",
-      "W",
-      "W",
       "D",
-      "W",
       "W",
       "W",
       "W",
       "D"
     ],
-    "Ellan Vannin": [
-      "D",
-      "L",
-      "W",
-      "L",
-      "D",
-      "D",
-      "W",
-      "W",
-      "W",
-      "L"
-    ],
-    "Tanzania": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "D",
-      "L",
-      "L",
-      "W"
-    ],
-    "Poland": [
-      "D",
-      "W",
-      "W",
+    "Gabon": [
       "W",
       "D",
       "W",
       "W",
+      "L",
+      "L",
+      "L",
       "L",
       "L",
       "D"
     ],
-    "Peru": [
-      "D",
+    "Grenada": [
       "L",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
-      "D",
       "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "L",
+      "L",
+      "L",
       "L"
     ],
-    "K\u00e1rp\u00e1talja": [
+    "China": [
       "L",
-      "D",
+      "L",
+      "L",
+      "L",
       "W",
       "D",
-      "D",
       "W",
-      "W",
-      "W",
+      "L",
       "W",
       "D"
     ],
-    "Tamil Eelam": [
-      "L",
-      "W",
-      "L",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W"
-    ],
-    "Guam": [
-      "L",
+    "Switzerland": [
       "L",
       "D",
-      "L",
       "W",
-      "L",
-      "L",
+      "D",
+      "D",
       "W",
-      "L",
+      "W",
+      "W",
+      "D",
       "L"
     ],
-    "United States Virgin Islands": [
-      "D",
-      "D",
-      "D",
-      "L",
-      "L",
-      "L",
-      "D",
-      "W",
-      "W",
-      "L"
-    ],
-    "Portugal": [
-      "W",
-      "D",
-      "W",
-      "W",
-      "W",
-      "D",
-      "W",
-      "D",
-      "W",
-      "L"
-    ],
-    "Republic of St. Pauli": [
-      "D",
-      "W",
-      "L",
-      "L"
-    ],
-    "Djibouti": [
-      "D",
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Jamaica": [
-      "L",
-      "W",
-      "D",
-      "D",
-      "W",
-      "W",
-      "L",
-      "W",
-      "L",
-      "L"
-    ],
-    "Botswana": [
-      "W",
-      "L",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
-      "L",
-      "W"
-    ],
-    "Qatar": [
-      "W",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
-      "D",
-      "D",
-      "L",
-      "L"
-    ],
-    "Taiwan": [
-      "L",
-      "W",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Germany": [
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "L",
-      "D"
-    ],
-    "Cambodia": [
+    "Hungary": [
       "D",
       "L",
       "W",
+      "D",
+      "W",
       "L",
-      "L",
-      "L",
-      "L",
+      "W",
       "D",
       "W",
       "W"
     ],
-    "Ry\u016bky\u016b": [
-      "L"
-    ],
-    "England": [
+    "Guadeloupe": [
       "W",
-      "W",
-      "W",
+      "L",
       "D",
       "W",
       "W",
       "W",
       "W",
-      "L",
-      "W"
-    ],
-    "Ethiopia": [
-      "L",
-      "W",
-      "L",
-      "W",
-      "L",
-      "L",
-      "W",
-      "L",
-      "W",
-      "D"
-    ],
-    "Crimea": [
-      "L",
-      "W",
-      "W",
-      "W",
-      "L"
-    ],
-    "Palestine": [
-      "D",
-      "L",
-      "L",
-      "D",
-      "W",
-      "D",
-      "D",
-      "L",
-      "D",
-      "D"
-    ],
-    "Netherlands": [
-      "D",
-      "W",
-      "W",
-      "D",
-      "L",
-      "W",
-      "D",
-      "W",
-      "W",
-      "D"
-    ],
-    "Bahamas": [
-      "D",
-      "L",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
       "L",
       "L",
       "L"
     ],
-    "Kuwait": [
+    "Belarus": [
+      "L",
+      "L",
+      "L",
       "L",
       "D",
-      "L",
+      "D",
       "W",
-      "D",
       "W",
-      "D",
-      "L",
-      "L",
+      "W",
       "D"
     ],
-    "Kabylia": [
-      "L",
-      "D",
+    "Abkhazia": [
       "L",
       "D",
       "W",
-      "L"
+      "W",
+      "W",
+      "W",
+      "W",
+      "D",
+      "D",
+      "D"
     ],
     "Norway": [
       "L",
@@ -2600,86 +2602,88 @@
       "W",
       "L"
     ],
-    "Raetia": [
+    "Padania": [
+      "W",
+      "W",
+      "W",
       "L",
-      "D",
-      "L",
-      "D",
-      "L",
-      "L",
-      "D",
       "D",
       "W",
-      "W"
+      "L",
+      "D",
+      "W",
+      "L"
     ],
-    "Czechoslovakia": [
+    "Moldova": [
       "L",
-      "W",
+      "L",
+      "L",
       "D",
+      "L",
+      "L",
+      "L",
+      "L",
       "D",
-      "D",
-      "W",
-      "W",
-      "D",
-      "W",
       "D"
     ],
-    "Vatican City": [
-      "D",
+    "Crimea": [
       "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "D",
+      "W",
+      "W",
+      "W",
       "L"
     ],
-    "Fiji": [
+    "Chad": [
+      "L",
+      "L",
       "D",
+      "L",
       "D",
-      "D",
-      "W",
       "L",
       "L",
       "L",
       "L",
-      "L",
-      "L"
+      "D"
     ],
-    "Russia": [
+    "Occitania": [
       "W",
       "W",
       "W",
-      "D",
-      "L",
       "W",
       "D",
-      "L",
+      "W",
+      "D",
+      "D",
       "W",
       "W"
     ],
-    "Finland": [
-      "L",
-      "L",
+    "United Arab Emirates": [
+      "W",
       "W",
       "L",
+      "D",
       "L",
-      "W",
+      "L",
+      "D",
       "W",
       "D",
+      "L"
+    ],
+    "Saint Helena": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
       "L",
       "L"
     ],
-    "Sweden": [
-      "L",
-      "D",
-      "W",
+    "East Turkestan": [
       "W",
       "L",
-      "D",
-      "W",
       "L",
-      "D",
+      "W",
       "L"
     ],
     "Montenegro": [
@@ -2694,176 +2698,29 @@
       "W",
       "D"
     ],
-    "Wallis Islands and Futuna": [
-      "L",
-      "L",
-      "L",
-      "L",
+    "Brazil": [
+      "D",
       "L",
       "W",
-      "L",
-      "L",
-      "L",
+      "W",
+      "W",
+      "D",
+      "W",
+      "W",
+      "W",
       "L"
     ],
-    "Felvid\u00e9k": [
+    "Botswana": [
       "W",
       "L",
       "L",
+      "L",
       "D",
-      "D",
-      "W",
-      "W",
+      "L",
+      "L",
       "L",
       "L",
       "W"
-    ],
-    "New Zealand": [
-      "D",
-      "L",
-      "L",
-      "L",
-      "W",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L"
-    ],
-    "Cape Verde": [
-      "D",
-      "D",
-      "L",
-      "D",
-      "W",
-      "L",
-      "D",
-      "D",
-      "D",
-      "L"
-    ],
-    "Surrey": [
-      "W"
-    ],
-    "Montserrat": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "W",
-      "L",
-      "L",
-      "L",
-      "W",
-      "L"
-    ],
-    "Western Australia": [
-      "L",
-      "W",
-      "L",
-      "L",
-      "W",
-      "L",
-      "D",
-      "L",
-      "W",
-      "D"
-    ],
-    "Mali": [
-      "W",
-      "W",
-      "W",
-      "D",
-      "D",
-      "D",
-      "D",
-      "L",
-      "D",
-      "L"
-    ],
-    "Artsakh": [
-      "W",
-      "L",
-      "L",
-      "W",
-      "W",
-      "W",
-      "L",
-      "D",
-      "W",
-      "W"
-    ],
-    "Singapore": [
-      "W",
-      "W",
-      "L",
-      "D",
-      "D",
-      "W",
-      "L",
-      "W",
-      "W",
-      "L"
-    ],
-    "Mauritania": [
-      "W",
-      "D",
-      "D",
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
-      "D",
-      "W"
-    ],
-    "Western Armenia": [
-      "W",
-      "W",
-      "L",
-      "L",
-      "W",
-      "L",
-      "W",
-      "D",
-      "D",
-      "L"
-    ],
-    "Catalonia": [
-      "W",
-      "W",
-      "W",
-      "D",
-      "D",
-      "W",
-      "D",
-      "L",
-      "D",
-      "W"
-    ],
-    "Seychelles": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "India": [
-      "D",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D"
     ],
     "Andorra": [
       "D",
@@ -2877,235 +2734,65 @@
       "W",
       "L"
     ],
-    "Gozo": [
-      "L",
+    "Saint Lucia": [
       "W",
       "W",
-      "L",
-      "W",
-      "W",
-      "L",
-      "D",
-      "L",
-      "D"
-    ],
-    "Italy": [
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "L",
-      "W",
-      "D",
-      "W",
-      "W"
-    ],
-    "Bulgaria": [
-      "L",
       "L",
       "L",
       "L",
       "L",
       "W",
-      "W",
-      "W",
-      "L",
-      "D"
-    ],
-    "Namibia": [
-      "W",
-      "D",
-      "L",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D"
-    ],
-    "Monaco": [
-      "D",
-      "L",
-      "L",
-      "W",
-      "L",
-      "L",
-      "W",
-      "L",
-      "W",
-      "D"
-    ],
-    "Belarus": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "D",
-      "W",
-      "W",
-      "W",
-      "D"
-    ],
-    "Tibet": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "D",
-      "L",
       "L",
       "L",
       "L"
     ],
-    "G\u0103g\u0103uzia": [
-      "L",
-      "L",
-      "D"
-    ],
-    "Western Isles": [
-      "L",
-      "L",
-      "L",
+    "Sz\u00e9kely Land": [
       "W",
-      "L",
-      "L",
-      "W",
-      "W",
-      "L",
-      "D"
-    ],
-    "Tuvalu": [
-      "L",
-      "L",
       "L",
       "D",
       "L",
       "L",
+      "D",
       "L",
       "L",
       "W",
       "W"
     ],
-    "Albania": [
-      "W",
-      "W",
-      "W",
-      "W",
+    "Iceland": [
+      "L",
+      "L",
+      "D",
       "W",
       "L",
       "L",
-      "L",
+      "D",
+      "D",
       "L",
       "L"
     ],
-    "Tonga": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
+    "Mauritius": [
       "W",
-      "L",
-      "L",
-      "W",
-      "L"
-    ],
-    "Falkland Islands": [
+      "D",
       "L",
       "L",
       "L",
-      "L",
-      "L",
-      "L",
+      "D",
       "L",
       "L",
       "L",
       "D"
     ],
-    "Romani people": [
-      "W",
-      "L",
-      "L",
+    "Niger": [
       "L",
       "W",
+      "W",
+      "W",
       "L",
+      "D",
+      "D",
+      "L",
+      "D",
       "L"
-    ],
-    "Kernow": [
-      "D",
-      "W",
-      "L",
-      "W",
-      "W",
-      "W",
-      "W",
-      "D",
-      "W",
-      "W"
-    ],
-    "Cameroon": [
-      "W",
-      "D",
-      "L",
-      "W",
-      "D",
-      "W",
-      "W",
-      "L",
-      "L",
-      "W"
-    ],
-    "Aruba": [
-      "L",
-      "L",
-      "W",
-      "D",
-      "L",
-      "D",
-      "W",
-      "W",
-      "W",
-      "L"
-    ],
-    "Mexico": [
-      "D",
-      "D",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "L"
-    ],
-    "Brunei": [
-      "W",
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
-      "W",
-      "L",
-      "L",
-      "L"
-    ],
-    "Dominica": [
-      "L",
-      "D",
-      "D",
-      "D",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D"
     ],
     "Algeria": [
       "W",
@@ -3119,92 +2806,107 @@
       "D",
       "L"
     ],
-    "Chagos Islands": [
+    "Peru": [
+      "D",
+      "L",
       "L",
       "L",
       "D",
-      "W",
       "L",
       "L",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Alderney": [
-      "L",
-      "L",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "W",
-      "L",
-      "L"
-    ],
-    "Gabon": [
-      "W",
       "D",
-      "W",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D"
-    ],
-    "Hong Kong": [
-      "D",
-      "W",
-      "L",
-      "W",
-      "W",
-      "D",
-      "D",
-      "L",
       "W",
       "L"
     ],
-    "Somalia": [
+    "Uganda": [
+      "D",
+      "W",
+      "W",
+      "W",
+      "L",
+      "W",
       "L",
       "L",
       "D",
+      "L"
+    ],
+    "Luhansk PR": [
       "L",
+      "W",
       "L",
+      "D",
       "L",
+      "W"
+    ],
+    "Czechoslovakia": [
       "L",
-      "L",
+      "W",
+      "D",
+      "D",
+      "D",
+      "W",
+      "W",
+      "D",
       "W",
       "D"
     ],
-    "Czech Republic": [
+    "Canada": [
+      "W",
+      "D",
+      "D",
+      "W",
+      "D",
+      "D",
+      "W",
       "L",
       "W",
-      "W",
-      "D",
-      "D",
-      "W",
-      "W",
-      "L",
-      "D",
       "L"
     ],
-    "Palau": [
+    "Corsica": [
+      "W",
+      "L",
+      "D",
+      "W",
+      "D",
+      "W",
+      "W",
+      "D",
+      "D"
+    ],
+    "South Korea": [
+      "W",
+      "W",
+      "W",
+      "L",
+      "L",
+      "W",
+      "W",
+      "W",
       "L",
       "L"
     ],
-    "New Caledonia": [
+    "Barawa": [
       "W",
-      "W",
-      "D",
-      "W",
-      "W",
-      "D",
+      "L",
+      "L",
       "W",
       "L",
       "W",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Liechtenstein": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
       "L"
     ],
     "Colombia": [
@@ -3219,37 +2921,226 @@
       "W",
       "D"
     ],
-    "Hungary": [
-      "D",
+    "Australia": [
+      "L",
       "L",
       "W",
+      "W",
+      "L",
       "D",
       "W",
       "L",
+      "D",
+      "D"
+    ],
+    "Chagos Islands": [
+      "L",
+      "L",
+      "D",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "British Virgin Islands": [
+      "D",
+      "L",
+      "L",
+      "L",
+      "W",
       "W",
       "D",
       "W",
+      "L",
       "W"
     ],
-    "Laos": [
-      "L",
+    "Morocco": [
+      "W",
+      "W",
+      "W",
       "D",
       "D",
+      "W",
+      "W",
+      "D",
+      "W",
+      "L"
+    ],
+    "Mozambique": [
+      "W",
       "L",
+      "W",
       "L",
+      "D",
       "L",
       "W",
       "L",
       "L",
       "L"
     ],
-    "Donetsk PR": [
+    "Sudan": [
       "L",
       "L",
       "W",
       "D",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L"
+    ],
+    "Malta": [
+      "D",
+      "L",
+      "D",
+      "W",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
+      "W"
+    ],
+    "Slovenia": [
+      "D",
+      "L",
+      "D",
+      "D",
+      "L",
+      "D",
+      "L",
+      "W",
+      "D",
+      "L"
+    ],
+    "Portugal": [
+      "W",
+      "D",
+      "W",
+      "W",
+      "W",
+      "D",
+      "W",
+      "D",
+      "W",
+      "L"
+    ],
+    "Cameroon": [
+      "W",
+      "D",
+      "L",
+      "W",
+      "D",
+      "W",
+      "W",
+      "L",
+      "L",
+      "W"
+    ],
+    "Saint Barth\u00e9lemy": [
+      "L",
+      "L",
+      "W",
+      "W",
+      "L",
+      "L",
+      "D",
+      "W",
+      "W",
+      "L"
+    ],
+    "Bolivia": [
+      "L",
+      "L",
+      "L",
+      "D",
+      "L",
+      "W",
+      "W",
+      "L",
+      "L",
+      "L"
+    ],
+    "Cascadia": [
+      "L",
+      "W",
+      "W",
+      "L",
+      "W",
       "D",
       "W"
+    ],
+    "Eritrea": [
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Parishes of Jersey": [
+      "W",
+      "L",
+      "W"
+    ],
+    "Senegal": [
+      "W",
+      "L",
+      "W",
+      "W",
+      "L",
+      "D",
+      "L",
+      "L",
+      "W",
+      "L"
+    ],
+    "Vanuatu": [
+      "W",
+      "L",
+      "L",
+      "L",
+      "D",
+      "L",
+      "W",
+      "W",
+      "D",
+      "W"
+    ],
+    "Hong Kong": [
+      "D",
+      "W",
+      "L",
+      "W",
+      "W",
+      "D",
+      "D",
+      "L",
+      "W",
+      "L"
+    ],
+    "Madrid": [
+      "L"
+    ],
+    "San Marino": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "D",
+      "L",
+      "L"
     ],
     "Western Sahara": [
       "D",
@@ -3262,46 +3153,225 @@
       "L",
       "L"
     ],
-    "Switzerland": [
+    "Faroe Islands": [
+      "W",
+      "L",
+      "W",
+      "W",
+      "W",
+      "L",
+      "W",
+      "W",
+      "L",
+      "W"
+    ],
+    "Venezuela": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "W",
+      "D",
+      "L",
+      "W"
+    ],
+    "Sierra Leone": [
+      "L",
+      "W",
       "L",
       "D",
       "W",
+      "L",
+      "W",
+      "D",
+      "W",
+      "L"
+    ],
+    "Belgium": [
+      "W",
+      "D",
+      "W",
+      "W",
       "D",
       "D",
       "W",
+      "W",
+      "W",
+      "L"
+    ],
+    "Denmark": [
+      "D",
+      "W",
+      "W",
+      "W",
+      "D",
+      "L",
+      "W",
+      "D",
+      "D",
+      "W"
+    ],
+    "Benin": [
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
       "W",
       "W",
       "D",
       "L"
     ],
-    "Turkey": [
+    "Sint Maarten": [
       "W",
+      "L",
+      "W",
+      "L",
+      "L",
       "W",
       "D",
       "W",
       "W",
+      "D"
+    ],
+    "Haiti": [
+      "L",
       "W",
       "W",
       "L",
+      "D",
+      "W",
       "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Western Isles": [
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
+      "W",
+      "W",
+      "L",
+      "D"
+    ],
+    "Barbados": [
+      "L",
+      "L",
+      "D",
+      "D",
+      "D",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L"
+    ],
+    "Falkland Islands": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "D"
+    ],
+    "Donetsk PR": [
+      "L",
+      "L",
+      "W",
+      "D",
+      "D",
       "W"
     ],
-    "Kurdistan": [
+    "Silesia": [
+      "L",
+      "L",
       "W",
+      "W",
+      "L",
       "D",
       "W",
+      "D"
+    ],
+    "United States": [
+      "W",
+      "L",
+      "L",
+      "W",
+      "L",
+      "W",
+      "W",
+      "L",
+      "W",
+      "L"
+    ],
+    "Alderney": [
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L"
+    ],
+    "Dominican Republic": [
+      "L",
+      "L",
+      "D",
+      "L",
+      "L",
+      "W",
+      "D",
+      "D",
+      "D",
+      "L"
+    ],
+    "Tuvalu": [
+      "L",
+      "L",
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
       "W",
       "W"
     ],
-    "Iraq": [
+    "Tonga": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
       "W",
       "L",
       "L",
       "W",
+      "L"
+    ],
+    "Serbia": [
       "W",
-      "D",
       "L",
       "L",
+      "W",
+      "L",
+      "W",
+      "L",
+      "W",
       "L",
       "L"
     ],
@@ -3317,52 +3387,79 @@
       "D",
       "L"
     ],
-    "Guyana": [
-      "W",
-      "W",
+    "Panjab": [
       "W",
       "L",
+      "W",
+      "L",
+      "D",
       "L",
       "W",
-      "W",
-      "W",
-      "W",
-      "W"
-    ],
-    "Canary Islands": [
-      "W",
-      "W",
+      "D",
       "L",
       "W"
     ],
-    "Togo": [
+    "Antigua and Barbuda": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
       "D",
       "L",
       "L",
-      "W",
-      "L",
       "D",
-      "D",
-      "W",
-      "D",
-      "W"
+      "L"
     ],
-    "Malta": [
-      "D",
-      "L",
-      "D",
+    "R\u00e9union": [
+      "W",
+      "W",
       "W",
       "L",
-      "L",
       "W",
-      "L",
-      "L",
-      "W"
+      "D",
+      "D",
+      "D",
+      "W",
+      "L"
     ],
-    "Kiribati": [
+    "Egypt": [
+      "D",
+      "W",
+      "D",
+      "W",
       "L",
       "D",
+      "W",
+      "D",
+      "D",
+      "L"
+    ],
+    "Mali": [
+      "W",
+      "W",
+      "W",
+      "D",
+      "D",
+      "D",
+      "D",
       "L",
+      "D",
+      "L"
+    ],
+    "Cayman Islands": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "D",
+      "W",
+      "L",
+      "L"
+    ],
+    "Saint Pierre and Miquelon": [
       "L",
       "L",
       "L",
@@ -3371,66 +3468,45 @@
       "L",
       "L"
     ],
-    "Provence": [
-      "L",
-      "L",
+    "Netherlands": [
+      "D",
       "W",
       "W",
-      "L",
-      "L",
-      "W",
-      "W",
-      "L",
-      "L"
-    ],
-    "Slovakia": [
-      "W",
-      "W",
+      "D",
       "L",
       "W",
-      "W",
-      "L",
-      "L",
+      "D",
       "W",
       "W",
       "D"
     ],
-    "Hmong": [
+    "Mapuche": [
       "L",
-      "W",
-      "L"
-    ],
-    "Two Sicilies": [
-      "L",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "South Ossetia": [
-      "L",
-      "L",
-      "L",
-      "W",
-      "W",
-      "D",
-      "D",
-      "W",
-      "W",
-      "L"
-    ],
-    "Vietnam": [
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "L",
-      "W",
-      "W",
-      "W",
       "W"
+    ],
+    "American Samoa": [
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Galicia": [
+      "L",
+      "L",
+      "W",
+      "D",
+      "D",
+      "W",
+      "W",
+      "L",
+      "D",
+      "L"
     ],
     "Chile": [
       "L",
@@ -3444,26 +3520,139 @@
       "L",
       "W"
     ],
-    "Gambia": [
-      "L",
+    "New Caledonia": [
+      "W",
       "W",
       "D",
       "W",
       "W",
+      "D",
+      "W",
       "L",
       "W",
-      "D",
+      "L"
+    ],
+    "Romani people": [
+      "W",
+      "L",
+      "L",
+      "L",
+      "W",
       "L",
       "L"
     ],
-    "Dominican Republic": [
+    "Sark": [
       "L",
       "L",
-      "D",
+      "L",
+      "L"
+    ],
+    "Aruba": [
       "L",
       "L",
       "W",
       "D",
+      "L",
+      "D",
+      "W",
+      "W",
+      "W",
+      "L"
+    ],
+    "Japan": [
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "D",
+      "W",
+      "D",
+      "L"
+    ],
+    "Kuwait": [
+      "L",
+      "D",
+      "L",
+      "W",
+      "D",
+      "W",
+      "D",
+      "L",
+      "L",
+      "D"
+    ],
+    "Guernsey": [
+      "W",
+      "W",
+      "L",
+      "W",
+      "L",
+      "L",
+      "W",
+      "W",
+      "L",
+      "W"
+    ],
+    "Afghanistan": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "D",
+      "D",
+      "W",
+      "L",
+      "L"
+    ],
+    "South Africa": [
+      "W",
+      "L",
+      "D",
+      "L",
+      "D",
+      "W",
+      "L",
+      "D",
+      "W",
+      "L"
+    ],
+    "German DR": [
+      "W",
+      "W",
+      "L",
+      "L",
+      "W",
+      "W",
+      "W",
+      "W",
+      "D",
+      "W"
+    ],
+    "Mongolia": [
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Niue": [
+      "L",
+      "L"
+    ],
+    "Vatican City": [
+      "D",
+      "L",
+      "L",
+      "L",
+      "L",
       "D",
       "D",
       "L"
@@ -3480,77 +3669,29 @@
       "D",
       "D"
     ],
-    "Mauritius": [
+    "Western Armenia": [
       "W",
-      "D",
-      "L",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
-      "D"
-    ],
-    "Hitra": [
-      "L",
-      "W",
-      "D",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "W",
-      "W"
-    ],
-    "Rwanda": [
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
       "W",
       "L",
       "L",
       "W",
-      "W"
-    ],
-    "Saudi Arabia": [
-      "W",
-      "L",
-      "L",
-      "L",
       "L",
       "W",
       "D",
       "D",
-      "L",
-      "D"
-    ],
-    "San Marino": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "D",
-      "L",
       "L"
     ],
-    "S\u00e3o Tom\u00e9 and Pr\u00edncipe": [
+    "Kyrgyzstan": [
+      "L",
+      "L",
+      "L",
+      "W",
       "D",
       "D",
       "L",
       "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "W"
+      "D",
+      "D"
     ],
     "Cyprus": [
       "L",
@@ -3564,111 +3705,20 @@
       "D",
       "W"
     ],
-    "Nepal": [
-      "W",
-      "W",
-      "L",
-      "D",
-      "L",
-      "D",
-      "L",
-      "L",
-      "D",
-      "L"
-    ],
-    "Ukraine": [
-      "L",
-      "D",
-      "W",
-      "W",
-      "L",
-      "W",
-      "L",
-      "W",
-      "W",
-      "L"
-    ],
-    "Iran": [
-      "W",
-      "D",
-      "D",
-      "L",
-      "W",
-      "W",
-      "W",
-      "D",
-      "D",
-      "D"
-    ],
-    "Spain": [
-      "D",
-      "D",
-      "W",
-      "D",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
+    "Asturias": [
       "W"
     ],
-    "Syria": [
-      "D",
-      "W",
-      "W",
-      "W",
+    "Turkey": [
       "W",
       "W",
       "D",
-      "D",
-      "L",
-      "L"
-    ],
-    "Kosovo": [
-      "L",
-      "W",
-      "D",
       "W",
       "W",
-      "D",
+      "W",
       "W",
       "L",
       "L",
       "W"
-    ],
-    "Yugoslavia": [
-      "D",
-      "W",
-      "L",
-      "W",
-      "D",
-      "L",
-      "W",
-      "L",
-      "W",
-      "L"
-    ],
-    "Argentina": [
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W"
-    ],
-    "Saint Helena": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L"
     ],
     "Yorkshire": [
       "D",
@@ -3679,296 +3729,170 @@
       "W",
       "W"
     ],
-    "Liechtenstein": [
-      "L",
-      "L",
-      "L",
-      "L",
+    "Republic of Ireland": [
       "L",
       "L",
       "W",
-      "L",
-      "L",
-      "L"
-    ],
-    "Timor-Leste": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "W",
-      "L",
-      "L",
-      "L"
-    ],
-    "Corsica": [
-      "W",
-      "L",
-      "D",
-      "W",
-      "D",
       "W",
       "W",
       "D",
-      "D"
-    ],
-    "El Salvador": [
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
       "D",
       "W",
-      "L",
-      "D"
-    ],
-    "Honduras": [
-      "D",
-      "L",
-      "D",
-      "W",
-      "D",
-      "W",
-      "L",
-      "D",
-      "D",
-      "L"
-    ],
-    "British Virgin Islands": [
-      "D",
-      "L",
-      "L",
-      "L",
-      "W",
-      "W",
-      "D",
-      "W",
-      "L",
-      "W"
-    ],
-    "Silesia": [
-      "L",
-      "L",
-      "W",
-      "W",
-      "L",
-      "D",
       "W",
       "D"
     ],
-    "Denmark": [
+    "Madagascar": [
+      "L",
+      "L",
+      "W",
+      "W",
+      "W",
+      "L",
+      "W",
+      "W",
+      "D",
+      "L"
+    ],
+    "Bosnia and Herzegovina": [
+      "W",
+      "D",
+      "D",
+      "D",
+      "D",
+      "D",
+      "D",
+      "L",
+      "W",
+      "L"
+    ],
+    "Ellan Vannin": [
+      "D",
+      "L",
+      "W",
+      "L",
+      "D",
       "D",
       "W",
+      "W",
+      "W",
+      "L"
+    ],
+    "Yemen DPR": [
+      "D",
+      "L",
+      "D",
+      "L",
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "W"
+    ],
+    "Tahiti": [
       "W",
       "W",
       "D",
       "L",
+      "L",
+      "W",
+      "L",
+      "W",
+      "W",
+      "L"
+    ],
+    "Iraqi Kurdistan": [
+      "L",
       "W",
       "D",
+      "D",
+      "D",
+      "W",
+      "W",
+      "D",
+      "D",
+      "D"
+    ],
+    "Turks and Caicos Islands": [
+      "D",
+      "L",
+      "D",
+      "D",
+      "L",
+      "L",
+      "W",
+      "L",
       "D",
       "W"
     ],
-    "Lesotho": [
-      "L",
+    "Poland": [
+      "D",
+      "W",
+      "W",
       "W",
       "D",
-      "L",
-      "L",
-      "L",
       "W",
-      "D",
+      "W",
+      "L",
       "L",
       "D"
     ],
-    "United States": [
-      "W",
+    "Ghana": [
       "L",
       "L",
-      "W",
       "L",
-      "W",
-      "W",
       "L",
-      "W",
-      "L"
-    ],
-    "Japan": [
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
+      "L",
       "D",
       "W",
       "D",
+      "L",
       "L"
     ],
-    "Jersey": [
+    "Iraq": [
       "W",
-      "W",
-      "W",
-      "W",
-      "W",
-      "W",
+      "L",
+      "L",
       "W",
       "W",
       "D",
-      "L"
-    ],
-    "South Korea": [
-      "W",
-      "W",
-      "W",
-      "L",
-      "L",
-      "W",
-      "W",
-      "W",
-      "L",
-      "L"
-    ],
-    "Ambazonia": [
-      "D",
-      "L",
       "L",
       "L",
       "L",
       "L"
     ],
-    "Lithuania": [
-      "D",
-      "L",
+    "Central African Republic": [
       "L",
       "L",
       "D",
+      "W",
+      "L",
+      "L",
       "L",
       "W",
+      "D",
+      "L"
+    ],
+    "Palau": [
+      "L",
+      "L"
+    ],
+    "Eswatini": [
+      "D",
+      "L",
+      "D",
+      "L",
+      "D",
+      "D",
+      "L",
       "L",
       "D",
       "L"
     ],
-    "Haiti": [
+    "Taiwan": [
       "L",
       "W",
       "W",
-      "L",
-      "D",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Biafra": [
-      "L",
-      "W",
-      "W"
-    ],
-    "Scotland": [
-      "W",
-      "L",
-      "W",
-      "L",
-      "L",
-      "W",
-      "W",
-      "W",
-      "L",
-      "L"
-    ],
-    "Trinidad and Tobago": [
-      "L",
-      "W",
-      "D",
-      "D",
-      "D",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L"
-    ],
-    "Isle of Wight": [
-      "W",
-      "W",
-      "D",
-      "W",
-      "W",
-      "L",
-      "W",
-      "W",
-      "W",
-      "L"
-    ],
-    "Sz\u00e9kely Land": [
-      "W",
-      "L",
-      "D",
-      "L",
-      "L",
-      "D",
-      "L",
-      "L",
-      "W",
-      "W"
-    ],
-    "Luxembourg": [
-      "L",
-      "D",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "W"
-    ],
-    "Saint Lucia": [
-      "W",
-      "W",
-      "L",
-      "L",
-      "L",
-      "L",
-      "W",
-      "L",
-      "L",
-      "L"
-    ],
-    "South Africa": [
-      "W",
-      "L",
-      "D",
-      "L",
-      "D",
-      "W",
-      "L",
-      "D",
-      "W",
-      "L"
-    ],
-    "Niger": [
-      "L",
-      "W",
-      "W",
-      "W",
-      "L",
-      "D",
-      "D",
-      "L",
-      "D",
-      "L"
-    ],
-    "Eritrea": [
-      "D",
-      "L",
-      "L",
       "L",
       "L",
       "L",
@@ -3977,96 +3901,27 @@
       "L",
       "L"
     ],
-    "Saint Pierre and Miquelon": [
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "American Samoa": [
-      "D",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L",
-      "L"
-    ],
-    "Canada": [
-      "W",
-      "D",
-      "D",
-      "W",
-      "D",
-      "D",
+    "Gotland": [
       "W",
       "L",
-      "W",
-      "L"
-    ],
-    "County of Nice": [
+      "L",
+      "L",
+      "L",
       "L",
       "W",
       "W",
-      "W",
-      "D",
-      "W",
-      "W",
-      "W",
-      "L"
-    ],
-    "Chechnya": [
       "L",
-      "D",
-      "L"
-    ],
-    "Luhansk PR": [
-      "L",
-      "W",
-      "L",
-      "D",
-      "L",
-      "W"
-    ],
-    "Lebanon": [
-      "W",
-      "W",
-      "L",
-      "D",
-      "D",
-      "D",
-      "W",
-      "W",
-      "W",
       "L"
     ],
     "West Papua": [
       "L",
       "D"
     ],
-    "Nigeria": [
-      "W",
-      "W",
-      "D",
-      "D",
-      "W",
-      "D",
-      "W",
-      "W",
-      "D",
-      "L"
-    ],
-    "Saint Martin": [
-      "L",
+    "Indonesia": [
       "W",
       "L",
       "W",
+      "D",
       "L",
       "L",
       "W",
@@ -4086,29 +3941,174 @@
       "L",
       "D"
     ],
-    "Sealand": [
-      "D",
-      "W",
-      "L",
-      "L",
+    "Spain": [
       "D",
       "W",
       "D",
-      "D",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
       "W",
       "W"
     ],
-    "Iraqi Kurdistan": [
+    "Germany": [
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "W",
+      "L",
+      "D"
+    ],
+    "Seychelles": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Brunei": [
+      "W",
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
+      "L"
+    ],
+    "Nicaragua": [
+      "L",
+      "D",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "L",
+      "D",
+      "L"
+    ],
+    "Bulgaria": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "W",
+      "W",
+      "W",
+      "L",
+      "D"
+    ],
+    "Darfur": [
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L",
+      "L"
+    ],
+    "Cura\u00e7ao": [
+      "D",
+      "W",
+      "D",
+      "L",
+      "L",
+      "L",
+      "W",
+      "L",
+      "D",
+      "L"
+    ],
+    "Singapore": [
+      "W",
+      "W",
+      "L",
+      "D",
+      "D",
+      "W",
+      "L",
+      "W",
+      "W",
+      "L"
+    ],
+    "Estonia": [
+      "L",
+      "D",
+      "L",
+      "D",
       "L",
       "W",
       "D",
-      "D",
+      "L",
+      "W",
+      "W"
+    ],
+    "Guinea-Bissau": [
+      "L",
+      "L",
+      "L",
+      "L",
       "D",
       "W",
-      "W",
-      "D",
-      "D",
+      "L",
+      "L",
+      "L",
       "D"
+    ],
+    "Orkney": [
+      "L",
+      "W",
+      "L",
+      "D",
+      "W",
+      "L",
+      "W",
+      "W",
+      "L",
+      "W"
+    ],
+    "Bangladesh": [
+      "D",
+      "W",
+      "L",
+      "D",
+      "L",
+      "D",
+      "D",
+      "W",
+      "L",
+      "W"
+    ],
+    "Romania": [
+      "L",
+      "D",
+      "W",
+      "W",
+      "L",
+      "W",
+      "L",
+      "L",
+      "D",
+      "W"
+    ],
+    "Maule Sur": [
+      "W",
+      "W"
     ]
   },
   "outcome_model": {
@@ -4119,38 +4119,29 @@
     ],
     "coef": [
       [
-        -0.0032809992719630243
+        -0.003281000387586837
       ],
       [
-        -5.383227204802957e-05
+        -5.374527792591742e-05
       ],
       [
-        0.0033348315440218097
+        0.0033347456655276556
       ]
     ],
     "intercept": [
-      0.010044755743230048,
-      -0.18518851665856692,
-      0.1751437609152915
+      0.010017569567316635,
+      -0.18521336415816367,
+      0.17519579459082077
     ]
   },
   "goals_model": {
-    "home_intercept": 0.3341994844822481,
-    "home_coef": 0.0017323263421134152,
-    "away_intercept": 0.22910388860645442,
-    "away_coef": 0.0018923686440107893,
+    "home_intercept": 0.33419904007085627,
+    "home_coef": 0.0017323094470604239,
+    "away_intercept": 0.22908097610338585,
+    "away_coef": 0.0018924054000039774,
     "dixon_coles_rho": -0.049999999999999906
   },
-  "future_fixtures": [
-    {
-      "date": "2026-07-19",
-      "home_team": "Spain",
-      "away_team": "Argentina",
-      "city": "East Rutherford",
-      "country": "United States",
-      "neutral": true
-    }
-  ],
+  "future_fixtures": [],
   "wc2026_matches": [
     {
       "date": "2026-06-11",
@@ -5323,7 +5314,10 @@
       "city": "East Rutherford",
       "country": "United States",
       "round": "F",
-      "played": false
+      "played": true,
+      "home_score": 1,
+      "away_score": 0,
+      "winner": "Spain"
     }
   ],
   "knockout_bracket": {
@@ -5648,16 +5642,19 @@
       "remaining": []
     },
     "F": {
-      "decided": [],
-      "remaining": [
+      "decided": [
         {
           "date": "2026-07-19",
           "home_team": "Spain",
           "away_team": "Argentina",
           "city": "East Rutherford",
-          "country": "United States"
+          "country": "United States",
+          "home_score": 1,
+          "away_score": 0,
+          "winner": "Spain"
         }
-      ]
+      ],
+      "remaining": []
     },
     "TP": {
       "decided": [
@@ -6035,7 +6032,10 @@
           "away_team": "Argentina",
           "city": "East Rutherford",
           "country": "United States",
-          "played": false
+          "home_score": 1,
+          "away_score": 0,
+          "winner": "Spain",
+          "played": true
         }
       ]
     }
